@@ -1,0 +1,454 @@
+--- aviation ---
+Pass 1: The Foundations (Surface Level)
+  Step: Introduction to SELECT Statements
+    Lesson: The SELECT statement is the core of SQL. In aviation, you can use it to list airports, aircraft, flights, or crew assignments.
+    Snippet: SELECT name, city FROM airports;
+    Challenge: As an airline operations manager, you need to quickly identify all available airports within a specific region to plan new routes. Your task is to find all airports located in 'USA'. Retrieve the airport ID, name, city, and country for these airports.
+    Solution: SELECT airport_id, name, city, country FROM airports WHERE country = 'USA';
+  Step: Selecting Specific Columns
+    Lesson: You rarely need all columns. Specify only what you need, like the flight ID and aircraft ID.
+    Snippet: SELECT flight_id, aircraft_id FROM flights;
+    Challenge: Retrieve only the flight_id and aircraft_id of all flights.
+    Solution: SELECT flight_id, aircraft_id FROM flights;
+  Step: Filtering Rows with WHERE
+    Lesson: The WHERE clause lets you filter records based on specific conditions, like finding a specific aircraft model.
+    Snippet: SELECT * FROM aircraft WHERE model = 'Boeing 737';
+    Challenge: A maintenance team needs to schedule routine checks for all 'Boeing 737' aircraft in the fleet. To facilitate this, they require a list of all aircraft matching this model. Retrieve the aircraft ID, model, and capacity for all 'Boeing 737' aircraft.
+    Solution: SELECT aircraft_id, model, capacity FROM aircraft WHERE model = 'Boeing 737';
+  Step: Creating Your First Table
+    Lesson: Use CREATE TABLE to define new entities, such as a table for maintenance logs.
+    Snippet: CREATE TABLE maintenance_logs (log_id TEXT PRIMARY KEY, aircraft_id TEXT, description TEXT, log_date TEXT, cost REAL);
+    Challenge: The maintenance department needs a dedicated table to log all maintenance activities for aircraft. Create a new table named `maintenance_logs` with columns: `log_id` (TEXT PRIMARY KEY), `aircraft_id` (TEXT, FOREIGN KEY to `aircraft`), `description` (TEXT), `log_date` (TEXT), and `cost` (REAL).
+    Solution: CREATE TABLE maintenance_logs (
+  log_id TEXT PRIMARY KEY,
+  aircraft_id TEXT,
+  description TEXT,
+  log_date TEXT,
+  cost REAL,
+  FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id)
+);
+  Step: Adding Data with INSERT
+    Lesson: Use INSERT INTO to add new records, like scheduling a new flight.
+    Snippet: INSERT INTO flights (flight_id, aircraft_id, departure_airport_id, arrival_airport_id, scheduled_departure, scheduled_arrival) VALUES ('FL005', 'AC003', 'LAX', 'SFO', '2024-06-10 08:00:00', '2024-06-10 09:30:00');
+    Challenge: The scheduling department has finalized a new flight, 'FL005', from 'LAX' to 'SFO', using aircraft 'AC003', scheduled to depart on '2024-06-10 08:00:00' and arrive on '2024-06-10 09:30:00'. Add this new flight to the system.
+    Solution: INSERT INTO flights (flight_id, aircraft_id, departure_airport_id, arrival_airport_id, scheduled_departure, scheduled_arrival) VALUES ('FL005', 'AC003', 'LAX', 'SFO', '2024-06-10 08:00:00', '2024-06-10 09:30:00');
+  Step: Deleting Basic Records
+    Lesson: Use DELETE to remove records, such as removing canceled crew assignments.
+    Snippet: DELETE FROM crew_assignments WHERE flight_id = 'FL001' AND employee_id = 'EMP007';
+    Challenge: Due to a last-minute change, employee 'EMP007' has been reassigned from flight 'FL001'. The crew scheduling system needs to reflect this change by removing their assignment. Delete the crew assignment for employee 'EMP007' on flight 'FL001'.
+    Solution: DELETE FROM crew_assignments WHERE flight_id = 'FL001' AND employee_id = 'EMP007';
+Pass 2: Aggregations & Data Manipulation
+  Step: Sorting Data with ORDER BY
+    Lesson: Order your results using ORDER BY. For example, order aircraft by capacity.
+    Snippet: SELECT model, capacity FROM aircraft ORDER BY capacity DESC;
+    Challenge: List all aircraft, ordered by their capacity descending.
+    Solution: SELECT * FROM aircraft ORDER BY capacity DESC;
+  Step: Limiting Results
+    Lesson: Use LIMIT to restrict the number of rows returned, useful for sampling airport data.
+    Snippet: SELECT * FROM airports LIMIT 5;
+    Challenge: Retrieve the first 3 records from the airports table.
+    Solution: SELECT * FROM airports LIMIT 3;
+  Step: Finding Unique Values with DISTINCT
+    Lesson: Use DISTINCT to find unique values, such as all the unique aircraft models.
+    Snippet: SELECT DISTINCT model FROM aircraft;
+    Challenge: Find all unique aircraft models in the aircraft table.
+    Solution: SELECT DISTINCT model FROM aircraft;
+  Step: Filtering with MULTIPLE Values (IN)
+    Lesson: The IN operator allows you to specify multiple values in a WHERE clause.
+    Snippet: SELECT * FROM airports WHERE country IN ('USA', 'UK');
+    Challenge: Find all airports whose country is USA or UK.
+    Solution: SELECT * FROM airports WHERE country IN ('USA', 'UK');
+  Step: Filtering within Ranges (BETWEEN)
+    Lesson: Find records within a range, like aircraft with specific passenger capacities.
+    Snippet: SELECT * FROM aircraft WHERE capacity BETWEEN 100 AND 200;
+    Challenge: Find aircraft having capacity between 100 and 200.
+    Solution: SELECT * FROM aircraft WHERE capacity BETWEEN 100 AND 200;
+  Step: Pattern Matching with LIKE
+    Lesson: LIKE is used for pattern matching. Use % for wildcards. Find airports in specific cities.
+    Snippet: SELECT * FROM airports WHERE city LIKE '%York%';
+    Challenge: Find all airports where the city contains 'York'.
+    Solution: SELECT * FROM airports WHERE city LIKE '%York%';
+  Step: Combining Filters (AND)
+    Lesson: AND requires all conditions to be true.
+    Snippet: SELECT * FROM flights WHERE departure_airport_id = 'JFK' AND arrival_airport_id = 'LHR';
+    Challenge: Find all flights departing from JFK and arriving at LHR.
+    Solution: SELECT * FROM flights WHERE departure_airport_id = 'JFK' AND arrival_airport_id = 'LHR';
+  Step: Alternative Filters (OR)
+    Lesson: OR requires at least one condition to be true.
+    Snippet: SELECT * FROM aircraft WHERE model = 'Boeing 737' OR status = 'Grounded';
+    Challenge: Find all aircraft which are model 'Boeing 737' or belong to status 'Grounded'.
+    Solution: SELECT * FROM aircraft WHERE model = 'Boeing 737' OR status = 'Grounded';
+  Step: Counting Rows (COUNT)
+    Lesson: COUNT returns the number of rows matching the query.
+    Snippet: SELECT COUNT(*) FROM airports;
+    Challenge: Count the total number of airports.
+    Solution: SELECT COUNT(*) FROM airports;
+  Step: Totaling Values (SUM)
+    Lesson: SUM adds up all values in a numeric column, like total aircraft capacity.
+    Snippet: SELECT SUM(capacity) FROM aircraft;
+    Challenge: Calculate the total sum of capacities across all aircraft.
+    Solution: SELECT SUM(capacity) FROM aircraft;
+  Step: Averages and Maximums
+    Lesson: Find the lowest and highest values in a column, such as aircraft capacities.
+    Snippet: SELECT MIN(capacity) as min, MAX(capacity) as max FROM aircraft;
+    Challenge: Find the minimum capacity and maximum capacity among all aircraft as min_capacity and max_capacity.
+    Solution: SELECT MIN(capacity) as min_capacity, MAX(capacity) as max_capacity FROM aircraft;
+  Step: Grouping Results (GROUP BY)
+    Lesson: GROUP BY groups rows with the same values. Calculate total capacity per aircraft model.
+    Snippet: SELECT model, SUM(capacity) FROM aircraft GROUP BY model;
+    Challenge: For strategic planning, the airline needs to know the total passenger capacity available for each aircraft model in its fleet. This helps in route allocation and demand forecasting. Retrieve the aircraft model and the sum of capacity for all aircraft of that model. Name the sum column 'total_capacity'.
+    Solution: SELECT model, SUM(capacity) AS total_capacity FROM aircraft GROUP BY model;
+  Step: Filtering Groups (HAVING)
+    Lesson: HAVING filters groups, similar to how WHERE filters rows.
+    Snippet: SELECT flight_id, COUNT(status_id) FROM flight_status_history GROUP BY flight_id HAVING COUNT(status_id) > 3;
+    Challenge: Flight supervisors want to monitor flights that have experienced an unusually high number of status changes, as this might indicate operational issues. Identify flights that have more than 3 entries in their `flight_status_history`. Retrieve the flight ID and the count of status changes. Name the result column 'status_change_count'.
+    Solution: SELECT flight_id, COUNT(status_id) AS status_change_count FROM flight_status_history GROUP BY flight_id HAVING COUNT(status_id) > 3;
+  Step: Updating Existing Records
+    Lesson: Use UPDATE to modify existing records, like changing an aircraft's status.
+    Snippet: UPDATE aircraft SET status = 'Active' WHERE aircraft_id = 'AC001';
+    Challenge: An aircraft, 'AC001', has just completed maintenance and is now ready for service. The maintenance team needs to update its status in the system from 'Maintenance' to 'Active'. Update the status of aircraft 'AC001' to 'Active'.
+    Solution: UPDATE aircraft SET status = 'Active' WHERE aircraft_id = 'AC001';
+  Step: Updating Multiple Fields
+    Lesson: You can update multiple columns at once by separating them with commas.
+    Snippet: UPDATE flights SET departure_airport_id = 'LHR', arrival_airport_id = 'JFK' WHERE flight_id = 'FL001';
+    Challenge: Update the flight with ID 'FL001' to have departure_airport_id of LHR and arrival_airport_id of JFK.
+    Solution: UPDATE flights SET departure_airport_id = 'LHR', arrival_airport_id = 'JFK' WHERE flight_id = 'FL001';
+  Step: Altering Tables (Adding Columns)
+    Lesson: Use ALTER TABLE to change the structure of an existing table.
+    Snippet: ALTER TABLE airports ADD COLUMN is_international INTEGER DEFAULT 0;
+    Challenge: The route planning department needs to easily distinguish between international and domestic airports. Add a new column named `is_international` of type BOOLEAN (or INTEGER for SQLite) to the `airports` table, with a default value of 0 (false).
+    Solution: ALTER TABLE airports ADD COLUMN is_international INTEGER DEFAULT 0;
+  Step: Dropping Tables
+    Lesson: Use DROP TABLE to remove an entire table from the database.
+    Snippet: DROP TABLE IF EXISTS aircraft;
+    Challenge: Drop the 'aircraft' table if it exists.
+    Solution: DROP TABLE IF EXISTS aircraft;
+Pass 3: Relationships & Security
+  Step: Introduction to Table Relationships (INNER JOIN)
+    Lesson: JOIN combines rows from two or more tables based on a related column.
+    Snippet: SELECT f.flight_id, da.name AS departure_airport, aa.name AS arrival_airport FROM flights f JOIN airports da ON f.departure_airport_id = da.airport_id JOIN airports aa ON f.arrival_airport_id = aa.airport_id;
+    Challenge: The operations team needs a comprehensive view of flights along with the model of the aircraft assigned to them. Retrieve the flight_id from the flights table and the model from the aircraft table for all flights using an INNER JOIN.
+    Solution: SELECT f.flight_id, a.model FROM flights f JOIN aircraft a ON f.aircraft_id = a.aircraft_id;
+  Step: Enforcing Table Architecture (Foreign Keys)
+    Lesson: Foreign keys enforce referential integrity between tables.
+    Snippet: CREATE TABLE airlines (airline_id INTEGER PRIMARY KEY); CREATE TABLE routes (route_id INTEGER, airline_id INTEGER, FOREIGN KEY (airline_id) REFERENCES airlines(airline_id));
+    Challenge: Establish the database layout for airlines and their flight routes. Write the code for an `airlines` table with `airline_id` configured as an in-line INTEGER PRIMARY KEY, plus a `name` column (TEXT NOT NULL UNIQUE). Also, draft a `routes` table with `route_id` (INTEGER), `origin` (TEXT NOT NULL), `destination` (TEXT NOT NULL), `distance` (INTEGER), and `airline_id` (INTEGER). Apply out-of-line constraints assigning `route_id` as the PRIMARY KEY and `airline_id` as a FOREIGN KEY that references `airlines(airline_id)`.
+    Solution: CREATE TABLE airlines (airline_id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE); CREATE TABLE routes (route_id INTEGER, origin TEXT NOT NULL, destination TEXT NOT NULL, distance INTEGER, airline_id INTEGER, PRIMARY KEY (route_id), FOREIGN KEY (airline_id) REFERENCES airlines(airline_id));
+  Step: Inline Data Constraints (NOT NULL, UNIQUE, CHECK)
+    Lesson: Constraints specify rules for data. NOT NULL means a column cannot have a NULL value.
+    Snippet: CREATE TABLE meal_types (id INTEGER PRIMARY KEY, meal_name TEXT NOT NULL);
+    Challenge: Create a `meal_types` table with an `id` INTEGER PRIMARY KEY and a `meal_name` TEXT NOT NULL.
+    Solution: CREATE TABLE meal_types (id INTEGER PRIMARY KEY, meal_name TEXT NOT NULL);
+  Step: Data Integrity (Constraint Violations / Cascades)
+    Lesson: Ensuring related data is cleaned up properly.
+    Snippet: DELETE FROM crew_assignments WHERE flight_id = 'FL001';
+    Challenge: Delete all crew_assignments for flight_id 'FL001' to simulate a flight cancellation.
+    Solution: DELETE FROM crew_assignments WHERE flight_id = 'FL001';
+Pass 4: Advanced Queries & Subqueries
+  Step: Including Unmatched Records (LEFT JOIN)
+    Lesson: LEFT JOIN returns all records from the left table, and matched records from the right.
+    Snippet: SELECT a.name, COUNT(f.flight_id) FROM airports a LEFT JOIN flights f ON a.airport_id = f.departure_airport_id GROUP BY a.name;
+    Challenge: Airport authorities want to analyze traffic patterns by identifying which airports handle the most departures. This data is crucial for resource allocation and expansion plans. Retrieve the airport name and the count of flights departing from each airport. (Only include airports that have at least one departing flight). Name the result column 'departure_count'.
+    Solution: SELECT ap.name, COUNT(f.flight_id) AS departure_count FROM airports ap JOIN flights f ON ap.airport_id = f.departure_airport_id GROUP BY ap.name ORDER BY departure_count DESC;
+  Step: Multi-Table Chains
+    Lesson: You can join multiple tables to get richer insights.
+    Snippet: SELECT DISTINCT ca.employee_id FROM crew_assignments ca JOIN flights f ON ca.flight_id = f.flight_id JOIN airports da ON f.departure_airport_id = da.airport_id JOIN airports aa ON f.arrival_airport_id = aa.airport_id WHERE da.city = 'London' OR aa.city = 'London';
+    Challenge: For a user-friendly flight schedule display, the system needs to show the full names of the departure and arrival airports instead of just their IDs. This improves readability for passengers. Retrieve the flight ID, the name of the departure airport, and the name of the arrival airport. Name the result column 'departure_airport_name'.
+    Solution: SELECT f.flight_id, da.name AS departure_airport_name, aa.name AS arrival_airport_name FROM flights f JOIN airports da ON f.departure_airport_id = da.airport_id JOIN airports aa ON f.arrival_airport_id = aa.airport_id;
+  Step: Finding Missing Data (IS NULL)
+    Lesson: Use IS NULL to find left table records that have no match in the right table.
+    Snippet: SELECT a.name FROM airports a LEFT JOIN flights f ON a.airport_id = f.departure_airport_id WHERE f.flight_id IS NULL;
+    Challenge: Find airports that have no departures. Select airport_id and name using a LEFT JOIN with flights.
+    Solution: SELECT a.airport_id, a.name FROM airports a LEFT JOIN flights f ON a.airport_id = f.departure_airport_id WHERE f.flight_id IS NULL;
+  Step: Filtering using Subqueries (Left Join/Subquery combos)
+    Lesson: Find records that do not match a certain set using NOT IN.
+    Snippet: SELECT name FROM airports WHERE airport_id NOT IN (SELECT DISTINCT departure_airport_id FROM flights);
+    Challenge: The network planning team wants to identify airports that currently have no scheduled departing flights. This could indicate underutilized infrastructure or potential route cancellations. Retrieve the name and city of airports with no departing flights.
+    Solution: SELECT name, city FROM airports WHERE airport_id NOT IN (SELECT DISTINCT departure_airport_id FROM flights);
+  Step: Advanced Subquery Comparisons
+    Lesson: A subquery can be used in the WHERE clause to compare against dynamic values.
+    Snippet: SELECT * FROM aircraft WHERE capacity > (SELECT AVG(capacity) FROM aircraft);
+    Challenge: Find aircraft whose capacity is higher than the average capacity among all aircraft.
+    Solution: SELECT * FROM aircraft WHERE capacity > (SELECT AVG(capacity) FROM aircraft);
+  Step: Conditional Logic with CASE WHEN
+    Lesson: CASE allows for conditional logic in your SELECT statements.
+    Snippet: SELECT aircraft_id, CASE WHEN capacity > 200 THEN 'Large' ELSE 'Standard' END FROM aircraft;
+    Challenge: Select aircraft_id and a 'size_category' column which is 'Large' if capacity > 200 else 'Standard'. Do this for aircraft.
+    Solution: SELECT aircraft_id, CASE WHEN capacity > 200 THEN 'Large' ELSE 'Standard' END AS size_category FROM aircraft;
+  Step: Subqueries in the SELECT Clause
+    Lesson: You can also put subqueries directly in the SELECT list to calculate values row by row.
+    Snippet: SELECT name, (SELECT COUNT(*) FROM aircraft) AS total FROM airports;
+    Challenge: Select airport names and the total number of aircraft in the entire system as a column aliased as 'total_aircraft_db'.
+    Solution: SELECT name, (SELECT COUNT(*) FROM aircraft) AS total_aircraft_db FROM airports;
+Pass 5: Masterclass Architecture & Advanced Features
+  Step: Composite Primary Keys and Out-of-Line Constraints
+    Lesson: Composite keys use multiple columns to uniquely identify a record.
+    Snippet: CREATE TABLE terminals (terminal_id INTEGER, hub_id INTEGER, PRIMARY KEY (terminal_id, hub_id));
+    Challenge: Establish a system for airports and their terminals. Set up an `airports_hub` table with an in-line `hub_id` (INTEGER PRIMARY KEY), `code` (TEXT NOT NULL UNIQUE), and `city` (TEXT). Follow this by creating a `terminals` table carrying `terminal_id` (INTEGER), `gate_count` (INTEGER), `is_active` (INTEGER DEFAULT 1), and `hub_id` (INTEGER). For the `terminals` table, declare out-of-line conditions to make `terminal_id` the PRIMARY KEY, a CHECK that `is_active IN (0, 1)`, and a FOREIGN KEY mapping `hub_id` to `airports_hub(hub_id)`.
+    Solution: CREATE TABLE airports_hub (hub_id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE, city TEXT); CREATE TABLE terminals (terminal_id INTEGER, gate_count INTEGER, is_active INTEGER DEFAULT 1, hub_id INTEGER, PRIMARY KEY (terminal_id), CHECK (is_active IN (0, 1)), FOREIGN KEY (hub_id) REFERENCES airports_hub(hub_id));
+  Step: Advanced Schema Planning
+    Lesson: Combine DEFAULT, CHECK, and FOREIGN KEY for robust schemas.
+    Snippet: CREATE TABLE repair_logs (log_id BIGINT, hours_logged DECIMAL(5,1) NOT NULL, CHECK (hours_logged > 0));
+    Challenge: Structure a database for aircraft repairs. Set up a `parts_catalog` table using an in-line `part_no` (VARCHAR(50) PRIMARY KEY) and `description` (VARCHAR(255) NOT NULL). Draft a `repair_logs` table equipped with `log_id` (BIGINT), `hours_logged` (DECIMAL(5,1) NOT NULL), `repair_date` (DATE), and `part_no` (VARCHAR(50)). Supply out-of-line constraints in `repair_logs`: a PRIMARY KEY for `log_id`, a CHECK ensuring `hours_logged > 0.0`, and a FOREIGN KEY pointing `part_no` to `parts_catalog(part_no)`. Separate the statements with a semicolon.
+    Solution: CREATE TABLE parts_catalog (part_no VARCHAR(50) PRIMARY KEY, description VARCHAR(255) NOT NULL); CREATE TABLE repair_logs (log_id BIGINT, hours_logged DECIMAL(5,1) NOT NULL, repair_date DATE, part_no VARCHAR(50), PRIMARY KEY (log_id), CHECK (hours_logged > 0.0), FOREIGN KEY (part_no) REFERENCES parts_catalog(part_no));
+  Step: Speeding Up Lookups (CREATE INDEX)
+    Lesson: Indexes speed up retrieval operations on a table.
+    Snippet: CREATE INDEX idx_aircraft_model ON aircraft (model);
+    Challenge: Create an index named `idx_aircraft_model` on the `model` column in the `aircraft` table.
+    Solution: CREATE INDEX idx_aircraft_model ON aircraft (model);
+  Step: Saving Complex Queries (CREATE VIEW)
+    Lesson: Views are virtual tables based on the result of an SQL statement.
+    Snippet: CREATE VIEW usa_airports AS SELECT * FROM airports WHERE country = 'USA';
+    Challenge: Create a view named `usa_airports` to see only airports where country = 'USA'.
+    Solution: CREATE VIEW usa_airports AS SELECT * FROM airports WHERE country = 'USA';
+  Step: Building Custom Views
+    Lesson: Views help simplify complex queries or restrict data access.
+    Snippet: CREATE VIEW grounded_aircraft AS SELECT * FROM aircraft WHERE status = 'Grounded';
+    Challenge: Create a view named `grounded_aircraft` showing only aircraft with status = 'Grounded'.
+    Solution: CREATE VIEW grounded_aircraft AS SELECT * FROM aircraft WHERE status = 'Grounded';
+  Step: Altering Existing Views
+    Lesson: To change or delete a view, you drop it.
+    Snippet: DROP VIEW grounded_aircraft;
+    Challenge: Drop the `grounded_aircraft` view.
+    Solution: DROP VIEW grounded_aircraft;
+  Step: The Recreation Pattern for Complex Modfications
+    Lesson: SQLite limits ALTER TABLE, so you sometimes recreate, copy data, drop, and rename.
+    Snippet: CREATE TABLE a_new (id TEXT); INSERT INTO a_new SELECT airport_id FROM airports; DROP TABLE airports;
+    Challenge: Recreate `airports_new` as `airport_id` TEXT PRIMARY KEY, `name` TEXT. Insert from `airports`. Drop `airports`. Rename `airports_new` to `airports`.
+    Solution: CREATE TABLE airports_new (airport_id TEXT PRIMARY KEY, name TEXT); INSERT INTO airports_new (airport_id, name) SELECT airport_id, name FROM airports; DROP TABLE airports; ALTER TABLE airports_new RENAME TO airports;
+  Step: Common Table Expressions (CTEs/WITH clauses)
+    Lesson: CTEs (WITH clause) make complex queries easier to read and maintain.
+    Snippet: WITH Grounded AS (SELECT * FROM aircraft WHERE status = 'Grounded') SELECT * FROM Grounded;
+    Challenge: Use a WITH clause named `GroundedOnly` to select all aircraft WHERE status = 'Grounded', then select all from GroundedOnly.
+    Solution: WITH GroundedOnly AS (SELECT * FROM aircraft WHERE status = 'Grounded') SELECT * FROM GroundedOnly;
+  Step: Window Functions
+    Lesson: Window functions calculate values across a set of table rows without grouping them.
+    Snippet: SELECT name, ROW_NUMBER() OVER(ORDER BY city ASC) AS rank FROM airports;
+    Challenge: Select airport names and rank them alphabetically by city using ROW_NUMBER. Give the rank column the alias 'rank'.
+    Solution: SELECT name, ROW_NUMBER() OVER(ORDER BY city ASC) AS rank FROM airports;
+--- real_estate ---
+Pass 1: The Foundations (Surface Level)
+  Step: Introduction to SELECT Statements
+    Lesson: The SELECT statement is the core of SQL. In real estate, you can use it to list properties, neighborhoods, or zones.
+    Snippet: SELECT property_id, price FROM properties;
+    Challenge: A real estate agent needs a quick overview of all available properties in their database. This initial query helps them get a complete list to start their daily work. Retrieve all columns for every property listed in the database.
+    Solution: SELECT * FROM properties;
+  Step: Selecting Specific Columns
+    Lesson: You rarely need all columns. Specify only what you need, like the address and price.
+    Snippet: SELECT address, price FROM properties;
+    Challenge: Retrieve only the property_id and price of all properties.
+    Solution: SELECT property_id, price FROM properties;
+  Step: Filtering Rows with WHERE
+    Lesson: The WHERE clause lets you filter records based on specific conditions, like finding 3-bedroom houses.
+    Snippet: SELECT * FROM properties WHERE bedrooms = 3;
+    Challenge: A client is specifically looking for properties with exactly 3 bedrooms to accommodate their family. The agent needs to filter the vast property list efficiently. Retrieve all properties that have 3 bedrooms.
+    Solution: SELECT * FROM properties WHERE bedrooms = 3;
+  Step: Creating Your First Table
+    Lesson: Use CREATE TABLE to define new entities, such as a table for agents.
+    Snippet: CREATE TABLE agents (agent_id INTEGER PRIMARY KEY, first_name TEXT);
+    Challenge: To manage sales and client interactions more effectively, the firm needs a dedicated table for its real estate agents. This table will store agent-specific information. Create a new table named `agents` with columns: `agent_id` (INTEGER PRIMARY KEY), `first_name` (TEXT), `last_name` (TEXT), and `phone_number` (TEXT).
+    Solution: CREATE TABLE agents (
+  agent_id INTEGER PRIMARY KEY,
+  first_name TEXT,
+  last_name TEXT,
+  phone_number TEXT
+);
+  Step: Adding Data with INSERT
+    Lesson: Use INSERT INTO to add new records, like a newly listed property.
+    Snippet: INSERT INTO properties (property_id, address, price, bedrooms, latitude, longitude) VALUES (201, '123 New St', 750000, 4, 34.0, -118.2);
+    Challenge: A new property has just become available for listing and needs to be added to the database. Accurate and timely data entry is crucial for keeping the inventory up-to-date. Insert a new property with `property_id` 201, address '123 New Street', price 750000, 4 bedrooms, latitude 34.0522, and longitude -118.2437.
+    Solution: INSERT INTO properties (property_id, address, price, bedrooms, latitude, longitude) VALUES (201, '123 New Street', 750000, 4, 34.0522, -118.2437);
+  Step: Deleting Basic Records
+    Lesson: Use DELETE to remove records, such as an environmental zone that is no longer valid.
+    Snippet: DELETE FROM environmental_zones WHERE zone_id = 2;
+    Challenge: An environmental zone has been decommissioned or merged with another, making its separate entry redundant. To maintain data integrity, this zone needs to be removed from the database. Delete the environmental zone with `zone_id` 2.
+    Solution: DELETE FROM environmental_zones WHERE zone_id = 2;
+Pass 2: Aggregations & Data Manipulation
+  Step: Sorting Data with ORDER BY
+    Lesson: Order your results using ORDER BY. For example, order properties from cheapest to most expensive.
+    Snippet: SELECT * FROM properties ORDER BY price ASC;
+    Challenge: List all properties, ordered by their price descending.
+    Solution: SELECT * FROM properties ORDER BY price DESC;
+  Step: Limiting Results
+    Lesson: Use LIMIT to restrict the number of rows returned, useful for sampling properties.
+    Snippet: SELECT * FROM properties LIMIT 5;
+    Challenge: Retrieve the first 3 records from the properties table.
+    Solution: SELECT * FROM properties LIMIT 3;
+  Step: Finding Unique Values with DISTINCT
+    Lesson: Use DISTINCT to find unique values, such as all the unique bedroom counts.
+    Snippet: SELECT DISTINCT bedrooms FROM properties;
+    Challenge: To understand the market's diversity, a property manager wants to know all the different bedroom configurations available across their listings. This helps in categorizing properties for various client needs. Retrieve all unique bedroom counts found in the properties table.
+    Solution: SELECT DISTINCT bedrooms FROM properties ORDER BY bedrooms;
+  Step: Filtering with MULTIPLE Values (IN)
+    Lesson: The IN operator allows you to specify multiple values in a WHERE clause.
+    Snippet: SELECT * FROM properties WHERE bedrooms IN (2, 4);
+    Challenge: A family is flexible and considering properties with either 2 or 4 bedrooms, but nothing in between. The agent needs to provide a curated list that meets these specific bedroom counts. Retrieve properties that have either 2 or 4 bedrooms.
+    Solution: SELECT * FROM properties WHERE bedrooms = 2 OR bedrooms = 4;
+  Step: Filtering within Ranges (BETWEEN)
+    Lesson: Find records within a range, like properties within a specific price range.
+    Snippet: SELECT * FROM properties WHERE price BETWEEN 300000 AND 700000;
+    Challenge: An investor has a clear budget range for their next acquisition, looking for properties that are neither too cheap nor too expensive. They require a list of properties that fit precisely within these financial boundaries. Retrieve properties with a price between 300000 and 700000 (inclusive).
+    Solution: SELECT * FROM properties WHERE price BETWEEN 300000 AND 700000;
+  Step: Pattern Matching with LIKE
+    Lesson: LIKE is used for pattern matching. Use % for wildcards. Find properties on Main Street.
+    Snippet: SELECT * FROM properties WHERE address LIKE '%Main Street%';
+    Challenge: A potential buyer is interested in a specific area and remembers seeing some listings on 'Main Street'. The agent needs to quickly pull up properties matching this address pattern. Retrieve properties whose address contains the phrase 'Main Street'.
+    Solution: SELECT * FROM properties WHERE address LIKE '%Main Street%';
+  Step: Combining Filters (AND)
+    Lesson: AND requires all conditions to be true.
+    Snippet: SELECT * FROM properties WHERE bedrooms = 3 AND price < 500000;
+    Challenge: Find all properties that have 3 bedrooms and price less than 500000.
+    Solution: SELECT * FROM properties WHERE bedrooms = 3 AND price < 500000;
+  Step: Alternative Filters (OR)
+    Lesson: OR requires at least one condition to be true.
+    Snippet: SELECT * FROM properties WHERE bedrooms = 1 OR price < 200000;
+    Challenge: Find all properties that have 1 bedroom or price less than 200000.
+    Solution: SELECT * FROM properties WHERE bedrooms = 1 OR price < 200000;
+  Step: Counting Rows (COUNT)
+    Lesson: COUNT returns the number of rows matching the query.
+    Snippet: SELECT COUNT(*) FROM properties;
+    Challenge: A real estate firm needs to report on their current inventory size for quarterly reviews. Knowing the total count of listings helps in assessing market presence and operational scale. Retrieve the total number of properties in the database.
+    Solution: SELECT COUNT(*) FROM properties;
+  Step: Totaling Values (SUM)
+    Lesson: SUM adds up all values in a numeric column, like the total value of all listings.
+    Snippet: SELECT SUM(price) FROM properties;
+    Challenge: Calculate the total sum of prices across all properties.
+    Solution: SELECT SUM(price) FROM properties;
+  Step: Averages and Maximums
+    Lesson: Find the lowest and highest values in a column, such as property prices.
+    Snippet: SELECT MIN(price) as min, MAX(price) as max FROM properties;
+    Challenge: Find the minimum price and maximum price among all properties as min_price and max_price.
+    Solution: SELECT MIN(price) as min_price, MAX(price) as max_price FROM properties;
+  Step: Grouping Results (GROUP BY)
+    Lesson: GROUP BY groups rows with the same values. Calculate average prices per bedroom count.
+    Snippet: SELECT bedrooms, AVG(price) FROM properties GROUP BY bedrooms;
+    Challenge: An investor wants to understand how the number of bedrooms influences property prices. This analysis helps in making informed decisions about which property types offer the best value. Retrieve the average price for properties, grouped by the number of bedrooms. Name the result column 'average_price'.
+    Solution: SELECT bedrooms, AVG(price) AS average_price FROM properties GROUP BY bedrooms ORDER BY bedrooms;
+  Step: Filtering Groups (HAVING)
+    Lesson: HAVING filters groups, similar to how WHERE filters rows.
+    Snippet: SELECT neighborhood_name FROM neighborhoods n JOIN properties p GROUP BY neighborhood_name HAVING AVG(price) > 1000000;
+    Challenge: An analytics team wants to identify neighborhoods that consistently feature high-value properties, indicating a premium market. This involves calculating average prices within each neighborhood's bounding box and filtering. Retrieve the names of neighborhoods where the average price of properties within their bounding box is greater than 1000000.
+    Solution: SELECT n.neighborhood_name FROM neighborhoods n JOIN properties p ON p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude GROUP BY n.neighborhood_name HAVING AVG(p.price) > 1000000 ORDER BY n.neighborhood_name;
+  Step: Updating Existing Records
+    Lesson: Use UPDATE to modify existing records, like dropping the price on a listing.
+    Snippet: UPDATE properties SET price = 620000 WHERE property_id = 101;
+    Challenge: Due to market fluctuations, the price of a specific property needs to be adjusted. Maintaining accurate pricing is vital for attracting buyers and reflecting current market value. Update the price of the property with `property_id` 101 to 620000.
+    Solution: UPDATE properties SET price = 620000 WHERE property_id = 101;
+  Step: Updating Multiple Fields
+    Lesson: You can update multiple columns at once by separating them with commas.
+    Snippet: UPDATE properties SET price = 650000, bedrooms = 4 WHERE property_id = 102;
+    Challenge: Update the property with ID 101 to have 4 bedrooms and price 650000.
+    Solution: UPDATE properties SET bedrooms = 4, price = 650000 WHERE property_id = 101;
+  Step: Altering Tables (Adding Columns)
+    Lesson: Use ALTER TABLE to change the structure of an existing table.
+    Snippet: ALTER TABLE properties ADD COLUMN year_built INTEGER;
+    Challenge: Clients often inquire about the age of a property, which is a critical factor in real estate decisions. To better serve these inquiries, the database needs to store the construction year. Add a new column named `year_built` of type INTEGER to the `properties` table.
+    Solution: ALTER TABLE properties ADD COLUMN year_built INTEGER;
+  Step: Dropping Tables
+    Lesson: Use DROP TABLE to remove an entire table from the database.
+    Snippet: DROP TABLE IF EXISTS property_features;
+    Challenge: Drop the 'property_features' table if it exists.
+    Solution: DROP TABLE IF EXISTS property_features;
+Pass 3: Relationships & Security
+  Step: Introduction to Table Relationships (INNER JOIN)
+    Lesson: JOIN combines rows from two or more tables based on a related column.
+    Snippet: SELECT p.address, n.neighborhood_name FROM properties p JOIN neighborhoods n ON p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude;
+    Challenge: Retrieve the address of each property along with its neighborhood_name by joining the properties table and the neighborhoods table. A property belongs to a neighborhood if its latitude and longitude fall between the neighborhood's min/max latitude and longitude.
+    Solution: SELECT p.address, n.neighborhood_name FROM properties p JOIN neighborhoods n ON p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude;
+  Step: Enforcing Table Architecture (Foreign Keys)
+    Lesson: Foreign keys enforce referential integrity between tables.
+    Snippet: CREATE TABLE agencies (id INTEGER PRIMARY KEY); CREATE TABLE brokers (id INTEGER, agency_id INTEGER, FOREIGN KEY (agency_id) REFERENCES agencies(id));
+    Challenge: Assemble a system for agencies and their brokers. Start with an `agencies` table using an in-line INTEGER PRIMARY KEY for `agency_id` and `name` (TEXT NOT NULL UNIQUE). Then, introduce a `brokers` table with `broker_id` (INTEGER), `full_name` (TEXT NOT NULL), `commission_rate` (REAL), and `agency_id` (INTEGER). Utilize out-of-line constraint definitions to establish `broker_id` as the PRIMARY KEY and `agency_id` as a FOREIGN KEY targeting `agencies(agency_id)`.
+    Solution: CREATE TABLE agencies (agency_id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE); CREATE TABLE brokers (broker_id INTEGER, full_name TEXT NOT NULL, commission_rate REAL, agency_id INTEGER, PRIMARY KEY (broker_id), FOREIGN KEY (agency_id) REFERENCES agencies(agency_id));
+  Step: Inline Data Constraints (NOT NULL, UNIQUE, CHECK)
+    Lesson: Constraints specify rules for data. NOT NULL means a column cannot have a NULL value.
+    Snippet: CREATE TABLE zoning_types (id INTEGER PRIMARY KEY, zone_name TEXT NOT NULL);
+    Challenge: Create a `zoning_types` table with an `id` INTEGER PRIMARY KEY and a `zone_name` TEXT NOT NULL.
+    Solution: CREATE TABLE zoning_types (id INTEGER PRIMARY KEY, zone_name TEXT NOT NULL);
+  Step: Data Integrity (Constraint Violations / Cascades)
+    Lesson: Ensuring related data is cleaned up properly.
+    Snippet: DELETE FROM properties WHERE bedrooms = 0;
+    Challenge: Delete all properties with bedrooms = 0 to clean up invalid data.
+    Solution: DELETE FROM properties WHERE bedrooms = 0;
+Pass 4: Advanced Queries & Subqueries
+  Step: Including Unmatched Records (LEFT JOIN)
+    Lesson: LEFT JOIN returns all records from the left table, and matched records from the right.
+    Snippet: SELECT n.neighborhood_name, COUNT(p.property_id) FROM neighborhoods n LEFT JOIN properties p GROUP BY n.neighborhood_name;
+    Challenge: A city planner wants to understand the distribution of properties across different neighborhoods. Counting properties within each neighborhood's bounding box provides insight into population density and development. Retrieve the name of each neighborhood and the count of properties located within its bounding box. Name the result column 'property_count'.
+    Solution: SELECT n.neighborhood_name, COUNT(p.property_id) AS property_count FROM neighborhoods n LEFT JOIN properties p ON p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude GROUP BY n.neighborhood_name ORDER BY n.neighborhood_name;
+  Step: Multi-Table Chains
+    Lesson: You can join multiple tables to get richer insights.
+    Snippet: SELECT p.* FROM properties p JOIN neighborhoods n ON n.neighborhood_name = 'Downtown' WHERE p.price > 500000;
+    Challenge: For a comprehensive property report, it's essential to link each property to its respective neighborhood. This helps in organizing data geographically for clients and internal analysis. Retrieve the address and price of each property, along with the name of the neighborhood it falls within (based on bounding box).
+    Solution: SELECT p.address, p.price, n.neighborhood_name FROM properties p JOIN neighborhoods n ON p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude ORDER BY p.address;
+  Step: Finding Missing Data (IS NULL)
+    Lesson: Use IS NULL to find left table records that have no match in the right table.
+    Snippet: SELECT property_id, address FROM properties WHERE latitude IS NULL;
+    Challenge: Find properties that are missing a latitude constraint by fetching records where latitude IS NULL.
+    Solution: SELECT property_id, address FROM properties WHERE latitude IS NULL;
+  Step: Filtering using Subqueries (Left Join/Subquery combos)
+    Lesson: Find records that do not match a certain set using NOT IN or EXISTS.
+    Snippet: SELECT p.* FROM properties p WHERE NOT EXISTS (SELECT 1 FROM neighborhoods n WHERE p.latitude BETWEEN n.min_latitude AND n.max_latitude);
+    Challenge: Sometimes properties are listed that fall outside the boundaries of defined neighborhoods, which might indicate new development areas or data inconsistencies. It's important to identify these 'unassigned' properties. Retrieve properties that do not fall within the bounding box of any defined neighborhood.
+    Solution: SELECT p.* FROM properties p WHERE NOT EXISTS (SELECT 1 FROM neighborhoods n WHERE p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude);
+  Step: Advanced Subquery Comparisons
+    Lesson: A subquery can be used in the WHERE clause to compare against dynamic values.
+    Snippet: SELECT * FROM properties WHERE price > (SELECT AVG(price) FROM properties);
+    Challenge: Find properties whose price is higher than the average price among all properties.
+    Solution: SELECT * FROM properties WHERE price > (SELECT AVG(price) FROM properties);
+  Step: Conditional Logic with CASE WHEN
+    Lesson: CASE allows for conditional logic in your SELECT statements.
+    Snippet: SELECT property_id, CASE WHEN price > 1000000 THEN 'Luxury' ELSE 'Standard' END FROM properties;
+    Challenge: Select property_id and a 'luxury_status' column which is 'Luxury' if price > 1000000 else 'Standard'. Do this for properties.
+    Solution: SELECT property_id, CASE WHEN price > 1000000 THEN 'Luxury' ELSE 'Standard' END AS luxury_status FROM properties;
+  Step: Subqueries in the SELECT Clause
+    Lesson: You can also put subqueries directly in the SELECT list to calculate values row by row.
+    Snippet: SELECT address, (SELECT COUNT(*) FROM properties) AS total FROM properties;
+    Challenge: Select property addresses and the total number of properties in the database as a column aliased as 'total_props_db'.
+    Solution: SELECT address, (SELECT COUNT(*) FROM properties) AS total_props_db FROM properties;
+Pass 5: Masterclass Architecture & Advanced Features
+  Step: Composite Primary Keys and Out-of-Line Constraints
+    Lesson: Composite keys use multiple columns to uniquely identify a record.
+    Snippet: CREATE TABLE units (unit_id INTEGER, bldg_id INTEGER, PRIMARY KEY (unit_id, bldg_id));
+    Challenge: Assemble the layout for condominium buildings and their units. Specify a `buildings` table with an in-line `bldg_id` (INTEGER PRIMARY KEY), `address` (TEXT NOT NULL UNIQUE), and `floors` (INTEGER). In addition, create a `units_new` table consisting of `unit_id` (INTEGER), `unit_number` (TEXT NOT NULL), `sq_ft` (REAL), and `bldg_id` (INTEGER). Within the `units_new` table, lay out out-of-line requirements: `unit_id` as PRIMARY KEY, a CHECK ensuring `sq_ft >= 100`, and a FOREIGN KEY pointing `bldg_id` to `buildings(bldg_id)`.
+    Solution: CREATE TABLE buildings (bldg_id INTEGER PRIMARY KEY, address TEXT NOT NULL UNIQUE, floors INTEGER); CREATE TABLE units_new (unit_id INTEGER, unit_number TEXT NOT NULL, sq_ft REAL, bldg_id INTEGER, PRIMARY KEY (unit_id), CHECK (sq_ft >= 100), FOREIGN KEY (bldg_id) REFERENCES buildings(bldg_id));
+  Step: Advanced Schema Planning
+    Lesson: Combine DEFAULT, CHECK, and FOREIGN KEY for robust schemas.
+    Snippet: CREATE TABLE leases (lease_id BIGINT, monthly_rent DECIMAL NOT NULL, CHECK (monthly_rent > 0));
+    Challenge: Establish a commercial real estate lease system. Provide a `commercial_zones` table with an in-line `zone_code` (VARCHAR(20) PRIMARY KEY) and `zone_multiplier` (DECIMAL(3,2) NOT NULL). Then map out a `leases` table holding `lease_id` (BIGINT), `tenant_name` (VARCHAR(150) NOT NULL), `monthly_rent` (DECIMAL(12,2) NOT NULL), and `zone_code` (VARCHAR(20)). Finally, in `leases`, configure out-of-line constraints for a PRIMARY KEY on `lease_id`, a CHECK verifying `monthly_rent >= 500.00`, and a FOREIGN KEY joining `zone_code` to `commercial_zones(zone_code)`. Separate the statements with a semicolon.
+    Solution: CREATE TABLE commercial_zones (zone_code VARCHAR(20) PRIMARY KEY, zone_multiplier DECIMAL(3,2) NOT NULL); CREATE TABLE leases (lease_id BIGINT, tenant_name VARCHAR(150) NOT NULL, monthly_rent DECIMAL(12,2) NOT NULL, zone_code VARCHAR(20), PRIMARY KEY (lease_id), CHECK (monthly_rent >= 500.00), FOREIGN KEY (zone_code) REFERENCES commercial_zones(zone_code));
+  Step: Speeding Up Lookups (CREATE INDEX)
+    Lesson: Indexes speed up retrieval operations on a table.
+    Snippet: CREATE INDEX idx_bedrooms ON properties (bedrooms);
+    Challenge: Queries filtering properties by the number of bedrooms are very common, especially for client searches. To speed up these frequent queries, an index should be created on the `bedrooms` column. Create an index named `idx_bedrooms` on the `bedrooms` column of the `properties` table.
+    Solution: CREATE INDEX idx_bedrooms ON properties (bedrooms);
+  Step: Saving Complex Queries (CREATE VIEW)
+    Lesson: Views are virtual tables based on the result of an SQL statement.
+    Snippet: CREATE VIEW cheap_properties AS SELECT * FROM properties WHERE price < 200000;
+    Challenge: Create a view named `cheap_properties` to see only properties where price < 200000.
+    Solution: CREATE VIEW cheap_properties AS SELECT * FROM properties WHERE price < 200000;
+  Step: Building Custom Views
+    Lesson: Views help simplify complex queries or restrict data access.
+    Snippet: CREATE VIEW luxury_properties AS SELECT * FROM properties WHERE price > 1000000;
+    Challenge: Create a view named `luxury_properties` showing only properties with price > 1000000.
+    Solution: CREATE VIEW luxury_properties AS SELECT * FROM properties WHERE price > 1000000;
+  Step: Altering Existing Views
+    Lesson: To change or delete a view, you drop it.
+    Snippet: DROP VIEW luxury_properties;
+    Challenge: Drop the `luxury_properties` view.
+    Solution: DROP VIEW luxury_properties;
+  Step: The Recreation Pattern for Complex Modfications
+    Lesson: SQLite limits ALTER TABLE, so you sometimes recreate, copy data, drop, and rename.
+    Snippet: CREATE TABLE n_new (id INTEGER); INSERT INTO n_new SELECT neighborhood_id FROM neighborhoods; DROP TABLE neighborhoods;
+    Challenge: Recreate `neighborhoods_new` as `neighborhood_id` INTEGER PRIMARY KEY, `neighborhood_name` TEXT. Insert from `neighborhoods`. Drop `neighborhoods`. Rename `neighborhoods_new` to `neighborhoods`.
+    Solution: CREATE TABLE neighborhoods_new (neighborhood_id INTEGER PRIMARY KEY, neighborhood_name TEXT); INSERT INTO neighborhoods_new (neighborhood_id, neighborhood_name) SELECT neighborhood_id, neighborhood_name FROM neighborhoods; DROP TABLE neighborhoods; ALTER TABLE neighborhoods_new RENAME TO neighborhoods;
+  Step: Common Table Expressions (CTEs/WITH clauses)
+    Lesson: CTEs (WITH clause) make complex queries easier to read and maintain.
+    Snippet: WITH Expensive AS (SELECT * FROM properties WHERE price > 1000000) SELECT * FROM Expensive;
+    Challenge: Use a WITH clause named `ExpensiveOnly` to select all properties WHERE price > 1000000, then select all from ExpensiveOnly.
+    Solution: WITH ExpensiveOnly AS (SELECT * FROM properties WHERE price > 1000000) SELECT * FROM ExpensiveOnly;
+  Step: Window Functions
+    Lesson: Window functions calculate values across a set of table rows without grouping them.
+    Snippet: SELECT address, ROW_NUMBER() OVER(ORDER BY price DESC) AS rank FROM properties;
+    Challenge: Select property addresses and rank them by price descending using ROW_NUMBER. Give the rank column the alias 'rank'.
+    Solution: SELECT address, ROW_NUMBER() OVER(ORDER BY price DESC) AS rank FROM properties;

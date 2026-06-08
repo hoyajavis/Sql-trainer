@@ -1,0 +1,665 @@
+[
+  {
+    "id": "g1",
+    "difficulty": 1,
+    "question": "What is a Relational Database at its core?",
+    "options": [
+      "A random collection of text files",
+      "A system that stores information in structured, connected tables",
+      "A software for writing documents",
+      "A physical server hard drive"
+    ],
+    "answer": 1,
+    "explanation": "A relational database organizes data into tables (rows and columns) that can be linked—or related—based on data common to each."
+  },
+  {
+    "id": "g2",
+    "difficulty": 1,
+    "question": "What does a 'Table' in a database represent?",
+    "options": [
+      "A single piece of data",
+      "A collection of related data entries organized by columns and rows",
+      "A relationship between two computers",
+      "A physical view of the database server"
+    ],
+    "answer": 1,
+    "explanation": "A table is a collection of related data held in a structured format within a database. It consists of columns and rows."
+  },
+  {
+    "id": "g3",
+    "difficulty": 1,
+    "question": "If a database were a physical filing cabinet storing employee records, what does a 'Row' represent?",
+    "options": [
+      "The label on the drawer",
+      "A specific field like 'Date of Birth'",
+      "One complete file folder for a single employee",
+      "The entire filing cabinet"
+    ],
+    "answer": 2,
+    "explanation": "A row (or record) represents a single, completely defined item or entity in a table, such as one employee's complete set of data."
+  },
+  {
+    "id": "g4",
+    "difficulty": 1,
+    "question": "What is the primary purpose of the SQL language?",
+    "options": [
+      "To design user interfaces",
+      "To communicate with a database (store, retrieve, manage data)",
+      "To build mobile applications",
+      "To style web pages"
+    ],
+    "answer": 1,
+    "explanation": "SQL (Structured Query Language) is the standard language used to communicate with, manage, and query data in relational database systems."
+  },
+  {
+    "id": "g5",
+    "difficulty": 2,
+    "question": "Which SQL command is used to retrieve or 'read' information from the database?",
+    "options": [
+      "PULL",
+      "GET",
+      "FETCH",
+      "SELECT"
+    ],
+    "answer": 3,
+    "explanation": "The SELECT statement is used to select and retrieve data from a database. The data returned is stored in a result table."
+  },
+  {
+    "id": "g6",
+    "difficulty": 2,
+    "question": "If you ask a database to give you all users, but you *only* want the ones who live in New York, which keyword helps you filter?",
+    "options": [
+      "WHERE",
+      "ONLY",
+      "FILTER",
+      "CHOOSE"
+    ],
+    "answer": 0,
+    "explanation": "The WHERE clause is used to extract only those records that fulfill a specified condition."
+  },
+  {
+    "id": "g9",
+    "difficulty": 2,
+    "question": "Which command allows you to add brand new data into a database table?",
+    "options": [
+      "INSERT",
+      "ADD",
+      "CREATE",
+      "NEW"
+    ],
+    "answer": 0,
+    "explanation": "The INSERT INTO statement is used to add new records (rows) to a table."
+  },
+  {
+    "id": "g10",
+    "difficulty": 2,
+    "question": "If a user changes their email address, which SQL command is used to change their existing information in the database?",
+    "options": [
+      "CHANGE",
+      "MODIFY",
+      "ALTER",
+      "UPDATE"
+    ],
+    "answer": 3,
+    "explanation": "The UPDATE statement is used to modify existing records in a table."
+  },
+  {
+    "id": "g11",
+    "difficulty": 3,
+    "question": "What happens if you run a DELETE command without using a WHERE clause to filter it?",
+    "options": [
+      "It deletes the first row",
+      "It deletes the last row",
+      "It deletes all rows in the table",
+      "It gives a warning and does nothing"
+    ],
+    "answer": 2,
+    "explanation": "The DELETE statement removes records. If you omit the WHERE clause, all records in the table will be deleted!"
+  },
+  {
+    "id": "g12",
+    "difficulty": 3,
+    "question": "What does it mean if a value in a database cell is 'NULL'?",
+    "options": [
+      "The value is exactly zero (0)",
+      "The value is 'false'",
+      "The value is an empty string",
+      "The value is absent, missing, or unknown"
+    ],
+    "answer": 3,
+    "explanation": "NULL is a special marker used to indicate that a data value does not exist in the database. It is entirely different from a value of zero or a blank space."
+  },
+  {
+    "id": "g13",
+    "difficulty": 3,
+    "question": "If a database returns 10,000 users but you only want to view the first 10 on your screen, which keyword should you use?",
+    "options": [
+      "TOP",
+      "LIMIT",
+      "FIRST",
+      "TRUNCATE"
+    ],
+    "answer": 1,
+    "explanation": "LIMIT (along with OFFSET) is used to restrict the number of rows returned by a query, very useful for pagination."
+  },
+  {
+    "id": "g14",
+    "difficulty": 3,
+    "question": "You ran a query to get cities where your customers live, and 'New York' showed up 500 times. How do you get a list of just the unique cities?",
+    "options": [
+      "SELECT UNIQUE",
+      "SELECT DISTINCT",
+      "SELECT ONCE",
+      "SELECT ONLY"
+    ],
+    "answer": 1,
+    "explanation": "SELECT DISTINCT is used to return only distinct (different) values, hiding duplicates."
+  },
+  {
+    "id": "g15",
+    "difficulty": 4,
+    "question": "Which SQL function would you use to find the total sum of all payments made today?",
+    "options": [
+      "ADD()",
+      "TOTAL()",
+      "SUM()",
+      "PLUS()"
+    ],
+    "answer": 2,
+    "explanation": "SUM() is an aggregate function that returns the total sum of a numeric column."
+  },
+  {
+    "id": "g16",
+    "difficulty": 4,
+    "question": "If you want to know how many total users signed up, which function counts the rows?",
+    "options": [
+      "ROWS()",
+      "TALLY()",
+      "COUNT()",
+      "NUMBER()"
+    ],
+    "answer": 2,
+    "explanation": "COUNT() is an aggregate function that returns the number of rows that matches a specified criterion."
+  },
+  {
+    "id": "g17",
+    "difficulty": 4,
+    "question": "You want to find the average age of users, but grouped by their country. Which clause is required?",
+    "options": [
+      "GROUP BY",
+      "ORDER BY",
+      "SORT BY",
+      "ALIGN BY"
+    ],
+    "answer": 0,
+    "explanation": "The GROUP BY statement groups rows that have the same values into summary rows, often used with aggregate functions."
+  },
+  {
+    "id": "g7",
+    "difficulty": 5,
+    "question": "What is the purpose of a 'Primary Key' in a database table?",
+    "options": [
+      "To encrypt the table",
+      "To uniquely identify every record so no two are exactly the same",
+      "To grant admin access",
+      "To sort the data alphabetically"
+    ],
+    "answer": 1,
+    "explanation": "A Primary Key is a special column that uniquely identifies each record in a table. It cannot contain NULL values and must be completely unique (like a Social Security Number or unique ID)."
+  },
+  {
+    "id": "g8",
+    "difficulty": 5,
+    "question": "If you have a 'Users' table and an 'Orders' table, how do you link an order to the specific user who made it?",
+    "options": [
+      "By copying all user info into the order",
+      "By using a 'Foreign Key' in the Orders table that points to the User's Primary Key",
+      "By guessing based on the date",
+      "By combining them into one giant table permanently"
+    ],
+    "answer": 1,
+    "explanation": "A Foreign Key is a column in one table that refers to the Primary Key in another table, creating a relationship between the two tables without unnecessarily duplicating data."
+  },
+  {
+    "id": "g18",
+    "difficulty": 5,
+    "question": "Which operation is used to combine columns from two or more tables based on a related column between them?",
+    "options": [
+      "MERGE",
+      "COMBINE",
+      "JOIN",
+      "APPEND"
+    ],
+    "answer": 2,
+    "explanation": "A JOIN clause is used to combine rows from two or more tables, based on a related column between them."
+  },
+  {
+    "id": "g19",
+    "difficulty": 5,
+    "question": "An INNER JOIN requires a match in both tables. What if you want to see all Users even if they have NO Orders yet?",
+    "options": [
+      "OUTER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL JOIN"
+    ],
+    "answer": 1,
+    "explanation": "A LEFT JOIN returns all records from the left table (Users), and the matched records from the right table (Orders). If no match, it returns NULL for the Orders fields."
+  },
+  {
+    "id": "g20",
+    "difficulty": 2,
+    "question": "Before you can insert data into a database, you must define the table structure. Which command does this?",
+    "options": [
+      "BUILD TABLE",
+      "CREATE TABLE",
+      "MAKE TABLE",
+      "NEW TABLE"
+    ],
+    "answer": 1,
+    "explanation": "The CREATE TABLE statement is used to create a new table in a database and define its columns."
+  },
+  {
+    "id": "g21",
+    "difficulty": 2,
+    "question": "If a table already exists but you forgot to add an 'Email' column, which command modifies the table's structure?",
+    "options": [
+      "MODIFY TABLE",
+      "CHANGE TABLE",
+      "UPDATE TABLE",
+      "ALTER TABLE"
+    ],
+    "answer": 3,
+    "explanation": "The ALTER TABLE statement is used to add, delete, or modify columns in an existing table."
+  },
+  {
+    "id": "g22",
+    "difficulty": 4,
+    "question": "Which aggregate function would you use to calculate the average score of all students?",
+    "options": [
+      "MEAN()",
+      "AVERAGE()",
+      "AVG()",
+      "MEDIAN()"
+    ],
+    "answer": 2,
+    "explanation": "The AVG() function returns the average value of a numeric column."
+  },
+  {
+    "id": "g23",
+    "difficulty": 4,
+    "question": "Which aggregate functions find the lowest and highest values in a column?",
+    "options": [
+      "LOW() and HIGH()",
+      "MIN() and MAX()",
+      "BOTTOM() and TOP()",
+      "FIRST() and LAST()"
+    ],
+    "answer": 1,
+    "explanation": "The MIN() function returns the smallest value, and the MAX() function returns the largest value of the selected column."
+  },
+  {
+    "id": "g24",
+    "difficulty": 5,
+    "question": "Which structure can you create to significantly speed up data retrieval operations on a large table?",
+    "options": [
+      "An INDEX",
+      "A SHORTCUT",
+      "A FAST_TRACK",
+      "A CACHE"
+    ],
+    "answer": 0,
+    "explanation": "An INDEX is used to retrieve data from the database more quickly than otherwise. It acts essentially like a book's index."
+  },
+  {
+    "id": "g25",
+    "difficulty": 3,
+    "question": "When storing exact 2-letter state codes (like 'NY' or 'CA'), which data type is more efficient than a variable-length text field (VARCHAR)?",
+    "options": [
+      "SHORTTEXT",
+      "CHAR",
+      "TINYTEXT",
+      "STRING"
+    ],
+    "answer": 1,
+    "explanation": "CHAR is a fixed-length character data type. It's best for data that has a consistent length, like state codes or country codes."
+  },
+  {
+    "id": "g26",
+    "difficulty": 3,
+    "question": "Which data type stores both the calendar day and the exact time of day?",
+    "options": [
+      "DATE",
+      "TIME",
+      "DATETIME or TIMESTAMP",
+      "CALENDAR"
+    ],
+    "answer": 2,
+    "explanation": "TIMESTAMP (or DATETIME) stores both the date and the time, usually down to a fraction of a second, which is essential for accurate record keeping."
+  },
+  {
+    "id": "g27",
+    "difficulty": 5,
+    "question": "Which join keeps all records from the right table, even if there are no matches in the left table?",
+    "options": [
+      "RIGHT JOIN",
+      "LEFT JOIN",
+      "INNER JOIN",
+      "FULL JOIN"
+    ],
+    "answer": 0,
+    "explanation": "A RIGHT JOIN returns all records from the right table, and the matched records from the left table. It's the counterpart to the LEFT JOIN."
+  },
+  {
+    "id": "g28",
+    "difficulty": 5,
+    "question": "Which join type returns ONLY the rows that have a match in BOTH the left and right tables?",
+    "options": [
+      "OUTER JOIN",
+      "CROSS JOIN",
+      "INNER JOIN",
+      "MATCH JOIN"
+    ],
+    "answer": 2,
+    "explanation": "An INNER JOIN requires that records completely match on both sides of the join condition to be included in the final result set."
+  },
+  {
+    "id": "gs1",
+    "difficulty": 1,
+    "question": "What punctuation mark is traditionally required at the very end of a completely written SQL statement?",
+    "options": [
+      "A period (.)",
+      "A colon (:)",
+      "A semicolon (;)",
+      "A question mark (?)"
+    ],
+    "answer": 2,
+    "explanation": "The semicolon (;) is the standard way to separate each SQL statement in database systems."
+  },
+  {
+    "id": "gs2",
+    "difficulty": 1,
+    "question": "When you want to search for a specific text value, like a user's name in a WHERE clause, what type of quotes MUST you use around the text in standard SQL?",
+    "options": [
+      "Single quotes ('John')",
+      "Double quotes (\"John\")",
+      "Backticks (`John`)",
+      "No quotes (John)"
+    ],
+    "answer": 0,
+    "explanation": "Standard SQL requires string (text) literals to be enclosed in single quotes. Double quotes are often reserved for system identifiers like table or column names."
+  },
+  {
+    "id": "gs3",
+    "difficulty": 2,
+    "question": "Which of the following describes the correct convention for capitalizing SQL keywords (like SELECT, FROM, WHERE)?",
+    "options": [
+      "They must be completely LOWERCASE",
+      "They must use CamelCase",
+      "They are case-insensitive, but uppercase is purely a standard convention for human readability",
+      "They must be completely UPPERCASE otherwise they fail"
+    ],
+    "answer": 2,
+    "explanation": "SQL keywords are not case sensitive (select is the same as SELECT), but it is a universal convention to capitalize them so they stand out from table and column names."
+  },
+  {
+    "id": "gs4",
+    "difficulty": 2,
+    "question": "In a SELECT statement retrieving multiple columns (e.g., pulling first_name and last_name), what punctuation is required between the column names?",
+    "options": [
+      "Commas (first_name, last_name)",
+      "Semicolons (first_name; last_name)",
+      "Plus signs (first_name + last_name)",
+      "Spaces only (first_name last_name)"
+    ],
+    "answer": 0,
+    "explanation": "Commas are required to separate multiple column names in a SELECT clause. Forgetting a comma, or leaving an extra dangling comma at the end, is a very common syntax error."
+  },
+  {
+    "id": "gs5",
+    "difficulty": 3,
+    "question": "What happens if you try to find a missing data field using the syntax `WHERE email = NULL`?",
+    "options": [
+      "It works perfectly and finds the missing emails",
+      "It completely fails; you MUST use `WHERE email IS NULL`",
+      "It deletes the row from the database",
+      "It finds rows where the user actually typed the word 'NULL'"
+    ],
+    "answer": 1,
+    "explanation": "You cannot use standard equality operators (=, !=) with NULL because NULL means 'unknown'. You must explicitly use `IS NULL` or `IS NOT NULL`."
+  },
+  {
+    "id": "gs6",
+    "difficulty": 3,
+    "question": "What is the mandatory structural order of operations when writing a basic SQL query?",
+    "options": [
+      "SELECT, WHERE, FROM, ORDER BY",
+      "SELECT, FROM, WHERE, ORDER BY",
+      "FROM, SELECT, ORDER BY, WHERE",
+      "ORDER BY, SELECT, FROM, WHERE"
+    ],
+    "answer": 1,
+    "explanation": "The structural syntax of a basic SQL statement must always be ordered: SELECT (what to get), FROM (where to get it), WHERE (how to filter it), and ORDER BY (how to sort it)."
+  },
+  {
+    "id": "gs7",
+    "difficulty": 4,
+    "question": "You want to only show groups that have more than 10 users. What happens if you write `WHERE COUNT(user_id) > 10`?",
+    "options": [
+      "It returns the correct rows instantly",
+      "It deletes the items",
+      "It returns all rows regardless of the count",
+      "It fails with an error, because aggregate functions like COUNT() cannot be used in a WHERE clause."
+    ],
+    "answer": 3,
+    "explanation": "The WHERE clause filters rows BEFORE they are grouped and aggregated. To filter based on the result of an aggregate function, you must use the HAVING clause."
+  },
+  {
+    "id": "gs8",
+    "difficulty": 5,
+    "question": "If you rename a column using an alias (`SELECT total_paid AS revenue`), where are you completely FORBIDDEN from using that alias in the same query?",
+    "options": [
+      "In the ORDER BY clause",
+      "In the WHERE clause",
+      "In the SELECT clause",
+      "In the GROUP BY clause"
+    ],
+    "answer": 1,
+    "explanation": "Because the WHERE clause is evaluated by the database engine BEFORE the SELECT clause is processed, the alias 'revenue' literally doesn't exist yet when the WHERE filter is running."
+  },
+  {
+    "id": "g29",
+    "difficulty": 1,
+    "question": "If an SQL database (like MySQL or Oracle) stores data in rigid tables with rows and columns, how does a NoSQL document database like MongoDB typically store data?",
+    "options": [
+      "In tables exactly like SQL",
+      "In flexible, JSON-like documents",
+      "In a single massive text string",
+      "In purely mathematical formulas"
+    ],
+    "answer": 1,
+    "explanation": "While relational databases enforce rigid structures of rows and columns, document-oriented NoSQL databases like MongoDB store data in flexible, JSON-like documents, allowing different objects to have different sets of fields."
+  },
+  {
+    "id": "g30",
+    "difficulty": 2,
+    "question": "Which of the following is an example of a popular NoSQL database that DOES NOT use traditional SQL tables and joins?",
+    "options": [
+      "PostgreSQL",
+      "Oracle Database",
+      "Microsoft SQL Server",
+      "MongoDB"
+    ],
+    "answer": 3,
+    "explanation": "MongoDB is a leading NoSQL database. PostgreSQL, Oracle, and SQL Server are all strictly relational database management systems (RDBMS) that use standard SQL."
+  },
+  {
+    "id": "g31",
+    "difficulty": 3,
+    "question": "Relational databases (like Oracle or MySQL) traditionally scale by adding more compute power or RAM to a single database server (scaling 'up'). How do NoSQL databases (like Cassandra or MongoDB) generally prefer to scale?",
+    "options": [
+      "By scaling 'out' (adding many cheaper servers to distribute the load across a cluster)",
+      "By lowering performance expectations",
+      "By compressing the data into a single file",
+      "By deleting older records automatically"
+    ],
+    "answer": 0,
+    "explanation": "NoSQL architectures are usually designed from the ground up for horizontal scaling (scaling 'out' or distributing data across multiple commodity servers), making them robust for huge volumes of diverse data."
+  },
+  {
+    "id": "g32",
+    "difficulty": 4,
+    "question": "In a relational database, every row in an 'Employees' table must adhere precisely to the same column structure. If an employee has 3 phone numbers, you might need a separate related table. What unique structural advantage does a NoSQL database offer here?",
+    "options": [
+      "It uses Artificial Intelligence to guess the data",
+      "It lets you store documents with completely different fields and nested arrays inside the same collection",
+      "It converts numbers to letters automatically",
+      "It permanently locks the schema"
+    ],
+    "answer": 1,
+    "explanation": "NoSQL databases support 'schema-less' designs. An employee document can directly contain an array of multiple phone numbers alongside their name, without needing a separate related table or rigid schema."
+  },
+  {
+    "id": "g33",
+    "difficulty": 5,
+    "question": "Enterprise SQL databases like Oracle prioritize strict 'ACID' properties (Atomicity, Consistency, Isolation, Durability) to guarantee absolute data integrity. In contrast, many NoSQL distributed databases trade instant consistency for high availability and partition tolerance. What acronym often describes this NoSQL approach?",
+    "options": [
+      "SALT (Secure, Available, Latent, Tolerant)",
+      "WATER (Wide, Abstract, Timely, Eventual, Rapid)",
+      "BASE (Basically Available, Soft state, Eventual consistency)",
+      "CORE (Clustered, Open, Rapid, Eventual)"
+    ],
+    "answer": 2,
+    "explanation": "Many NoSQL systems favor the BASE model. Unlike ACID, BASE accepts that the database might not be perfectly consistent in every node at all times, but will eventually achieve consistency once updates propagate."
+  },
+  {
+    "id": "g34",
+    "difficulty": 3,
+    "question": "How should you reason about assigning SIGNED versus UNSIGNED data types to real-world attributes in a database?",
+    "options": [
+      "Use UNSIGNED for quantities that logically cannot be negative (like a product price or a person's age), and SIGNED for values that can drop below zero (like an account balance or temperature in Celsius).",
+      "Always use SIGNED for financial data because money is important, and UNSIGNED for scientific measurements.",
+      "Use UNSIGNED when you want to encrypt the number, and SIGNED when it should be readable by users.",
+      "There is no difference; they are just labels used for database documentation."
+    ],
+    "answer": 0,
+    "explanation": "Applying UNSIGNED to a column like 'price' or 'inventory_count' enforces data integrity by preventing negative numbers at the database level. SIGNED (the default) allows negative numbers, which is necessary for concepts like temperatures or debt balances."
+  },
+  {
+    "id": "g35",
+    "difficulty": 2,
+    "question": "When reading a business narrative to design a database (e.g., 'A library member borrows a book written by an author'), how do you best identify the primary 'Entities' that will become tables?",
+    "options": [
+      "Every single noun in the text must become its own separate table.",
+      "Look for the distinct, independent 'things' or objects that the business needs to track data about over time.",
+      "Count the number of verbs (actions) and create a table for each one.",
+      "Group all the information into exactly three tables to keep the architecture perfectly balanced."
+    ],
+    "answer": 1,
+    "explanation": "Entities are the core 'things' (like Members, Books, or Authors) that the organization needs to keep records on. Not every noun is an entity; minor details (like 'borrow date' or 'book title') are usually just attributes (columns) belonging to those main entities."
+  },
+  {
+    "id": "g36",
+    "difficulty": 2,
+    "question": "In database design, if a single 'Department' can employ many 'Employees', but each 'Employee' is officially assigned to exactly one 'Department', what type of relationship cardinality is this considered?",
+    "options": [
+      "One-to-One (1:1)",
+      "Many-to-Many (M:N)",
+      "One-to-Many (1:N)",
+      "Zero-to-Infinity"
+    ],
+    "answer": 2,
+    "explanation": "This is a One-to-Many (1:N) relationship. It is the most common structure in relational databases, typically enforced by placing a foreign key on the 'Many' side (Employee) that points back to the 'One' side (Department)."
+  },
+  {
+    "id": "g37",
+    "difficulty": 1,
+    "question": "When deciding how to store a phone number in a database, which data type is generally the most conceptually appropriate?",
+    "options": [
+      "INT, because phone numbers only contain digits.",
+      "VARCHAR (or string), because phone numbers may contain leading zeros, '+' signs, and you don't mathematically calculate them.",
+      "BIGINT, because phone numbers are usually longer than standard integers.",
+      "DECIMAL, to accommodate potential country code formatting."
+    ],
+    "answer": 1,
+    "explanation": "Even though they look like numbers, phone numbers are identifiers, not values we perform math on. Using VARCHAR preserves formatting and leading zeros."
+  },
+  {
+    "id": "g38",
+    "difficulty": 2,
+    "question": "Why is it highly recommended to use the DECIMAL (or NUMERIC) data type instead of FLOAT or REAL for storing monetary values?",
+    "options": [
+      "FLOAT consumes too much storage space in the database compared to DECIMAL.",
+      "DECIMAL stores exact fixed-point numbers preventing accuracy loss, whereas FLOAT uses floating-point approximation which causes rounding errors.",
+      "DECIMAL automatically formats the output with a currency symbol.",
+      "FLOAT cannot store negative numbers."
+    ],
+    "answer": 1,
+    "explanation": "FLOAT and REAL use standard floating-point approximations, meaning some fractional values cannot be represented perfectly (e.g., 0.1). DECIMAL stores exact values, making it essential for financial data where rounding errors are unacceptable."
+  },
+  {
+    "id": "g39",
+    "difficulty": 1,
+    "question": "You are creating a user profile table and need a column to track whether a user is subscribed to the newsletter. Which data type conceptually best represents this?",
+    "options": [
+      "TEXT, storing 'Yes' or 'No'.",
+      "BOOLEAN (or a 1-bit integer like TINYINT), storing TRUE or FALSE.",
+      "VARCHAR, to allow detailed descriptions of their subscription.",
+      "UNSIGNED INT."
+    ],
+    "answer": 1,
+    "explanation": "A BOOLEAN correctly captures a simple binary state (Yes/No, True/False) and is the most storage-efficient and logically sound choice."
+  },
+  {
+    "id": "g40",
+    "difficulty": 3,
+    "question": "When recording the exact moment an event happens globally (like an e-commerce order placement), what is a key conceptual difference between storing it as a DATETIME versus a TIMESTAMP in many SQL variations?",
+    "options": [
+      "DATETIME stores both the date and the time, whereas TIMESTAMP only stores the time.",
+      "TIMESTAMP is typically timezone-aware (converting to UTC for storage), whereas DATETIME stores the literal date and time regardless of the global time zone.",
+      "DATETIME supports fractional seconds, but TIMESTAMP does not.",
+      "There is no difference; they are identical types under different names."
+    ],
+    "answer": 1,
+    "explanation": "While exact implementation varies by SQL dialect, generally TIMESTAMP is timezone-aware (recording the exact universal moment), making it ideal for tracking events across the globe. DATETIME stores absolute clock values without geographical context."
+  },
+  {
+    "id": "g41",
+    "difficulty": 2,
+    "question": "If you need to store short, variable-length text like an email address or a user's first name, why is VARCHAR generally preferred over fixed-length CHAR?",
+    "options": [
+      "VARCHAR automatically encrypts the text for security.",
+      "CHAR only supports numeric characters.",
+      "VARCHAR uses only the storage space necessary for the actual text length, whereas CHAR pads the remaining space with blanks, wasting space.",
+      "VARCHAR allows for unlimited text length, while CHAR is strictly limited to 10 characters."
+    ],
+    "answer": 2,
+    "explanation": "CHAR is fixed-length, padding empty space up to the defined limit, which is useful for predictable, fixed-size data (like a 2-letter state code). VARCHAR dynamically grows based on the inserted text, making it efficient for variable-length fields."
+  },
+  {
+    "id": "g42",
+    "difficulty": 1,
+    "question": "Given a `users` table with columns: `first_name`, `last_name`, `email_address`, `age`, and `favorite_color`, which column is the best candidate to uniquely identify each row (i.e., act as the Primary Key)?",
+    "options": [
+      "first_name: Because people usually go by their first name.",
+      "last_name: Because families share last names.",
+      "email_address: Because multiple users cannot register with the exact same email address, making it unique per person.",
+      "age: Because everyone has an age."
+    ],
+    "answer": 2,
+    "explanation": "A primary key must uniquely identify each record. Names, ages, and colors can be shared by many people. An email address tends to be unique to a single individual, making it an acceptable natural primary key (though often an artificial ID like `user_id` is even better)."
+  },
+  {
+    "id": "g43",
+    "difficulty": 2,
+    "question": "You are designing a `vehicles` table with columns: `color`, `number_of_doors`, `license_plate_number`, and `manufacturer`. Which column makes the best Primary Key?",
+    "options": [
+      "color",
+      "manufacturer",
+      "license_plate_number",
+      "number_of_doors"
+    ],
+    "answer": 2,
+    "explanation": "The license plate number is designed to uniquely identify a vehicle within a jurisdiction, making it a strong natural key, while the other attributes can apply to many different vehicles."
+  }
+]

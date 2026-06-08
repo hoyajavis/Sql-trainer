@@ -1,0 +1,2923 @@
+{
+  "business": {
+    "domain": "business",
+    "name": "Data Analyst (Business)",
+    "description": "Learn SQL by managing corporate databases, supply chains, and employee records.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_bus_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM users;\n```",
+            "challenge_id": "business_1"
+          },
+          {
+            "id": "gp_bus_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.\n\nExample:\n```sql\nSELECT first_name, last_name\nFROM employees;\n```",
+            "challenge_id": "business_28"
+          },
+          {
+            "id": "gp_bus_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > 50;\n```",
+            "challenge_id": "business_2"
+          },
+          {
+            "id": "gp_bus_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure. You must specify the column names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).\n\nExample:\n```sql\nCREATE TABLE customers (\n  id INTEGER,\n  name TEXT\n);\n```",
+            "challenge_id": "business_7"
+          },
+          {
+            "id": "gp_bus_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert, in the exact order the columns were defined.\n\nExample:\n```sql\nINSERT INTO customers (id, name) \nVALUES (1, 'Alice');\n```",
+            "challenge_id": "business_8"
+          },
+          {
+            "id": "gp_bus_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!\n\nExample:\n```sql\nDELETE FROM customers\nWHERE id = 1;\n```",
+            "challenge_id": "business_11"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_bus_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM products\nORDER BY price DESC;\n```",
+            "challenge_id": "business_14"
+          },
+          {
+            "id": "gp_bus_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM orders\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "business_24"
+          },
+          {
+            "id": "gp_bus_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "business_18"
+          },
+          {
+            "id": "gp_bus_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "business_19"
+          },
+          {
+            "id": "gp_bus_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range.\n\nExample:\n```sql\nSELECT *\nFROM orders\nWHERE total_cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "business_20"
+          },
+          {
+            "id": "gp_bus_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample (find names starting with 'S'):\n```sql\nSELECT *\nFROM customers\nWHERE name LIKE 'S%';\n```",
+            "challenge_id": "business_15"
+          },
+          {
+            "id": "gp_bus_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "business_29"
+          },
+          {
+            "id": "gp_bus_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "business_30"
+          },
+          {
+            "id": "gp_bus_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM orders;\n```",
+            "challenge_id": "business_5"
+          },
+          {
+            "id": "gp_bus_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(amount)\nFROM payments;\n```",
+            "challenge_id": "business_6"
+          },
+          {
+            "id": "gp_bus_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "business_12"
+          },
+          {
+            "id": "gp_bus_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.\n\nExample (Total sales per department):\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "business_13"
+          },
+          {
+            "id": "gp_bus_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.\n\nExample (Departments with high sales):\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "business_21"
+          },
+          {
+            "id": "gp_bus_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "business_9"
+          },
+          {
+            "id": "gp_bus_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas in the `SET` block.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "business_33"
+          },
+          {
+            "id": "gp_bus_2_15",
+            "title": "Conditional Deletions",
+            "lesson_content": "You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.\n\nExample:\n```sql\nDELETE FROM orders\nWHERE order_date < '2022-01-01'\n  AND status = 'cancelled';\n```",
+            "challenge_id": "business_34"
+          },
+          {
+            "id": "gp_bus_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE customers\nADD COLUMN email VARCHAR(255);\n```",
+            "challenge_id": "business_10"
+          },
+          {
+            "id": "gp_bus_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_reports;\n```",
+            "challenge_id": "business_36"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_bus_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nINNER JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "business_3"
+          },
+          {
+            "id": "gp_bus_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.\n\nExample:\n```sql\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  user_id INTEGER,\n  FOREIGN KEY(user_id) REFERENCES users(id)\n);\n```",
+            "challenge_id": "business_42"
+          },
+          {
+            "id": "gp_bus_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.\n\nExample:\n```sql\nCREATE TABLE accounts (\n  email TEXT UNIQUE NOT NULL,\n  balance INTEGER CHECK(balance >= 0)\n);\n```",
+            "challenge_id": "todo_business_add_constraints"
+          },
+          {
+            "id": "gp_bus_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.",
+            "challenge_id": "todo_business_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_bus_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nLEFT JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "business_4"
+          },
+          {
+            "id": "gp_bus_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.",
+            "challenge_id": "business_16"
+          },
+          {
+            "id": "gp_bus_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., users who have never ordered).",
+            "challenge_id": "business_37"
+          },
+          {
+            "id": "gp_bus_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE id NOT IN (\n  SELECT employee_id\n  FROM fired_log\n);\n```",
+            "challenge_id": "business_39"
+          },
+          {
+            "id": "gp_bus_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries, such as finding products priced higher than the company's average.\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > (\n  SELECT AVG(price)\n  FROM products\n);\n```",
+            "challenge_id": "business_40"
+          },
+          {
+            "id": "gp_bus_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.\n\nExample:\n```sql\nSELECT name, \n  CASE \n    WHEN count > 10 THEN 'High'\n    ELSE 'Low'\n  END AS capacity\nFROM stock;\n```",
+            "challenge_id": "todo_business_case_when"
+          },
+          {
+            "id": "gp_bus_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.\n\nExample:\n```sql\nSELECT \n  name, \n  (SELECT MAX(price) FROM competitors) AS competitor_high \nFROM products;\n```",
+            "challenge_id": "todo_business_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_bus_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.\n\nExample:\n```sql\nCREATE TABLE assignments (\n  user_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (user_id, role_id)\n);\n```",
+            "challenge_id": "business_43"
+          },
+          {
+            "id": "gp_bus_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.",
+            "challenge_id": "business_44"
+          },
+          {
+            "id": "gp_bus_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.\n\nExample:\n```sql\nCREATE INDEX idx_user_email ON users (email);\n```",
+            "challenge_id": "business_17"
+          },
+          {
+            "id": "gp_bus_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.\n\nExample:\n```sql\nCREATE VIEW ActiveUsers AS\nSELECT *\nFROM users\nWHERE status = 'active';\n```",
+            "challenge_id": "business_22"
+          },
+          {
+            "id": "gp_bus_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.",
+            "challenge_id": "business_45"
+          },
+          {
+            "id": "gp_bus_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.",
+            "challenge_id": "business_46"
+          },
+          {
+            "id": "gp_bus_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to rename the table, create the new structure, copy the data, and drop the old table.",
+            "challenge_id": "todo_business_recreation"
+          },
+          {
+            "id": "gp_bus_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.\n\nExample:\n```sql\nWITH HighEarners AS (\n  SELECT *\n  FROM employees \n  WHERE salary > 100k\n)\nSELECT *\nFROM HighEarners \nWHERE department = 'IT';\n```",
+            "challenge_id": "todo_business_ctes"
+          },
+          {
+            "id": "gp_bus_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.\n\nExample:\n```sql\nSELECT \n  name, \n  salary, \n  ROW_NUMBER() OVER(ORDER BY salary DESC) as rank \nFROM employees;\n```",
+            "challenge_id": "todo_business_window_functions"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_business_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "bus_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "healthcare": {
+    "domain": "healthcare",
+    "name": "Data Analyst (Healthcare)",
+    "description": "Learn SQL by managing patient records, appointments, and medical personnel.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_health_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM patients;\n```",
+            "challenge_id": "h_1"
+          },
+          {
+            "id": "gp_health_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.\n\nExample:\n```sql\nSELECT first_name, last_name\nFROM employees;\n```",
+            "challenge_id": "h_select_cols"
+          },
+          {
+            "id": "gp_health_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > 50;\n```",
+            "challenge_id": "h_7"
+          },
+          {
+            "id": "gp_health_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure. You must specify the column names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).\n\nExample:\n```sql\nCREATE TABLE customers (\n  id INTEGER,\n  name TEXT\n);\n```",
+            "challenge_id": "h_create_table"
+          },
+          {
+            "id": "gp_health_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert, in the exact order the columns were defined.\n\nExample:\n```sql\nINSERT INTO customers (id, name) \nVALUES (1, 'Alice');\n```",
+            "challenge_id": "h_21"
+          },
+          {
+            "id": "gp_health_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!\n\nExample:\n```sql\nDELETE FROM customers\nWHERE id = 1;\n```",
+            "challenge_id": "h_45"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_health_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM products\nORDER BY price DESC;\n```",
+            "challenge_id": "h_order_by"
+          },
+          {
+            "id": "gp_health_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM orders\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "h_limit"
+          },
+          {
+            "id": "gp_health_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "h_9"
+          },
+          {
+            "id": "gp_health_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "h_in"
+          },
+          {
+            "id": "gp_health_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range, such as finding appointments within a specific cost range.\n\nExample:\n```sql\nSELECT *\nFROM appointments\nWHERE cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "h_between"
+          },
+          {
+            "id": "gp_health_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample (find names starting with 'S'):\n```sql\nSELECT *\nFROM customers\nWHERE name LIKE 'S%';\n```",
+            "challenge_id": "h_8"
+          },
+          {
+            "id": "gp_health_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "h_and"
+          },
+          {
+            "id": "gp_health_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "h_or"
+          },
+          {
+            "id": "gp_health_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM orders;\n```",
+            "challenge_id": "h_11"
+          },
+          {
+            "id": "gp_health_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(amount)\nFROM payments;\n```",
+            "challenge_id": "h_sum"
+          },
+          {
+            "id": "gp_health_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "h_avg"
+          },
+          {
+            "id": "gp_health_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.\n\nExample (Total sales per department):\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "h_19"
+          },
+          {
+            "id": "gp_health_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.\n\nExample (Departments with high sales):\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "h_35"
+          },
+          {
+            "id": "gp_health_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "h_22"
+          },
+          {
+            "id": "gp_health_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas in the `SET` block.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "h_multiple_update"
+          },
+          {
+            "id": "gp_health_2_15",
+            "title": "Conditional Deletions",
+            "lesson_content": "You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.\n\nExample:\n```sql\nDELETE FROM orders\nWHERE order_date < '2022-01-01'\n  AND status = 'cancelled';\n```",
+            "challenge_id": "h_46"
+          },
+          {
+            "id": "gp_health_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE customers\nADD COLUMN email VARCHAR(255);\n```",
+            "challenge_id": "h_alter_table"
+          },
+          {
+            "id": "gp_health_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_reports;\n```",
+            "challenge_id": "h_drop_table"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_health_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nINNER JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "h_14"
+          },
+          {
+            "id": "gp_health_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.\n\nExample:\n```sql\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  user_id INTEGER,\n  FOREIGN KEY(user_id) REFERENCES users(id)\n);\n```",
+            "challenge_id": "h_42"
+          },
+          {
+            "id": "gp_health_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.\n\nExample:\n```sql\nCREATE TABLE accounts (\n  email TEXT UNIQUE NOT NULL,\n  balance INTEGER CHECK(balance >= 0)\n);\n```",
+            "challenge_id": "h_add_constraints"
+          },
+          {
+            "id": "gp_health_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.",
+            "challenge_id": "h_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_health_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nLEFT JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "h_20"
+          },
+          {
+            "id": "gp_health_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.",
+            "challenge_id": "h_18"
+          },
+          {
+            "id": "gp_health_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., users who have never ordered).",
+            "challenge_id": "h_32"
+          },
+          {
+            "id": "gp_health_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE id NOT IN (\n  SELECT employee_id\n  FROM fired_log\n);\n```",
+            "challenge_id": "h_39"
+          },
+          {
+            "id": "gp_health_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries, such as finding products priced higher than the company's average.\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > (\n  SELECT AVG(price)\n  FROM products\n);\n```",
+            "challenge_id": "h_advanced_subquery"
+          },
+          {
+            "id": "gp_health_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.\n\nExample:\n```sql\nSELECT name, \n  CASE \n    WHEN count > 10 THEN 'High'\n    ELSE 'Low'\n  END AS capacity\nFROM stock;\n```",
+            "challenge_id": "h_case_when"
+          },
+          {
+            "id": "gp_health_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.\n\nExample:\n```sql\nSELECT \n  name, \n  (SELECT MAX(price) FROM competitors) AS competitor_high \nFROM products;\n```",
+            "challenge_id": "h_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_health_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.\n\nExample:\n```sql\nCREATE TABLE assignments (\n  user_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (user_id, role_id)\n);\n```",
+            "challenge_id": "h_43"
+          },
+          {
+            "id": "gp_health_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.",
+            "challenge_id": "h_44"
+          },
+          {
+            "id": "gp_health_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.\n\nExample:\n```sql\nCREATE INDEX idx_user_email ON users (email);\n```",
+            "challenge_id": "h_index"
+          },
+          {
+            "id": "gp_health_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.\n\nExample:\n```sql\nCREATE VIEW ActiveUsers AS\nSELECT *\nFROM users\nWHERE status = 'active';\n```",
+            "challenge_id": "h_view"
+          },
+          {
+            "id": "gp_health_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.",
+            "challenge_id": "h_custom_view"
+          },
+          {
+            "id": "gp_health_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.",
+            "challenge_id": "h_alter_view"
+          },
+          {
+            "id": "gp_health_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to rename the table, create the new structure, copy the data, and drop the old table.",
+            "challenge_id": "h_recreation"
+          },
+          {
+            "id": "gp_health_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.\n\nExample:\n```sql\nWITH HighEarners AS (\n  SELECT *\n  FROM employees \n  WHERE salary > 100k\n)\nSELECT *\nFROM HighEarners \nWHERE department = 'IT';\n```",
+            "challenge_id": "h_ctes"
+          },
+          {
+            "id": "gp_health_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.\n\nExample:\n```sql\nSELECT \n  name, \n  salary, \n  ROW_NUMBER() OVER(ORDER BY salary DESC) as rank \nFROM employees;\n```",
+            "challenge_id": "h_window"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_healthcare_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "health_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "science": {
+    "domain": "science",
+    "name": "Data Analyst (Science)",
+    "description": "Learn SQL by researching wildlife, habitats, and observing nature.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_science_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM species;\n```",
+            "challenge_id": "science_1"
+          },
+          {
+            "id": "gp_science_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.\n\nExample:\n```sql\nSELECT first_name, last_name\nFROM employees;\n```",
+            "challenge_id": "sc_select_cols"
+          },
+          {
+            "id": "gp_science_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > 50;\n```",
+            "challenge_id": "science_2"
+          },
+          {
+            "id": "gp_science_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure. You must specify the column names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).\n\nExample:\n```sql\nCREATE TABLE customers (\n  id INTEGER,\n  name TEXT\n);\n```",
+            "challenge_id": "science_11"
+          },
+          {
+            "id": "gp_science_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert, in the exact order the columns were defined.\n\nExample:\n```sql\nINSERT INTO customers (id, name) \nVALUES (1, 'Alice');\n```",
+            "challenge_id": "science_9"
+          },
+          {
+            "id": "gp_science_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!\n\nExample:\n```sql\nDELETE FROM customers\nWHERE id = 1;\n```",
+            "challenge_id": "sc_delete"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_science_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM products\nORDER BY price DESC;\n```",
+            "challenge_id": "sc_order_by"
+          },
+          {
+            "id": "gp_science_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM orders\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "sc_limit"
+          },
+          {
+            "id": "gp_science_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "sc_distinct"
+          },
+          {
+            "id": "gp_science_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "sc_in"
+          },
+          {
+            "id": "gp_science_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range.\n\nExample:\n```sql\nSELECT *\nFROM orders\nWHERE total_cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "sc_between"
+          },
+          {
+            "id": "gp_science_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample (find names starting with 'S'):\n```sql\nSELECT *\nFROM customers\nWHERE name LIKE 'S%';\n```",
+            "challenge_id": "sc_like"
+          },
+          {
+            "id": "gp_science_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "sc_and"
+          },
+          {
+            "id": "gp_science_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "sc_or"
+          },
+          {
+            "id": "gp_science_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM orders;\n```",
+            "challenge_id": "sc_count"
+          },
+          {
+            "id": "gp_science_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(amount)\nFROM payments;\n```",
+            "challenge_id": "sc_sum"
+          },
+          {
+            "id": "gp_science_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "science_34"
+          },
+          {
+            "id": "gp_science_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.\n\nExample (Total sales per department):\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "science_35"
+          },
+          {
+            "id": "gp_science_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.\n\nExample (Departments with high sales):\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "science_41"
+          },
+          {
+            "id": "gp_science_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "science_10"
+          },
+          {
+            "id": "gp_science_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas in the `SET` block.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "sc_update_multiple"
+          },
+          {
+            "id": "gp_science_2_15",
+            "title": "Conditional Deletions",
+            "lesson_content": "You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.\n\nExample:\n```sql\nDELETE FROM orders\nWHERE order_date < '2022-01-01'\n  AND status = 'cancelled';\n```",
+            "challenge_id": "science_38"
+          },
+          {
+            "id": "gp_science_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE customers\nADD COLUMN email VARCHAR(255);\n```",
+            "challenge_id": "science_12"
+          },
+          {
+            "id": "gp_science_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_reports;\n```",
+            "challenge_id": "science_39"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_science_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nINNER JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "science_3"
+          },
+          {
+            "id": "gp_science_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.\n\nExample:\n```sql\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  user_id INTEGER,\n  FOREIGN KEY(user_id) REFERENCES users(id)\n);\n```",
+            "challenge_id": "science_42"
+          },
+          {
+            "id": "gp_science_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.\n\nExample:\n```sql\nCREATE TABLE accounts (\n  email TEXT UNIQUE NOT NULL,\n  balance INTEGER CHECK(balance >= 0)\n);\n```",
+            "challenge_id": "sc_add_constraints"
+          },
+          {
+            "id": "gp_science_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.",
+            "challenge_id": "sc_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_science_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nLEFT JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "science_8"
+          },
+          {
+            "id": "gp_science_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.",
+            "challenge_id": "science_5"
+          },
+          {
+            "id": "gp_science_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., users who have never ordered).",
+            "challenge_id": "science_23"
+          },
+          {
+            "id": "gp_science_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE id NOT IN (\n  SELECT employee_id\n  FROM fired_log\n);\n```",
+            "challenge_id": "sc_not_ordered"
+          },
+          {
+            "id": "gp_science_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries, such as finding products priced higher than the company's average.\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > (\n  SELECT AVG(price)\n  FROM products\n);\n```",
+            "challenge_id": "sc_above_average"
+          },
+          {
+            "id": "gp_science_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.\n\nExample:\n```sql\nSELECT name, \n  CASE \n    WHEN count > 10 THEN 'High'\n    ELSE 'Low'\n  END AS capacity\nFROM stock;\n```",
+            "challenge_id": "sc_case_when"
+          },
+          {
+            "id": "gp_science_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.\n\nExample:\n```sql\nSELECT \n  name, \n  (SELECT MAX(price) FROM competitors) AS competitor_high \nFROM products;\n```",
+            "challenge_id": "sc_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_science_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.\n\nExample:\n```sql\nCREATE TABLE assignments (\n  user_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (user_id, role_id)\n);\n```",
+            "challenge_id": "science_43"
+          },
+          {
+            "id": "gp_science_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.",
+            "challenge_id": "science_44"
+          },
+          {
+            "id": "gp_science_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.\n\nExample:\n```sql\nCREATE INDEX idx_user_email ON users (email);\n```",
+            "challenge_id": "sc_index"
+          },
+          {
+            "id": "gp_science_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.\n\nExample:\n```sql\nCREATE VIEW ActiveUsers AS\nSELECT *\nFROM users\nWHERE status = 'active';\n```",
+            "challenge_id": "sc_view"
+          },
+          {
+            "id": "gp_science_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.",
+            "challenge_id": "sc_custom_view"
+          },
+          {
+            "id": "gp_science_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.",
+            "challenge_id": "sc_alter_view"
+          },
+          {
+            "id": "gp_science_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to rename the table, create the new structure, copy the data, and drop the old table.",
+            "challenge_id": "sc_recreation"
+          },
+          {
+            "id": "gp_science_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.\n\nExample:\n```sql\nWITH HighEarners AS (\n  SELECT *\n  FROM employees \n  WHERE salary > 100k\n)\nSELECT *\nFROM HighEarners \nWHERE department = 'IT';\n```",
+            "challenge_id": "sc_ctes"
+          },
+          {
+            "id": "gp_science_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.\n\nExample:\n```sql\nSELECT \n  name, \n  salary, \n  ROW_NUMBER() OVER(ORDER BY salary DESC) as rank \nFROM employees;\n```",
+            "challenge_id": "sc_window"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_science_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "sci_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "education": {
+    "domain": "education",
+    "name": "Data Analyst (Education)",
+    "description": "Learn SQL by managing student records, courses, and professors.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_edu_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM students;\n```",
+            "challenge_id": "edu_1_intro"
+          },
+          {
+            "id": "gp_edu_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.\n\nExample:\n```sql\nSELECT first_name, last_name\nFROM employees;\n```",
+            "challenge_id": "ed_select_cols"
+          },
+          {
+            "id": "gp_edu_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > 50;\n```",
+            "challenge_id": "education_2"
+          },
+          {
+            "id": "gp_edu_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure. You must specify the column names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).\n\nExample:\n```sql\nCREATE TABLE customers (\n  id INTEGER,\n  name TEXT\n);\n```",
+            "challenge_id": "education_11"
+          },
+          {
+            "id": "gp_edu_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert, in the exact order the columns were defined.\n\nExample:\n```sql\nINSERT INTO customers (id, name) \nVALUES (1, 'Alice');\n```",
+            "challenge_id": "education_9"
+          },
+          {
+            "id": "gp_edu_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!\n\nExample:\n```sql\nDELETE FROM customers\nWHERE id = 1;\n```",
+            "challenge_id": "ed_delete"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_edu_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM products\nORDER BY price DESC;\n```",
+            "challenge_id": "ed_order_by"
+          },
+          {
+            "id": "gp_edu_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM orders\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "ed_limit"
+          },
+          {
+            "id": "gp_edu_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "ed_distinct"
+          },
+          {
+            "id": "gp_edu_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "ed_in"
+          },
+          {
+            "id": "gp_edu_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range.\n\nExample:\n```sql\nSELECT *\nFROM orders\nWHERE total_cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "ed_between"
+          },
+          {
+            "id": "gp_edu_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample (find names starting with 'S'):\n```sql\nSELECT *\nFROM customers\nWHERE name LIKE 'S%';\n```",
+            "challenge_id": "ed_like"
+          },
+          {
+            "id": "gp_edu_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "ed_and"
+          },
+          {
+            "id": "gp_edu_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "ed_or"
+          },
+          {
+            "id": "gp_edu_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM orders;\n```",
+            "challenge_id": "ed_count"
+          },
+          {
+            "id": "gp_edu_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(amount)\nFROM payments;\n```",
+            "challenge_id": "ed_sum"
+          },
+          {
+            "id": "gp_edu_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "education_32"
+          },
+          {
+            "id": "gp_edu_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.\n\nExample (Total sales per department):\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "education_33"
+          },
+          {
+            "id": "gp_edu_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.\n\nExample (Departments with high sales):\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "education_40"
+          },
+          {
+            "id": "gp_edu_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "education_10"
+          },
+          {
+            "id": "gp_edu_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas in the `SET` block.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "ed_update_multiple"
+          },
+          {
+            "id": "gp_edu_2_15",
+            "title": "Conditional Deletions",
+            "lesson_content": "You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.\n\nExample:\n```sql\nDELETE FROM orders\nWHERE order_date < '2022-01-01'\n  AND status = 'cancelled';\n```",
+            "challenge_id": "education_36"
+          },
+          {
+            "id": "gp_edu_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE customers\nADD COLUMN email VARCHAR(255);\n```",
+            "challenge_id": "education_12"
+          },
+          {
+            "id": "gp_edu_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_reports;\n```",
+            "challenge_id": "education_22"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_edu_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nINNER JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "education_3"
+          },
+          {
+            "id": "gp_edu_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.\n\nExample:\n```sql\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  user_id INTEGER,\n  FOREIGN KEY(user_id) REFERENCES users(id)\n);\n```",
+            "challenge_id": "education_42"
+          },
+          {
+            "id": "gp_edu_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.\n\nExample:\n```sql\nCREATE TABLE accounts (\n  email TEXT UNIQUE NOT NULL,\n  balance INTEGER CHECK(balance >= 0)\n);\n```",
+            "challenge_id": "ed_add_constraints"
+          },
+          {
+            "id": "gp_edu_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.",
+            "challenge_id": "ed_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_edu_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nLEFT JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "education_8"
+          },
+          {
+            "id": "gp_edu_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.",
+            "challenge_id": "education_5"
+          },
+          {
+            "id": "gp_edu_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., users who have never ordered).",
+            "challenge_id": "education_28"
+          },
+          {
+            "id": "gp_edu_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE id NOT IN (\n  SELECT employee_id\n  FROM fired_log\n);\n```",
+            "challenge_id": "ed_not_ordered"
+          },
+          {
+            "id": "gp_edu_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries, such as finding products priced higher than the company's average.\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > (\n  SELECT AVG(price)\n  FROM products\n);\n```",
+            "challenge_id": "ed_above_average"
+          },
+          {
+            "id": "gp_edu_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.\n\nExample:\n```sql\nSELECT name, \n  CASE \n    WHEN count > 10 THEN 'High'\n    ELSE 'Low'\n  END AS capacity\nFROM stock;\n```",
+            "challenge_id": "ed_case_when"
+          },
+          {
+            "id": "gp_edu_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.\n\nExample:\n```sql\nSELECT \n  name, \n  (SELECT MAX(price) FROM competitors) AS competitor_high \nFROM products;\n```",
+            "challenge_id": "ed_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_edu_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.\n\nExample:\n```sql\nCREATE TABLE assignments (\n  user_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (user_id, role_id)\n);\n```",
+            "challenge_id": "education_43"
+          },
+          {
+            "id": "gp_edu_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.",
+            "challenge_id": "education_44"
+          },
+          {
+            "id": "gp_edu_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.\n\nExample:\n```sql\nCREATE INDEX idx_user_email ON users (email);\n```",
+            "challenge_id": "ed_index"
+          },
+          {
+            "id": "gp_edu_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.\n\nExample:\n```sql\nCREATE VIEW ActiveUsers AS\nSELECT *\nFROM users\nWHERE status = 'active';\n```",
+            "challenge_id": "ed_view"
+          },
+          {
+            "id": "gp_edu_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.",
+            "challenge_id": "ed_custom_view"
+          },
+          {
+            "id": "gp_edu_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.",
+            "challenge_id": "ed_alter_view"
+          },
+          {
+            "id": "gp_edu_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to rename the table, create the new structure, copy the data, and drop the old table.",
+            "challenge_id": "ed_recreation"
+          },
+          {
+            "id": "gp_edu_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.\n\nExample:\n```sql\nWITH HighEarners AS (\n  SELECT *\n  FROM employees \n  WHERE salary > 100k\n)\nSELECT *\nFROM HighEarners \nWHERE department = 'IT';\n```",
+            "challenge_id": "ed_ctes"
+          },
+          {
+            "id": "gp_edu_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.\n\nExample:\n```sql\nSELECT \n  name, \n  salary, \n  ROW_NUMBER() OVER(ORDER BY salary DESC) as rank \nFROM employees;\n```",
+            "challenge_id": "ed_window"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_education_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "edu_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "media": {
+    "domain": "media",
+    "name": "Data Analyst (Media)",
+    "description": "Learn SQL by managing users, music, playlists, and listening history.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_med_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM users;\n```",
+            "challenge_id": "m_1"
+          },
+          {
+            "id": "gp_med_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.\n\nExample:\n```sql\nSELECT first_name, last_name\nFROM employees;\n```",
+            "challenge_id": "med_select_cols"
+          },
+          {
+            "id": "gp_med_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > 50;\n```",
+            "challenge_id": "m_2"
+          },
+          {
+            "id": "gp_med_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure. You must specify the column names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).\n\nExample:\n```sql\nCREATE TABLE customers (\n  id INTEGER,\n  name TEXT\n);\n```",
+            "challenge_id": "m_27"
+          },
+          {
+            "id": "gp_med_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert, in the exact order the columns were defined.\n\nExample:\n```sql\nINSERT INTO customers (id, name) \nVALUES (1, 'Alice');\n```",
+            "challenge_id": "m_17"
+          },
+          {
+            "id": "gp_med_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!\n\nExample:\n```sql\nDELETE FROM customers\nWHERE id = 1;\n```",
+            "challenge_id": "m_19"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_med_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM products\nORDER BY price DESC;\n```",
+            "challenge_id": "med_order_by"
+          },
+          {
+            "id": "gp_med_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM orders\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "med_limit"
+          },
+          {
+            "id": "gp_med_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "med_distinct"
+          },
+          {
+            "id": "gp_med_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "med_in"
+          },
+          {
+            "id": "gp_med_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range.\n\nExample:\n```sql\nSELECT *\nFROM orders\nWHERE total_cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "med_between"
+          },
+          {
+            "id": "gp_med_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample (find names starting with 'S'):\n```sql\nSELECT *\nFROM customers\nWHERE name LIKE 'S%';\n```",
+            "challenge_id": "med_like"
+          },
+          {
+            "id": "gp_med_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "med_and"
+          },
+          {
+            "id": "gp_med_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "med_or"
+          },
+          {
+            "id": "gp_med_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM orders;\n```",
+            "challenge_id": "med_count"
+          },
+          {
+            "id": "gp_med_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(amount)\nFROM payments;\n```",
+            "challenge_id": "med_sum"
+          },
+          {
+            "id": "gp_med_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "m_11"
+          },
+          {
+            "id": "gp_med_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.\n\nExample (Total sales per department):\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "m_16"
+          },
+          {
+            "id": "gp_med_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.\n\nExample (Departments with high sales):\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "m_15"
+          },
+          {
+            "id": "gp_med_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "m_18"
+          },
+          {
+            "id": "gp_med_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas in the `SET` block.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "med_update_multiple"
+          },
+          {
+            "id": "gp_med_2_15",
+            "title": "Conditional Deletions",
+            "lesson_content": "You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.\n\nExample:\n```sql\nDELETE FROM orders\nWHERE order_date < '2022-01-01'\n  AND status = 'cancelled';\n```",
+            "challenge_id": "m_24"
+          },
+          {
+            "id": "gp_med_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE customers\nADD COLUMN email VARCHAR(255);\n```",
+            "challenge_id": "m_25"
+          },
+          {
+            "id": "gp_med_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_reports;\n```",
+            "challenge_id": "med_drop_table"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_med_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nINNER JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "m_10"
+          },
+          {
+            "id": "gp_med_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.\n\nExample:\n```sql\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  user_id INTEGER,\n  FOREIGN KEY(user_id) REFERENCES users(id)\n);\n```",
+            "challenge_id": "m_42"
+          },
+          {
+            "id": "gp_med_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.\n\nExample:\n```sql\nCREATE TABLE accounts (\n  email TEXT UNIQUE NOT NULL,\n  balance INTEGER CHECK(balance >= 0)\n);\n```",
+            "challenge_id": "med_add_constraints"
+          },
+          {
+            "id": "gp_med_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.",
+            "challenge_id": "med_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_med_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nLEFT JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "m_34"
+          },
+          {
+            "id": "gp_med_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.",
+            "challenge_id": "m_33"
+          },
+          {
+            "id": "gp_med_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., users who have never ordered).",
+            "challenge_id": "m_34"
+          },
+          {
+            "id": "gp_med_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE id NOT IN (\n  SELECT employee_id\n  FROM fired_log\n);\n```",
+            "challenge_id": "med_not_ordered"
+          },
+          {
+            "id": "gp_med_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries, such as finding products priced higher than the company's average.\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > (\n  SELECT AVG(price)\n  FROM products\n);\n```",
+            "challenge_id": "med_above_average"
+          },
+          {
+            "id": "gp_med_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.\n\nExample:\n```sql\nSELECT name, \n  CASE \n    WHEN count > 10 THEN 'High'\n    ELSE 'Low'\n  END AS capacity\nFROM stock;\n```",
+            "challenge_id": "med_case_when"
+          },
+          {
+            "id": "gp_med_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.\n\nExample:\n```sql\nSELECT \n  name, \n  (SELECT MAX(price) FROM competitors) AS competitor_high \nFROM products;\n```",
+            "challenge_id": "med_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_med_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.\n\nExample:\n```sql\nCREATE TABLE assignments (\n  user_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (user_id, role_id)\n);\n```",
+            "challenge_id": "m_43"
+          },
+          {
+            "id": "gp_med_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.",
+            "challenge_id": "m_44"
+          },
+          {
+            "id": "gp_med_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.\n\nExample:\n```sql\nCREATE INDEX idx_user_email ON users (email);\n```",
+            "challenge_id": "med_index"
+          },
+          {
+            "id": "gp_med_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.\n\nExample:\n```sql\nCREATE VIEW ActiveUsers AS\nSELECT *\nFROM users\nWHERE status = 'active';\n```",
+            "challenge_id": "med_view"
+          },
+          {
+            "id": "gp_med_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.",
+            "challenge_id": "med_custom_view"
+          },
+          {
+            "id": "gp_med_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.",
+            "challenge_id": "med_alter_view"
+          },
+          {
+            "id": "gp_med_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to rename the table, create the new structure, copy the data, and drop the old table.",
+            "challenge_id": "med_recreation"
+          },
+          {
+            "id": "gp_med_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.\n\nExample:\n```sql\nWITH HighEarners AS (\n  SELECT *\n  FROM employees \n  WHERE salary > 100k\n)\nSELECT *\nFROM HighEarners \nWHERE department = 'IT';\n```",
+            "challenge_id": "med_ctes"
+          },
+          {
+            "id": "gp_med_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.\n\nExample:\n```sql\nSELECT \n  name, \n  salary, \n  ROW_NUMBER() OVER(ORDER BY salary DESC) as rank \nFROM employees;\n```",
+            "challenge_id": "med_window"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_media_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "bus_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "sports": {
+    "domain": "sports",
+    "name": "Data Analyst (Sports)",
+    "description": "Learn SQL by managing sports teams, venues, and match statistics.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_spt_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM teams;\n```",
+            "challenge_id": "spt_1_intro"
+          },
+          {
+            "id": "gp_spt_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.\n\nExample:\n```sql\nSELECT first_name, last_name\nFROM employees;\n```",
+            "challenge_id": "spt_select_cols"
+          },
+          {
+            "id": "gp_spt_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition.\n\nExample:\n```sql\nSELECT *\nFROM products\nWHERE price > 50;\n```",
+            "challenge_id": "spt_2"
+          },
+          {
+            "id": "gp_spt_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure.\n\nExample:\n```sql\nCREATE TABLE customers (\n  id INTEGER,\n  name TEXT\n);\n```",
+            "challenge_id": "spt_29"
+          },
+          {
+            "id": "gp_spt_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert.\n\nExample:\n```sql\nINSERT INTO customers (id, name) \nVALUES (1, 'Alice');\n```",
+            "challenge_id": "spt_18"
+          },
+          {
+            "id": "gp_spt_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause.\n\nExample:\n```sql\nDELETE FROM customers\nWHERE id = 1;\n```",
+            "challenge_id": "spt_25"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_spt_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM products\nORDER BY price DESC;\n```",
+            "challenge_id": "spt_order_by"
+          },
+          {
+            "id": "gp_spt_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM orders\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "spt_limit"
+          },
+          {
+            "id": "gp_spt_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "spt_distinct"
+          },
+          {
+            "id": "gp_spt_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "spt_in"
+          },
+          {
+            "id": "gp_spt_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range.\n\nExample:\n```sql\nSELECT *\nFROM orders\nWHERE total_cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "spt_between"
+          },
+          {
+            "id": "gp_spt_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE name LIKE 'S%';\n```",
+            "challenge_id": "spt_like"
+          },
+          {
+            "id": "gp_spt_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "spt_and"
+          },
+          {
+            "id": "gp_spt_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM customers\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "spt_or"
+          },
+          {
+            "id": "gp_spt_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion.\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM orders;\n```",
+            "challenge_id": "spt_count"
+          },
+          {
+            "id": "gp_spt_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(amount)\nFROM payments;\n```",
+            "challenge_id": "spt_sum"
+          },
+          {
+            "id": "gp_spt_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "spt_min_max"
+          },
+          {
+            "id": "gp_spt_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows.\n\nExample:\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "spt_14"
+          },
+          {
+            "id": "gp_spt_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause evaluates conditions *after* aggregates have been grouped.\n\nExample:\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "spt_38"
+          },
+          {
+            "id": "gp_spt_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause.\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "spt_19"
+          },
+          {
+            "id": "gp_spt_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "spt_update_multiple"
+          },
+          {
+            "id": "gp_spt_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE customers\nADD COLUMN email VARCHAR(255);\n```",
+            "challenge_id": "spt_26"
+          },
+          {
+            "id": "gp_spt_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_reports;\n```",
+            "challenge_id": "spt_drop_table"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_spt_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nINNER JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "spt_6"
+          },
+          {
+            "id": "gp_spt_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship.\n\nExample:\n```sql\nCREATE TABLE orders (\n  id INTEGER PRIMARY KEY,\n  user_id INTEGER,\n  FOREIGN KEY(user_id) REFERENCES users(id)\n);\n```",
+            "challenge_id": "spt_42"
+          },
+          {
+            "id": "gp_spt_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates.\n\nExample:\n```sql\nCREATE TABLE accounts (\n  email TEXT UNIQUE NOT NULL,\n  balance INTEGER CHECK(balance >= 0)\n);\n```",
+            "challenge_id": "spt_add_constraints"
+          },
+          {
+            "id": "gp_spt_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to delete a parent row referenced by a `FOREIGN KEY` might violate constraints.",
+            "challenge_id": "spt_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_spt_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table.\n\nExample:\n```sql\nSELECT users.name, orders.amount\nFROM users\nLEFT JOIN orders\n  ON users.id = orders.user_id;\n```",
+            "challenge_id": "spt_15"
+          },
+          {
+            "id": "gp_spt_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables.",
+            "challenge_id": "spt_9"
+          },
+          {
+            "id": "gp_spt_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Combining LEFT JOIN with `WHERE ... IS NULL` allows you to find orphans.",
+            "challenge_id": "spt_not_ordered"
+          },
+          {
+            "id": "gp_spt_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "You can use a subquery in a `WHERE` clause to filter out records based on a secondary result set.",
+            "challenge_id": "spt_34"
+          },
+          {
+            "id": "gp_spt_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries.",
+            "challenge_id": "spt_above_average"
+          },
+          {
+            "id": "gp_spt_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression works like an IF-THEN-ELSE statement in SQL.",
+            "challenge_id": "spt_case_when"
+          },
+          {
+            "id": "gp_spt_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.",
+            "challenge_id": "spt_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_spt_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key).\n\nExample:\n```sql\nCREATE TABLE assignments (\n  user_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (user_id, role_id)\n);\n```",
+            "challenge_id": "spt_43"
+          },
+          {
+            "id": "gp_spt_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication.",
+            "challenge_id": "spt_44"
+          },
+          {
+            "id": "gp_spt_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations.",
+            "challenge_id": "spt_index"
+          },
+          {
+            "id": "gp_spt_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement.",
+            "challenge_id": "spt_view"
+          },
+          {
+            "id": "gp_spt_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer.",
+            "challenge_id": "spt_custom_view"
+          },
+          {
+            "id": "gp_spt_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views, while others require you to drop and recreate them.",
+            "challenge_id": "spt_alter_view"
+          },
+          {
+            "id": "gp_spt_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, modifying columns often requires recreating the table.",
+            "challenge_id": "spt_recreation"
+          },
+          {
+            "id": "gp_spt_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary named result set that you can reference within another statement.",
+            "challenge_id": "spt_ctes"
+          },
+          {
+            "id": "gp_spt_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row.",
+            "challenge_id": "spt_window"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_sports_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "bus_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "aviation": {
+    "domain": "aviation",
+    "name": "Flight Operations (Aviation)",
+    "description": "Learn SQL by managing airports, aircraft, flights, and crew assignments.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_av_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "The SELECT statement is the core of SQL. In aviation, you can use it to list all information about airports, aircraft, flights, or crew assignments by using the asterisk (*) which means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM airports;\n```",
+            "challenge_id": "av_1_intro",
+            "lesson_title": "The SELECT Statement"
+          },
+          {
+            "id": "gp_av_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "You rarely need all columns. Specify only what you need, like the flight ID and aircraft ID.\n\nExample:\n```sql\nSELECT flight_id, aircraft_id FROM flights;\n```",
+            "challenge_id": "av_select_cols",
+            "lesson_title": "Selecting Specific Columns"
+          },
+          {
+            "id": "gp_av_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The WHERE clause lets you filter records based on specific conditions, like finding a specific aircraft model.\n\nExample:\n```sql\nSELECT * FROM aircraft WHERE model = 'Boeing 737';\n```",
+            "challenge_id": "av_2",
+            "lesson_title": "Filtering with WHERE"
+          },
+          {
+            "id": "gp_av_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use CREATE TABLE to define new entities, such as a table for maintenance logs.\n\nExample:\n```sql\nCREATE TABLE maintenance_logs (log_id TEXT PRIMARY KEY, aircraft_id TEXT, description TEXT, log_date TEXT, cost REAL);\n```",
+            "challenge_id": "av_28",
+            "lesson_title": "Creating Tables"
+          },
+          {
+            "id": "gp_av_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use INSERT INTO to add new records, like scheduling a new flight.\n\nExample:\n```sql\nINSERT INTO flights (flight_id, aircraft_id, departure_airport_id, arrival_airport_id, scheduled_departure, scheduled_arrival) VALUES ('FL005', 'AC003', 'LAX', 'SFO', '2024-06-10 08:00:00', '2024-06-10 09:30:00');\n```",
+            "challenge_id": "av_18",
+            "lesson_title": "Inserting Data"
+          },
+          {
+            "id": "gp_av_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use DELETE to remove records, such as removing canceled crew assignments.\n\nExample:\n```sql\nDELETE FROM crew_assignments WHERE flight_id = 'FL001' AND employee_id = 'EMP007';\n```",
+            "challenge_id": "av_19",
+            "lesson_title": "Deleting Data"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_av_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Order your results using ORDER BY. For example, order aircraft by capacity.\n\nExample:\n```sql\nSELECT model, capacity FROM aircraft ORDER BY capacity DESC;\n```",
+            "challenge_id": "av_order_by",
+            "lesson_title": "Sorting with ORDER BY"
+          },
+          {
+            "id": "gp_av_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "Use LIMIT to restrict the number of rows returned, useful for sampling airport data.\n\nExample:\n```sql\nSELECT * FROM airports LIMIT 5;\n```",
+            "challenge_id": "av_limit",
+            "lesson_title": "The LIMIT Clause"
+          },
+          {
+            "id": "gp_av_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Use DISTINCT to find unique values, such as all the unique aircraft models.\n\nExample:\n```sql\nSELECT DISTINCT model FROM aircraft;\n```",
+            "challenge_id": "av_distinct",
+            "lesson_title": "Finding Unique Values"
+          },
+          {
+            "id": "gp_av_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The IN operator allows you to specify multiple values in a WHERE clause.\n\nExample:\n```sql\nSELECT * FROM airports WHERE country IN ('USA', 'UK');\n```",
+            "challenge_id": "av_in",
+            "lesson_title": "Using IN"
+          },
+          {
+            "id": "gp_av_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "Find records within a range, like aircraft with specific passenger capacities.\n\nExample:\n```sql\nSELECT * FROM aircraft WHERE capacity BETWEEN 100 AND 200;\n```",
+            "challenge_id": "av_between",
+            "lesson_title": "Filtering with BETWEEN"
+          },
+          {
+            "id": "gp_av_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "LIKE is used for pattern matching. Use % for wildcards. Find airports in specific cities.\n\nExample:\n```sql\nSELECT * FROM airports WHERE city LIKE '%York%';\n```",
+            "challenge_id": "av_like",
+            "lesson_title": "Pattern Matching with LIKE"
+          },
+          {
+            "id": "gp_av_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "AND requires all conditions to be true.\n\nExample:\n```sql\nSELECT * FROM flights WHERE departure_airport_id = 'JFK' AND arrival_airport_id = 'LHR';\n```",
+            "challenge_id": "av_and",
+            "lesson_title": "Combining Conditions with AND"
+          },
+          {
+            "id": "gp_av_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "OR requires at least one condition to be true.\n\nExample:\n```sql\nSELECT * FROM aircraft WHERE model = 'Boeing 737' OR status = 'Grounded';\n```",
+            "challenge_id": "av_or",
+            "lesson_title": "Combining Conditions with OR"
+          },
+          {
+            "id": "gp_av_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "COUNT returns the number of rows matching the query.\n\nExample:\n```sql\nSELECT COUNT(*) FROM airports;\n```",
+            "challenge_id": "av_count",
+            "lesson_title": "The COUNT Function"
+          },
+          {
+            "id": "gp_av_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "SUM adds up all values in a numeric column, like total aircraft capacity.\n\nExample:\n```sql\nSELECT SUM(capacity) FROM aircraft;\n```",
+            "challenge_id": "av_sum",
+            "lesson_title": "The SUM Function"
+          },
+          {
+            "id": "gp_av_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "Find the lowest and highest values in a column, such as aircraft capacities.\n\nExample:\n```sql\nSELECT MIN(capacity) as min, MAX(capacity) as max FROM aircraft;\n```",
+            "challenge_id": "av_min_max",
+            "lesson_title": "MIN and MAX"
+          },
+          {
+            "id": "gp_av_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "GROUP BY groups rows with the same values. Calculate total capacity per aircraft model.\n\nExample:\n```sql\nSELECT model, SUM(capacity) FROM aircraft GROUP BY model;\n```",
+            "challenge_id": "av_10",
+            "lesson_title": "Grouping Records"
+          },
+          {
+            "id": "gp_av_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "HAVING filters groups, similar to how WHERE filters rows.\n\nExample:\n```sql\nSELECT flight_id, COUNT(status_id) FROM flight_status_history GROUP BY flight_id HAVING COUNT(status_id) > 3;\n```",
+            "challenge_id": "av_37",
+            "lesson_title": "Filtering Groups with HAVING"
+          },
+          {
+            "id": "gp_av_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use UPDATE to modify existing records, like changing an aircraft's status.\n\nExample:\n```sql\nUPDATE aircraft SET status = 'Active' WHERE aircraft_id = 'AC001';\n```",
+            "challenge_id": "av_17",
+            "lesson_title": "Updating Records"
+          },
+          {
+            "id": "gp_av_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas.\n\nExample:\n```sql\nUPDATE flights SET departure_airport_id = 'LHR', arrival_airport_id = 'JFK' WHERE flight_id = 'FL001';\n```",
+            "challenge_id": "av_update_multiple",
+            "lesson_title": "Updating Multiple Fields"
+          },
+          {
+            "id": "gp_av_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "Use ALTER TABLE to change the structure of an existing table.\n\nExample:\n```sql\nALTER TABLE airports ADD COLUMN is_international INTEGER DEFAULT 0;\n```",
+            "challenge_id": "av_25",
+            "lesson_title": "Modifying Schemas"
+          },
+          {
+            "id": "gp_av_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use DROP TABLE to remove an entire table from the database.\n\nExample:\n```sql\nDROP TABLE IF EXISTS aircraft;\n```",
+            "challenge_id": "av_drop_table",
+            "lesson_title": "Dropping Tables"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_av_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "JOIN combines rows from two or more tables based on a related column.\n\nExample:\n```sql\nSELECT f.flight_id, da.name AS departure_airport, aa.name AS arrival_airport FROM flights f JOIN airports da ON f.departure_airport_id = da.airport_id JOIN airports aa ON f.arrival_airport_id = aa.airport_id;\n```",
+            "challenge_id": "av_inner_join",
+            "lesson_title": "INNER JOIN"
+          },
+          {
+            "id": "gp_av_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "Foreign keys enforce referential integrity between tables.\n\nExample:\n```sql\nCREATE TABLE airlines (airline_id INTEGER PRIMARY KEY); CREATE TABLE routes (route_id INTEGER, airline_id INTEGER, FOREIGN KEY (airline_id) REFERENCES airlines(airline_id));\n```",
+            "challenge_id": "av_43",
+            "lesson_title": "Foreign Keys"
+          },
+          {
+            "id": "gp_av_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints specify rules for data. NOT NULL means a column cannot have a NULL value.\n\nExample:\n```sql\nCREATE TABLE meal_types (id INTEGER PRIMARY KEY, meal_name TEXT NOT NULL);\n```",
+            "challenge_id": "av_add_constraints",
+            "lesson_title": "Inline Constraints"
+          },
+          {
+            "id": "gp_av_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Ensuring related data is cleaned up properly.\n\nExample:\n```sql\nDELETE FROM crew_assignments WHERE flight_id = 'FL001';\n```",
+            "challenge_id": "av_relationship_checks",
+            "lesson_title": "Relationship Checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_av_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "LEFT JOIN returns all records from the left table, and matched records from the right.\n\nExample:\n```sql\nSELECT a.name, COUNT(f.flight_id) FROM airports a LEFT JOIN flights f ON a.airport_id = f.departure_airport_id GROUP BY a.name;\n```",
+            "challenge_id": "av_11",
+            "lesson_title": "LEFT JOIN"
+          },
+          {
+            "id": "gp_av_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can join multiple tables to get richer insights.\n\nExample:\n```sql\nSELECT DISTINCT ca.employee_id FROM crew_assignments ca JOIN flights f ON ca.flight_id = f.flight_id JOIN airports da ON f.departure_airport_id = da.airport_id JOIN airports aa ON f.arrival_airport_id = aa.airport_id WHERE da.city = 'London' OR aa.city = 'London';\n```",
+            "challenge_id": "av_13",
+            "lesson_title": "Complex Joins"
+          },
+          {
+            "id": "gp_av_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Use IS NULL to find left table records that have no match in the right table.\n\nExample:\n```sql\nSELECT a.name FROM airports a LEFT JOIN flights f ON a.airport_id = f.departure_airport_id WHERE f.flight_id IS NULL;\n```",
+            "challenge_id": "av_not_ordered",
+            "lesson_title": "Checking NULL in Joins"
+          },
+          {
+            "id": "gp_av_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "Find records that do not match a certain set using NOT IN.\n\nExample:\n```sql\nSELECT name FROM airports WHERE airport_id NOT IN (SELECT DISTINCT departure_airport_id FROM flights);\n```",
+            "challenge_id": "av_36",
+            "lesson_title": "Subqueries with NOT IN"
+          },
+          {
+            "id": "gp_av_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "A subquery can be used in the WHERE clause to compare against dynamic values.\n\nExample:\n```sql\nSELECT * FROM aircraft WHERE capacity > (SELECT AVG(capacity) FROM aircraft);\n```",
+            "challenge_id": "av_above_average",
+            "lesson_title": "Advanced Subqueries"
+          },
+          {
+            "id": "gp_av_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "CASE allows for conditional logic in your SELECT statements.\n\nExample:\n```sql\nSELECT aircraft_id, CASE WHEN capacity > 200 THEN 'Large' ELSE 'Standard' END FROM aircraft;\n```",
+            "challenge_id": "av_case_when",
+            "lesson_title": "CASE Statements"
+          },
+          {
+            "id": "gp_av_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can also put subqueries directly in the SELECT list to calculate values row by row.\n\nExample:\n```sql\nSELECT name, (SELECT COUNT(*) FROM aircraft) AS total FROM airports;\n```",
+            "challenge_id": "av_select_subquery",
+            "lesson_title": "Subqueries in SELECT"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_av_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "Composite keys use multiple columns to uniquely identify a record.\n\nExample:\n```sql\nCREATE TABLE terminals (terminal_id INTEGER, hub_id INTEGER, PRIMARY KEY (terminal_id, hub_id));\n```",
+            "challenge_id": "av_44",
+            "lesson_title": "Composite Keys"
+          },
+          {
+            "id": "gp_av_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Combine DEFAULT, CHECK, and FOREIGN KEY for robust schemas.\n\nExample:\n```sql\nCREATE TABLE repair_logs (log_id BIGINT, hours_logged DECIMAL(5,1) NOT NULL, CHECK (hours_logged > 0));\n```",
+            "challenge_id": "av_45",
+            "lesson_title": "Advanced Constraints"
+          },
+          {
+            "id": "gp_av_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes speed up retrieval operations on a table.\n\nExample:\n```sql\nCREATE INDEX idx_aircraft_model ON aircraft (model);\n```",
+            "challenge_id": "av_index",
+            "lesson_title": "Creating Indexes"
+          },
+          {
+            "id": "gp_av_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "Views are virtual tables based on the result of an SQL statement.\n\nExample:\n```sql\nCREATE VIEW usa_airports AS SELECT * FROM airports WHERE country = 'USA';\n```",
+            "challenge_id": "av_view",
+            "lesson_title": "Creating Views"
+          },
+          {
+            "id": "gp_av_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views help simplify complex queries or restrict data access.\n\nExample:\n```sql\nCREATE VIEW grounded_aircraft AS SELECT * FROM aircraft WHERE status = 'Grounded';\n```",
+            "challenge_id": "av_custom_view",
+            "lesson_title": "Custom Views"
+          },
+          {
+            "id": "gp_av_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "To change or delete a view, you drop it.\n\nExample:\n```sql\nDROP VIEW grounded_aircraft;\n```",
+            "challenge_id": "av_alter_view",
+            "lesson_title": "Altering Views"
+          },
+          {
+            "id": "gp_av_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "SQLite limits ALTER TABLE, so you sometimes recreate, copy data, drop, and rename.\n\nExample:\n```sql\nCREATE TABLE a_new (id TEXT); INSERT INTO a_new SELECT airport_id FROM airports; DROP TABLE airports;\n```",
+            "challenge_id": "av_recreation",
+            "lesson_title": "The Recreation Pattern"
+          },
+          {
+            "id": "gp_av_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "CTEs (WITH clause) make complex queries easier to read and maintain.\n\nExample:\n```sql\nWITH Grounded AS (SELECT * FROM aircraft WHERE status = 'Grounded') SELECT * FROM Grounded;\n```",
+            "challenge_id": "av_ctes",
+            "lesson_title": "Common Table Expressions"
+          },
+          {
+            "id": "gp_av_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions calculate values across a set of table rows without grouping them.\n\nExample:\n```sql\nSELECT name, ROW_NUMBER() OVER(ORDER BY city ASC) AS rank FROM airports;\n```",
+            "challenge_id": "av_window",
+            "lesson_title": "Window Functions"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_aviation_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "bus_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "real_estate": {
+    "domain": "real_estate",
+    "name": "Market Analysis (Real Estate)",
+    "description": "Learn SQL by exploring property listings, neighborhood boundaries, and environmental zones.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_re_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "The SELECT statement is the core of SQL. In real estate, you can use it to list all information about properties, neighborhoods, or zones by using the asterisk (*) which means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM properties;\n```",
+            "challenge_id": "re_1",
+            "lesson_title": "The SELECT Statement"
+          },
+          {
+            "id": "gp_re_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "You rarely need all columns. Specify only what you need, like the address and price.\n\nExample:\n```sql\nSELECT address, price FROM properties;\n```",
+            "challenge_id": "re_select_cols",
+            "lesson_title": "Selecting Specific Columns"
+          },
+          {
+            "id": "gp_re_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The WHERE clause lets you filter records based on specific conditions, like finding 3-bedroom houses.\n\nExample:\n```sql\nSELECT * FROM properties WHERE bedrooms = 3;\n```",
+            "challenge_id": "re_2",
+            "lesson_title": "Filtering with WHERE"
+          },
+          {
+            "id": "gp_re_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use CREATE TABLE to define new entities, such as a table for agents.\n\nExample:\n```sql\nCREATE TABLE agents (agent_id INTEGER PRIMARY KEY, first_name TEXT);\n```",
+            "challenge_id": "re_26",
+            "lesson_title": "Creating Tables"
+          },
+          {
+            "id": "gp_re_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use INSERT INTO to add new records, like a newly listed property.\n\nExample:\n```sql\nINSERT INTO properties (property_id, address, price, bedrooms, latitude, longitude) VALUES (201, '123 New St', 750000, 4, 34.0, -118.2);\n```",
+            "challenge_id": "re_17",
+            "lesson_title": "Inserting Data"
+          },
+          {
+            "id": "gp_re_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use DELETE to remove records, such as an environmental zone that is no longer valid.\n\nExample:\n```sql\nDELETE FROM environmental_zones WHERE zone_id = 2;\n```",
+            "challenge_id": "re_23",
+            "lesson_title": "Deleting Data"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_re_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Order your results using ORDER BY. For example, order properties from cheapest to most expensive.\n\nExample:\n```sql\nSELECT * FROM properties ORDER BY price ASC;\n```",
+            "challenge_id": "re_order_by",
+            "lesson_title": "Sorting with ORDER BY"
+          },
+          {
+            "id": "gp_re_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "Use LIMIT to restrict the number of rows returned, useful for sampling properties.\n\nExample:\n```sql\nSELECT * FROM properties LIMIT 5;\n```",
+            "challenge_id": "re_limit",
+            "lesson_title": "The LIMIT Clause"
+          },
+          {
+            "id": "gp_re_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Use DISTINCT to find unique values, such as all the unique bedroom counts.\n\nExample:\n```sql\nSELECT DISTINCT bedrooms FROM properties;\n```",
+            "challenge_id": "re_8",
+            "lesson_title": "Finding Unique Values"
+          },
+          {
+            "id": "gp_re_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The IN operator allows you to specify multiple values in a WHERE clause.\n\nExample:\n```sql\nSELECT * FROM properties WHERE bedrooms IN (2, 4);\n```",
+            "challenge_id": "re_5",
+            "lesson_title": "Using IN"
+          },
+          {
+            "id": "gp_re_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "Find records within a range, like properties within a specific price range.\n\nExample:\n```sql\nSELECT * FROM properties WHERE price BETWEEN 300000 AND 700000;\n```",
+            "challenge_id": "re_7",
+            "lesson_title": "Filtering with BETWEEN"
+          },
+          {
+            "id": "gp_re_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "LIKE is used for pattern matching. Use % for wildcards. Find properties on Main Street.\n\nExample:\n```sql\nSELECT * FROM properties WHERE address LIKE '%Main Street%';\n```",
+            "challenge_id": "re_4",
+            "lesson_title": "Pattern Matching with LIKE"
+          },
+          {
+            "id": "gp_re_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "AND requires all conditions to be true.\n\nExample:\n```sql\nSELECT * FROM properties WHERE bedrooms = 3 AND price < 500000;\n```",
+            "challenge_id": "re_and",
+            "lesson_title": "Combining Conditions with AND"
+          },
+          {
+            "id": "gp_re_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "OR requires at least one condition to be true.\n\nExample:\n```sql\nSELECT * FROM properties WHERE bedrooms = 1 OR price < 200000;\n```",
+            "challenge_id": "re_or",
+            "lesson_title": "Combining Conditions with OR"
+          },
+          {
+            "id": "gp_re_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "COUNT returns the number of rows matching the query.\n\nExample:\n```sql\nSELECT COUNT(*) FROM properties;\n```",
+            "challenge_id": "re_9",
+            "lesson_title": "The COUNT Function"
+          },
+          {
+            "id": "gp_re_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "SUM adds up all values in a numeric column, like the total value of all listings.\n\nExample:\n```sql\nSELECT SUM(price) FROM properties;\n```",
+            "challenge_id": "re_sum",
+            "lesson_title": "The SUM Function"
+          },
+          {
+            "id": "gp_re_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "Find the lowest and highest values in a column, such as property prices.\n\nExample:\n```sql\nSELECT MIN(price) as min, MAX(price) as max FROM properties;\n```",
+            "challenge_id": "re_min_max",
+            "lesson_title": "MIN and MAX"
+          },
+          {
+            "id": "gp_re_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "GROUP BY groups rows with the same values. Calculate average prices per bedroom count.\n\nExample:\n```sql\nSELECT bedrooms, AVG(price) FROM properties GROUP BY bedrooms;\n```",
+            "challenge_id": "re_11",
+            "lesson_title": "Grouping Records"
+          },
+          {
+            "id": "gp_re_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "HAVING filters groups, similar to how WHERE filters rows.\n\nExample:\n```sql\nSELECT neighborhood_name FROM neighborhoods n JOIN properties p GROUP BY neighborhood_name HAVING AVG(price) > 1000000;\n```",
+            "challenge_id": "re_34",
+            "lesson_title": "Filtering Groups with HAVING"
+          },
+          {
+            "id": "gp_re_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use UPDATE to modify existing records, like dropping the price on a listing.\n\nExample:\n```sql\nUPDATE properties SET price = 620000 WHERE property_id = 101;\n```",
+            "challenge_id": "re_18",
+            "lesson_title": "Updating Records"
+          },
+          {
+            "id": "gp_re_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas.\n\nExample:\n```sql\nUPDATE properties SET price = 650000, bedrooms = 4 WHERE property_id = 102;\n```",
+            "challenge_id": "re_update_multiple",
+            "lesson_title": "Updating Multiple Fields"
+          },
+          {
+            "id": "gp_re_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "Use ALTER TABLE to change the structure of an existing table.\n\nExample:\n```sql\nALTER TABLE properties ADD COLUMN year_built INTEGER;\n```",
+            "challenge_id": "re_25",
+            "lesson_title": "Modifying Schemas"
+          },
+          {
+            "id": "gp_re_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use DROP TABLE to remove an entire table from the database.\n\nExample:\n```sql\nDROP TABLE IF EXISTS property_features;\n```",
+            "challenge_id": "re_drop_table",
+            "lesson_title": "Dropping Tables"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_re_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "JOIN combines rows from two or more tables based on a related column.\n\nExample:\n```sql\nSELECT p.address, n.neighborhood_name FROM properties p JOIN neighborhoods n ON p.latitude BETWEEN n.min_latitude AND n.max_latitude AND p.longitude BETWEEN n.min_longitude AND n.max_longitude;\n```",
+            "challenge_id": "re_inner_join",
+            "lesson_title": "INNER JOIN"
+          },
+          {
+            "id": "gp_re_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "Foreign keys enforce referential integrity between tables.\n\nExample:\n```sql\nCREATE TABLE agencies (id INTEGER PRIMARY KEY); CREATE TABLE brokers (id INTEGER, agency_id INTEGER, FOREIGN KEY (agency_id) REFERENCES agencies(id));\n```",
+            "challenge_id": "re_43",
+            "lesson_title": "Foreign Keys"
+          },
+          {
+            "id": "gp_re_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints specify rules for data. NOT NULL means a column cannot have a NULL value.\n\nExample:\n```sql\nCREATE TABLE zoning_types (id INTEGER PRIMARY KEY, zone_name TEXT NOT NULL);\n```",
+            "challenge_id": "re_add_constraints",
+            "lesson_title": "Inline Constraints"
+          },
+          {
+            "id": "gp_re_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Ensuring related data is cleaned up properly.\n\nExample:\n```sql\nDELETE FROM properties WHERE bedrooms = 0;\n```",
+            "challenge_id": "re_relationship_checks",
+            "lesson_title": "Relationship Checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_re_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "LEFT JOIN returns all records from the left table, and matched records from the right.\n\nExample:\n```sql\nSELECT n.neighborhood_name, COUNT(p.property_id) FROM neighborhoods n LEFT JOIN properties p GROUP BY n.neighborhood_name;\n```",
+            "challenge_id": "re_14",
+            "lesson_title": "LEFT JOIN"
+          },
+          {
+            "id": "gp_re_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can join multiple tables to get richer insights.\n\nExample:\n```sql\nSELECT p.* FROM properties p JOIN neighborhoods n ON n.neighborhood_name = 'Downtown' WHERE p.price > 500000;\n```",
+            "challenge_id": "re_16",
+            "lesson_title": "Complex Joins"
+          },
+          {
+            "id": "gp_re_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Use IS NULL to find left table records that have no match in the right table.\n\nExample:\n```sql\nSELECT property_id, address FROM properties WHERE latitude IS NULL;\n```",
+            "challenge_id": "re_not_ordered",
+            "lesson_title": "Checking NULL in Joins"
+          },
+          {
+            "id": "gp_re_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "Find records that do not match a certain set using NOT IN or EXISTS.\n\nExample:\n```sql\nSELECT p.* FROM properties p WHERE NOT EXISTS (SELECT 1 FROM neighborhoods n WHERE p.latitude BETWEEN n.min_latitude AND n.max_latitude);\n```",
+            "challenge_id": "re_35",
+            "lesson_title": "Subqueries with NOT IN"
+          },
+          {
+            "id": "gp_re_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "A subquery can be used in the WHERE clause to compare against dynamic values.\n\nExample:\n```sql\nSELECT * FROM properties WHERE price > (SELECT AVG(price) FROM properties);\n```",
+            "challenge_id": "re_above_average",
+            "lesson_title": "Advanced Subqueries"
+          },
+          {
+            "id": "gp_re_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "CASE allows for conditional logic in your SELECT statements.\n\nExample:\n```sql\nSELECT property_id, CASE WHEN price > 1000000 THEN 'Luxury' ELSE 'Standard' END FROM properties;\n```",
+            "challenge_id": "re_case_when",
+            "lesson_title": "CASE Statements"
+          },
+          {
+            "id": "gp_re_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can also put subqueries directly in the SELECT list to calculate values row by row.\n\nExample:\n```sql\nSELECT address, (SELECT COUNT(*) FROM properties) AS total FROM properties;\n```",
+            "challenge_id": "re_select_subquery",
+            "lesson_title": "Subqueries in SELECT"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_re_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "Composite keys use multiple columns to uniquely identify a record.\n\nExample:\n```sql\nCREATE TABLE units (unit_id INTEGER, bldg_id INTEGER, PRIMARY KEY (unit_id, bldg_id));\n```",
+            "challenge_id": "re_44",
+            "lesson_title": "Composite Keys"
+          },
+          {
+            "id": "gp_re_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Combine DEFAULT, CHECK, and FOREIGN KEY for robust schemas.\n\nExample:\n```sql\nCREATE TABLE leases (lease_id BIGINT, monthly_rent DECIMAL NOT NULL, CHECK (monthly_rent > 0));\n```",
+            "challenge_id": "re_45",
+            "lesson_title": "Advanced Constraints"
+          },
+          {
+            "id": "gp_re_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes speed up retrieval operations on a table.\n\nExample:\n```sql\nCREATE INDEX idx_bedrooms ON properties (bedrooms);\n```",
+            "challenge_id": "re_30",
+            "lesson_title": "Creating Indexes"
+          },
+          {
+            "id": "gp_re_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "Views are virtual tables based on the result of an SQL statement.\n\nExample:\n```sql\nCREATE VIEW cheap_properties AS SELECT * FROM properties WHERE price < 200000;\n```",
+            "challenge_id": "re_view",
+            "lesson_title": "Creating Views"
+          },
+          {
+            "id": "gp_re_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views help simplify complex queries or restrict data access.\n\nExample:\n```sql\nCREATE VIEW luxury_properties AS SELECT * FROM properties WHERE price > 1000000;\n```",
+            "challenge_id": "re_custom_view",
+            "lesson_title": "Custom Views"
+          },
+          {
+            "id": "gp_re_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "To change or delete a view, you drop it.\n\nExample:\n```sql\nDROP VIEW luxury_properties;\n```",
+            "challenge_id": "re_alter_view",
+            "lesson_title": "Altering Views"
+          },
+          {
+            "id": "gp_re_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "SQLite limits ALTER TABLE, so you sometimes recreate, copy data, drop, and rename.\n\nExample:\n```sql\nCREATE TABLE n_new (id INTEGER); INSERT INTO n_new SELECT neighborhood_id FROM neighborhoods; DROP TABLE neighborhoods;\n```",
+            "challenge_id": "re_recreation",
+            "lesson_title": "The Recreation Pattern"
+          },
+          {
+            "id": "gp_re_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "CTEs (WITH clause) make complex queries easier to read and maintain.\n\nExample:\n```sql\nWITH Expensive AS (SELECT * FROM properties WHERE price > 1000000) SELECT * FROM Expensive;\n```",
+            "challenge_id": "re_ctes",
+            "lesson_title": "Common Table Expressions"
+          },
+          {
+            "id": "gp_re_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions calculate values across a set of table rows without grouping them.\n\nExample:\n```sql\nSELECT address, ROW_NUMBER() OVER(ORDER BY price DESC) AS rank FROM properties;\n```",
+            "challenge_id": "re_window",
+            "lesson_title": "Window Functions"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_real_estate_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "bus_cte_1"
+          }
+        ]
+      }
+    ]
+  },
+  "human_resources": {
+    "domain": "human_resources",
+    "name": "HR Analyst (Retail)",
+    "description": "Master SQL by following the standard curriculum with retail employee data.",
+    "passes": [
+      {
+        "pass": 1,
+        "title": "Pass 1: The Foundations (Surface Level)",
+        "description": "Get comfortable reading and writing basic database structures and records.",
+        "steps": [
+          {
+            "id": "gp_hr_1_1",
+            "title": "Introduction to SELECT Statements",
+            "lesson_content": "To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.\n\nExample:\n```sql\nSELECT *\nFROM employees;\n```",
+            "challenge_id": "hr_1"
+          },
+          {
+            "id": "gp_hr_1_2",
+            "title": "Selecting Specific Columns",
+            "lesson_content": "Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their first_names with commas.\n\nExample:\n```sql\nSELECT first_first_name, last_first_name\nFROM employees;\n```",
+            "challenge_id": "hr_28"
+          },
+          {
+            "id": "gp_hr_1_4",
+            "title": "Filtering Rows with WHERE",
+            "lesson_content": "The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).\n\nExample:\n```sql\nSELECT *\nFROM payrolls\nWHERE salary > 50;\n```",
+            "challenge_id": "hr_2"
+          },
+          {
+            "id": "gp_hr_1_5",
+            "title": "Creating Your First Table",
+            "lesson_content": "Use `CREATE TABLE` to define new structure. You must specify the column first_names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).\n\nExample:\n```sql\nCREATE TABLE stores (\n  id INTEGER,\n  first_name TEXT\n);\n```",
+            "challenge_id": "hr_7"
+          },
+          {
+            "id": "gp_hr_1_6",
+            "title": "Adding Data with INSERT",
+            "lesson_content": "Use `INSERT INTO` followed by the table first_name and the `VALUES` you wish to insert, in the exact order the columns were defined.\n\nExample:\n```sql\nINSERT INTO stores (id, first_name) \nVALUES (1, 'New York');\n```",
+            "challenge_id": "hr_8"
+          },
+          {
+            "id": "gp_hr_1_7",
+            "title": "Deleting Basic Records",
+            "lesson_content": "Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!\n\nExample:\n```sql\nDELETE FROM stores\nWHERE id = 1;\n```",
+            "challenge_id": "hr_11"
+          }
+        ]
+      },
+      {
+        "pass": 2,
+        "title": "Pass 2: Aggregations & Data Manipulation",
+        "description": "Summarize data and perform basic table modifications.",
+        "steps": [
+          {
+            "id": "gp_hr_2_1",
+            "title": "Sorting Data with ORDER BY",
+            "lesson_content": "Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).\n\nExample:\n```sql\nSELECT *\nFROM payrolls\nORDER BY salary DESC;\n```",
+            "challenge_id": "hr_14"
+          },
+          {
+            "id": "gp_hr_2_1b",
+            "title": "Limiting Results",
+            "lesson_content": "If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).\n\nExample:\n```sql\nSELECT *\nFROM performance_reviews\nORDER BY total_cost DESC\nLIMIT 5;\n```",
+            "challenge_id": "hr_24"
+          },
+          {
+            "id": "gp_hr_2_2",
+            "title": "Finding Unique Values with DISTINCT",
+            "lesson_content": "Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.\n\nExample:\n```sql\nSELECT DISTINCT department\nFROM employees;\n```",
+            "challenge_id": "hr_18"
+          },
+          {
+            "id": "gp_hr_2_3",
+            "title": "Filtering with MULTIPLE Values (IN)",
+            "lesson_content": "The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE department IN ('Sales', 'Marketing');\n```",
+            "challenge_id": "hr_19"
+          },
+          {
+            "id": "gp_hr_2_4",
+            "title": "Filtering within Ranges (BETWEEN)",
+            "lesson_content": "The `BETWEEN` operator selects values within a given inclusive range.\n\nExample:\n```sql\nSELECT *\nFROM performance_reviews\nWHERE total_cost BETWEEN 50 AND 100;\n```",
+            "challenge_id": "hr_20"
+          },
+          {
+            "id": "gp_hr_2_5",
+            "title": "Pattern Matching with LIKE",
+            "lesson_content": "Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.\n\nExample (find first_names starting with 'S'):\n```sql\nSELECT *\nFROM stores\nWHERE first_name LIKE 'S%';\n```",
+            "challenge_id": "hr_15"
+          },
+          {
+            "id": "gp_hr_2_6",
+            "title": "Combining Filters (AND)",
+            "lesson_content": "The `AND` operator displays a record if *all* conditions separated by `AND` are true.\n\nExample:\n```sql\nSELECT *\nFROM stores\nWHERE country = 'USA'\n  AND city = 'Seattle';\n```",
+            "challenge_id": "hr_29"
+          },
+          {
+            "id": "gp_hr_2_7",
+            "title": "Alternative Filters (OR)",
+            "lesson_content": "The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.\n\nExample:\n```sql\nSELECT *\nFROM stores\nWHERE city = 'Seattle'\n  OR city = 'Portland';\n```",
+            "challenge_id": "hr_30"
+          },
+          {
+            "id": "gp_hr_2_8",
+            "title": "Counting Rows (COUNT)",
+            "lesson_content": "The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).\n\nExample:\n```sql\nSELECT COUNT(*)\nFROM performance_reviews;\n```",
+            "challenge_id": "hr_5"
+          },
+          {
+            "id": "gp_hr_2_9",
+            "title": "Totaling Values (SUM)",
+            "lesson_content": "The `SUM()` function returns the total sum of a numeric column.\n\nExample:\n```sql\nSELECT SUM(rating)\nFROM payments;\n```",
+            "challenge_id": "hr_6"
+          },
+          {
+            "id": "gp_hr_2_10",
+            "title": "Averages and Maximums",
+            "lesson_content": "You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.\n\nExample:\n```sql\nSELECT AVG(salary), MAX(salary)\nFROM employees;\n```",
+            "challenge_id": "hr_12"
+          },
+          {
+            "id": "gp_hr_2_11",
+            "title": "Grouping Results (GROUP BY)",
+            "lesson_content": "The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.\n\nExample (Total sales per department):\n```sql\nSELECT department, SUM(sales)\nFROM departments\nGROUP BY department;\n```",
+            "challenge_id": "hr_13"
+          },
+          {
+            "id": "gp_hr_2_12",
+            "title": "Filtering Groups (HAVING)",
+            "lesson_content": "The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.\n\nExample (Departments with high sales):\n```sql\nSELECT department, SUM(sales) FROM departments \nGROUP BY department \nHAVING SUM(sales) > 1000;\n```",
+            "challenge_id": "hr_21"
+          },
+          {
+            "id": "gp_hr_2_13",
+            "title": "Updating Existing Records",
+            "lesson_content": "Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!\n\nExample:\n```sql\nUPDATE employees\nSET salary = 60000\nWHERE id = 5;\n```",
+            "challenge_id": "hr_9"
+          },
+          {
+            "id": "gp_hr_2_14",
+            "title": "Updating Multiple Fields",
+            "lesson_content": "You can update multiple columns at once by separating them with commas in the `SET` block.\n\nExample:\n```sql\nUPDATE employees\nSET title = 'Manager', salary = 80000\nWHERE id = 5;\n```",
+            "challenge_id": "hr_33"
+          },
+          {
+            "id": "gp_hr_2_15",
+            "title": "Conditional Deletions",
+            "lesson_content": "You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.\n\nExample:\n```sql\nDELETE FROM performance_reviews\nWHERE order_date < '2022-01-01'\n  AND status = 'cancelled';\n```",
+            "challenge_id": "hr_34"
+          },
+          {
+            "id": "gp_hr_2_16",
+            "title": "Altering Tables (Adding Columns)",
+            "lesson_content": "If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.\n\nExample:\n```sql\nALTER TABLE stores\nADD COLUMN middle_first_name VARCHAR(255);\n```",
+            "challenge_id": "hr_10"
+          },
+          {
+            "id": "gp_hr_2_17",
+            "title": "Dropping Tables",
+            "lesson_content": "Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.\n\nExample:\n```sql\nDROP TABLE temp_rosters;\n```",
+            "challenge_id": "hr_36"
+          }
+        ]
+      },
+      {
+        "pass": 3,
+        "title": "Pass 3: Relationships & Security",
+        "description": "Connect multiple tables and enforce basic data integrity.",
+        "steps": [
+          {
+            "id": "gp_hr_3_1",
+            "title": "Introduction to Table Relationships (INNER JOIN)",
+            "lesson_content": "An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.\n\nExample:\n```sql\nSELECT employees.first_name, performance_reviews.rating\nFROM employees\nINNER JOIN performance_reviews\n  ON employees.id = performance_reviews.employee_id;\n```",
+            "challenge_id": "hr_3"
+          },
+          {
+            "id": "gp_hr_3_2",
+            "title": "Enforcing Table Architecture (Foreign Keys)",
+            "lesson_content": "When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.\n\nExample:\n```sql\nCREATE TABLE performance_reviews (\n  id INTEGER PRIMARY KEY,\n  employee_id INTEGER,\n  FOREIGN KEY(employee_id) REFERENCES employees(id)\n);\n```",
+            "challenge_id": "hr_42"
+          },
+          {
+            "id": "gp_hr_3_3",
+            "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+            "lesson_content": "Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.\n\nExample:\n```sql\nCREATE TABLE payrolls (\n  middle_first_name TEXT UNIQUE NOT NULL,\n  bonus INTEGER CHECK(bonus >= 0)\n);\n```",
+            "challenge_id": "hr_add_constraints"
+          },
+          {
+            "id": "gp_hr_3_4",
+            "title": "Data Integrity (Constraint Violations / Cascades)",
+            "lesson_content": "Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.",
+            "challenge_id": "hr_relationship_checks"
+          }
+        ]
+      },
+      {
+        "pass": 4,
+        "title": "Pass 4: Advanced Queries & Subqueries",
+        "description": "Tackle complex reporting and nested logic.",
+        "steps": [
+          {
+            "id": "gp_hr_4_1",
+            "title": "Including Unmatched Records (LEFT JOIN)",
+            "lesson_content": "A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.\n\nExample:\n```sql\nSELECT employees.first_name, performance_reviews.rating\nFROM employees\nLEFT JOIN performance_reviews\n  ON employees.id = performance_reviews.employee_id;\n```",
+            "challenge_id": "hr_4"
+          },
+          {
+            "id": "gp_hr_4_2",
+            "title": "Multi-Table Chains",
+            "lesson_content": "You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.",
+            "challenge_id": "hr_16"
+          },
+          {
+            "id": "gp_hr_4_3",
+            "title": "Finding Missing Data (IS NULL)",
+            "lesson_content": "Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., employees who have never ordered).",
+            "challenge_id": "hr_37"
+          },
+          {
+            "id": "gp_hr_4_4",
+            "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+            "lesson_content": "A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.\n\nExample:\n```sql\nSELECT *\nFROM employees\nWHERE id NOT IN (\n  SELECT employee_id\n  FROM fired_log\n);\n```",
+            "challenge_id": "hr_39"
+          },
+          {
+            "id": "gp_hr_4_5",
+            "title": "Advanced Subquery Comparisons",
+            "lesson_content": "You can evaluate values against dynamic aggregate subqueries, such as finding payrolls salaryd higher than the company's average.\n\nExample:\n```sql\nSELECT *\nFROM payrolls\nWHERE salary > (\n  SELECT AVG(salary)\n  FROM payrolls\n);\n```",
+            "challenge_id": "hr_40"
+          },
+          {
+            "id": "gp_hr_4_6",
+            "title": "Conditional Logic with CASE WHEN",
+            "lesson_content": "The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.\n\nExample:\n```sql\nSELECT first_name, \n  CASE \n    WHEN count > 10 THEN 'High'\n    ELSE 'Low'\n  END AS capacity\nFROM departments;\n```",
+            "challenge_id": "hr_case_when"
+          },
+          {
+            "id": "gp_hr_4_7",
+            "title": "Subqueries in the SELECT Clause",
+            "lesson_content": "You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.\n\nExample:\n```sql\nSELECT \n  first_name, \n  (SELECT MAX(salary) FROM competitor_salaries) AS competitor_high \nFROM payrolls;\n```",
+            "challenge_id": "hr_select_subquery"
+          }
+        ]
+      },
+      {
+        "pass": 5,
+        "title": "Pass 5: Masterclass Architecture & Advanced Features",
+        "description": "Database administration, performance, and advanced analytics.",
+        "steps": [
+          {
+            "id": "gp_hr_5_1",
+            "title": "Composite Primary Keys and Out-of-Line Constraints",
+            "lesson_content": "A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.\n\nExample:\n```sql\nCREATE TABLE assignments (\n  employee_id INTEGER,\n  role_id INTEGER,\n  PRIMARY KEY (employee_id, role_id)\n);\n```",
+            "challenge_id": "hr_43"
+          },
+          {
+            "id": "gp_hr_5_2",
+            "title": "Advanced Schema Planning",
+            "lesson_content": "Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.",
+            "challenge_id": "hr_44"
+          },
+          {
+            "id": "gp_hr_5_3",
+            "title": "Speeding Up Lookups (CREATE INDEX)",
+            "lesson_content": "Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.\n\nExample:\n```sql\nCREATE INDEX idx_user_middle_first_name ON employees (middle_first_name);\n```",
+            "challenge_id": "hr_17"
+          },
+          {
+            "id": "gp_hr_5_4",
+            "title": "Saving Complex Queries (CREATE VIEW)",
+            "lesson_content": "A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.\n\nExample:\n```sql\nCREATE VIEW ActiveUsers AS\nSELECT *\nFROM employees\nWHERE employment_type = 'Full-Time';\n```",
+            "challenge_id": "hr_22"
+          },
+          {
+            "id": "gp_hr_5_5",
+            "title": "Building Custom Views",
+            "lesson_content": "Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.",
+            "challenge_id": "hr_45"
+          },
+          {
+            "id": "gp_hr_5_6",
+            "title": "Altering Existing Views",
+            "lesson_content": "Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.",
+            "challenge_id": "hr_46"
+          },
+          {
+            "id": "gp_hr_5_7",
+            "title": "The Recreation Pattern for Complex Modfications",
+            "lesson_content": "Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to refirst_name the table, create the new structure, copy the data, and drop the old table.",
+            "challenge_id": "hr_recreation"
+          },
+          {
+            "id": "gp_hr_5_8",
+            "title": "Common Table Expressions (CTEs/WITH clauses)",
+            "lesson_content": "A CTE is a temporary first_named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.\n\nExample:\n```sql\nWITH HighEarners AS (\n  SELECT *\n  FROM employees \n  WHERE salary > 100k\n)\nSELECT *\nFROM HighEarners \nWHERE department = 'IT';\n```",
+            "challenge_id": "hr_ctes"
+          },
+          {
+            "id": "gp_hr_5_9",
+            "title": "Window Functions",
+            "lesson_content": "Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.\n\nExample:\n```sql\nSELECT \n  first_name, \n  salary, \n  ROW_NUMBER() OVER(ORDER BY salary DESC) as rank \nFROM employees;\n```",
+            "challenge_id": "hr_window_functions"
+          }
+        ]
+      },
+      {
+        "title": "Pass 6: Advanced Analytics",
+        "steps": [
+          {
+            "id": "gp_hriness_advanced_1",
+            "title": "Introduction to Common Table Expressions",
+            "lesson_content": "A Common Table Expression (CTE) allows you to define a temporary result set using the `WITH` clause. This result set can be queried just like a regular table, making complex queries easier to read.\n\n```sql\nWITH recent_data AS (\n  SELECT * FROM table WHERE date > '2023-01-01'\n)\nSELECT * FROM recent_data;\n```\n\nTry using a CTE or related advanced concept in this exercise.",
+            "challenge_id": "hr_bus_cte_1"
+          }
+        ]
+      }
+    ]
+  }
+}

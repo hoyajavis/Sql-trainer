@@ -1,0 +1,389 @@
+[
+  {
+    "step_id": "gp_av_1_1",
+    "lesson_title": "Introduction to SELECT Statements",
+    "lesson_content": "The SELECT statement is the core of SQL. In aviation, you can use it to list airports, aircraft, flights, or crew assignments.",
+    "challenge_id": "av_1",
+    "challenge_title": "List All Airports in a Country",
+    "challenge_desc": "As an airline operations manager, you need to quickly identify all available airports within a specific region to plan new routes. Your task is to find all airports located in 'USA'. Retrieve the airport ID, name, city, and country for these airports.",
+    "challenge_solution": "SELECT airport_id, name, city, country FROM airports WHERE country = 'USA';"
+  },
+  {
+    "step_id": "gp_av_1_2",
+    "lesson_title": "Selecting Specific Columns",
+    "lesson_content": "You rarely need all columns. Specify only what you need, like the flight ID and aircraft ID.",
+    "challenge_id": "av_select_cols",
+    "challenge_title": "Select Specific Columns",
+    "challenge_desc": "Retrieve only the flight_id and aircraft_id of all flights.",
+    "challenge_solution": "SELECT flight_id, aircraft_id FROM flights;"
+  },
+  {
+    "step_id": "gp_av_1_4",
+    "lesson_title": "Filtering Rows with WHERE",
+    "lesson_content": "The WHERE clause lets you filter records based on specific conditions, like finding a specific aircraft model.",
+    "challenge_id": "av_2",
+    "challenge_title": "Find Aircraft by Model",
+    "challenge_desc": "A maintenance team needs to schedule routine checks for all 'Boeing 737' aircraft in the fleet. To facilitate this, they require a list of all aircraft matching this model. Retrieve the aircraft ID, model, and capacity for all 'Boeing 737' aircraft.",
+    "challenge_solution": "SELECT aircraft_id, model, capacity FROM aircraft WHERE model = 'Boeing 737';"
+  },
+  {
+    "step_id": "gp_av_1_5",
+    "lesson_title": "Creating Your First Table",
+    "lesson_content": "Use CREATE TABLE to define new entities, such as a table for maintenance logs.",
+    "challenge_id": "av_28",
+    "challenge_title": "Create 'maintenance_logs' Table",
+    "challenge_desc": "The maintenance department needs a dedicated table to log all maintenance activities for aircraft. Create a new table named `maintenance_logs` with columns: `log_id` (TEXT PRIMARY KEY), `aircraft_id` (TEXT, FOREIGN KEY to `aircraft`), `description` (TEXT), `log_date` (TEXT), and `cost` (REAL).",
+    "challenge_solution": "CREATE TABLE maintenance_logs (\n  log_id TEXT PRIMARY KEY,\n  aircraft_id TEXT,\n  description TEXT,\n  log_date TEXT,\n  cost REAL,\n  FOREIGN KEY (aircraft_id) REFERENCES aircraft(aircraft_id)\n);"
+  },
+  {
+    "step_id": "gp_av_1_6",
+    "lesson_title": "Adding Data with INSERT",
+    "lesson_content": "Use INSERT INTO to add new records, like scheduling a new flight.",
+    "challenge_id": "av_18",
+    "challenge_title": "Insert a New Flight",
+    "challenge_desc": "The scheduling department has finalized a new flight, 'FL005', from 'LAX' to 'SFO', using aircraft 'AC003', scheduled to depart on '2024-06-10 08:00:00' and arrive on '2024-06-10 09:30:00'. Add this new flight to the system.",
+    "challenge_solution": "INSERT INTO flights (flight_id, aircraft_id, departure_airport_id, arrival_airport_id, scheduled_departure, scheduled_arrival) VALUES ('FL005', 'AC003', 'LAX', 'SFO', '2024-06-10 08:00:00', '2024-06-10 09:30:00');"
+  },
+  {
+    "step_id": "gp_av_1_7",
+    "lesson_title": "Deleting Basic Records",
+    "lesson_content": "Use DELETE to remove records, such as removing canceled crew assignments.",
+    "challenge_id": "av_19",
+    "challenge_title": "Delete a Crew Assignment",
+    "challenge_desc": "Due to a last-minute change, employee 'EMP007' has been reassigned from flight 'FL001'. The crew scheduling system needs to reflect this change by removing their assignment. Delete the crew assignment for employee 'EMP007' on flight 'FL001'.",
+    "challenge_solution": "DELETE FROM crew_assignments WHERE flight_id = 'FL001' AND employee_id = 'EMP007';"
+  },
+  {
+    "step_id": "gp_av_2_1",
+    "lesson_title": "Sorting Data with ORDER BY",
+    "lesson_content": "Order your results using ORDER BY. For example, order aircraft by capacity.",
+    "challenge_id": "av_order_by",
+    "challenge_title": "Sort Aircraft",
+    "challenge_desc": "List all aircraft, ordered by their capacity descending.",
+    "challenge_solution": "SELECT * FROM aircraft ORDER BY capacity DESC;"
+  },
+  {
+    "step_id": "gp_av_2_1b",
+    "lesson_title": "Limiting Results",
+    "lesson_content": "Use LIMIT to restrict the number of rows returned, useful for sampling airport data.",
+    "challenge_id": "av_limit",
+    "challenge_title": "Limit Results",
+    "challenge_desc": "Retrieve the first 3 records from the airports table.",
+    "challenge_solution": "SELECT * FROM airports LIMIT 3;"
+  },
+  {
+    "step_id": "gp_av_2_2",
+    "lesson_title": "Finding Unique Values with DISTINCT",
+    "lesson_content": "Use DISTINCT to find unique values, such as all the unique aircraft models.",
+    "challenge_id": "av_distinct",
+    "challenge_title": "Select Distinct",
+    "challenge_desc": "Find all unique aircraft models in the aircraft table.",
+    "challenge_solution": "SELECT DISTINCT model FROM aircraft;"
+  },
+  {
+    "step_id": "gp_av_2_3",
+    "lesson_title": "Filtering with MULTIPLE Values (IN)",
+    "lesson_content": "The IN operator allows you to specify multiple values in a WHERE clause.",
+    "challenge_id": "av_in",
+    "challenge_title": "Filter with IN",
+    "challenge_desc": "Find all airports whose country is USA or UK.",
+    "challenge_solution": "SELECT * FROM airports WHERE country IN ('USA', 'UK');"
+  },
+  {
+    "step_id": "gp_av_2_4",
+    "lesson_title": "Filtering within Ranges (BETWEEN)",
+    "lesson_content": "Find records within a range, like aircraft with specific passenger capacities.",
+    "challenge_id": "av_between",
+    "challenge_title": "Filter with BETWEEN",
+    "challenge_desc": "Find aircraft having capacity between 100 and 200.",
+    "challenge_solution": "SELECT * FROM aircraft WHERE capacity BETWEEN 100 AND 200;"
+  },
+  {
+    "step_id": "gp_av_2_5",
+    "lesson_title": "Pattern Matching with LIKE",
+    "lesson_content": "LIKE is used for pattern matching. Use % for wildcards. Find airports in specific cities.",
+    "challenge_id": "av_like",
+    "challenge_title": "Filter with LIKE",
+    "challenge_desc": "Find all airports where the city contains 'York'.",
+    "challenge_solution": "SELECT * FROM airports WHERE city LIKE '%York%';"
+  },
+  {
+    "step_id": "gp_av_2_6",
+    "lesson_title": "Combining Filters (AND)",
+    "lesson_content": "AND requires all conditions to be true.",
+    "challenge_id": "av_and",
+    "challenge_title": "Filter with AND",
+    "challenge_desc": "Find all flights departing from JFK and arriving at LHR.",
+    "challenge_solution": "SELECT * FROM flights WHERE departure_airport_id = 'JFK' AND arrival_airport_id = 'LHR';"
+  },
+  {
+    "step_id": "gp_av_2_7",
+    "lesson_title": "Alternative Filters (OR)",
+    "lesson_content": "OR requires at least one condition to be true.",
+    "challenge_id": "av_or",
+    "challenge_title": "Filter with OR",
+    "challenge_desc": "Find all aircraft which are model 'Boeing 737' or belong to status 'Grounded'.",
+    "challenge_solution": "SELECT * FROM aircraft WHERE model = 'Boeing 737' OR status = 'Grounded';"
+  },
+  {
+    "step_id": "gp_av_2_8",
+    "lesson_title": "Counting Rows (COUNT)",
+    "lesson_content": "COUNT returns the number of rows matching the query.",
+    "challenge_id": "av_count",
+    "challenge_title": "Aggregate: COUNT",
+    "challenge_desc": "Count the total number of airports.",
+    "challenge_solution": "SELECT COUNT(*) FROM airports;"
+  },
+  {
+    "step_id": "gp_av_2_9",
+    "lesson_title": "Totaling Values (SUM)",
+    "lesson_content": "SUM adds up all values in a numeric column, like total aircraft capacity.",
+    "challenge_id": "av_sum",
+    "challenge_title": "Aggregate: SUM",
+    "challenge_desc": "Calculate the total sum of capacities across all aircraft.",
+    "challenge_solution": "SELECT SUM(capacity) FROM aircraft;"
+  },
+  {
+    "step_id": "gp_av_2_10",
+    "lesson_title": "Averages and Maximums",
+    "lesson_content": "Find the lowest and highest values in a column, such as aircraft capacities.",
+    "challenge_id": "av_min_max",
+    "challenge_title": "Aggregate Insights",
+    "challenge_desc": "Find the minimum capacity and maximum capacity among all aircraft as min_capacity and max_capacity.",
+    "challenge_solution": "SELECT MIN(capacity) as min_capacity, MAX(capacity) as max_capacity FROM aircraft;"
+  },
+  {
+    "step_id": "gp_av_2_11",
+    "lesson_title": "Grouping Results (GROUP BY)",
+    "lesson_content": "GROUP BY groups rows with the same values. Calculate total capacity per aircraft model.",
+    "challenge_id": "av_10",
+    "challenge_title": "Total Capacity by Aircraft Model",
+    "challenge_desc": "For strategic planning, the airline needs to know the total passenger capacity available for each aircraft model in its fleet. This helps in route allocation and demand forecasting. Retrieve the aircraft model and the sum of capacity for all aircraft of that model. Name the sum column 'total_capacity'.",
+    "challenge_solution": "SELECT model, SUM(capacity) AS total_capacity FROM aircraft GROUP BY model;"
+  },
+  {
+    "step_id": "gp_av_2_12",
+    "lesson_title": "Filtering Groups (HAVING)",
+    "lesson_content": "HAVING filters groups, similar to how WHERE filters rows.",
+    "challenge_id": "av_37",
+    "challenge_title": "Flights with Multiple Status Changes",
+    "challenge_desc": "Flight supervisors want to monitor flights that have experienced an unusually high number of status changes, as this might indicate operational issues. Identify flights that have more than 3 entries in their `flight_status_history`. Retrieve the flight ID and the count of status changes. Name the result column 'status_change_count'.",
+    "challenge_solution": "SELECT flight_id, COUNT(status_id) AS status_change_count FROM flight_status_history GROUP BY flight_id HAVING COUNT(status_id) > 3;"
+  },
+  {
+    "step_id": "gp_av_2_13",
+    "lesson_title": "Updating Existing Records",
+    "lesson_content": "Use UPDATE to modify existing records, like changing an aircraft's status.",
+    "challenge_id": "av_17",
+    "challenge_title": "Update Aircraft Status",
+    "challenge_desc": "An aircraft, 'AC001', has just completed maintenance and is now ready for service. The maintenance team needs to update its status in the system from 'Maintenance' to 'Active'. Update the status of aircraft 'AC001' to 'Active'.",
+    "challenge_solution": "UPDATE aircraft SET status = 'Active' WHERE aircraft_id = 'AC001';"
+  },
+  {
+    "step_id": "gp_av_2_14",
+    "lesson_title": "Updating Multiple Fields",
+    "lesson_content": "You can update multiple columns at once by separating them with commas.",
+    "challenge_id": "av_update_multiple",
+    "challenge_title": "Update Multiple Fields",
+    "challenge_desc": "Update the flight with ID 'FL001' to have departure_airport_id of LHR and arrival_airport_id of JFK.",
+    "challenge_solution": "UPDATE flights SET departure_airport_id = 'LHR', arrival_airport_id = 'JFK' WHERE flight_id = 'FL001';"
+  },
+  {
+    "step_id": "gp_av_2_16",
+    "lesson_title": "Altering Tables (Adding Columns)",
+    "lesson_content": "Use ALTER TABLE to change the structure of an existing table.",
+    "challenge_id": "av_25",
+    "challenge_title": "Add 'is_international' Column to Airports",
+    "challenge_desc": "The route planning department needs to easily distinguish between international and domestic airports. Add a new column named `is_international` of type BOOLEAN (or INTEGER for SQLite) to the `airports` table, with a default value of 0 (false).",
+    "challenge_solution": "ALTER TABLE airports ADD COLUMN is_international INTEGER DEFAULT 0;"
+  },
+  {
+    "step_id": "gp_av_2_17",
+    "lesson_title": "Dropping Tables",
+    "lesson_content": "Use DROP TABLE to remove an entire table from the database.",
+    "challenge_id": "av_drop_table",
+    "challenge_title": "Drop Table",
+    "challenge_desc": "Drop the 'aircraft' table if it exists.",
+    "challenge_solution": "DROP TABLE IF EXISTS aircraft;"
+  },
+  {
+    "step_id": "gp_av_3_1",
+    "lesson_title": "Introduction to Table Relationships (INNER JOIN)",
+    "lesson_content": "JOIN combines rows from two or more tables based on a related column.",
+    "challenge_id": "spt_6",
+    "challenge_title": "Players of a Team",
+    "challenge_desc": "The scouting department wants a roster of all players belonging to team 'T001' to evaluate their squad depth. This provides a clear list of team members. Retrieve the `first_name`, `last_name`, `position`, and `jersey_number` for all players associated with `team_id` 'T001'.",
+    "challenge_solution": "SELECT first_name, last_name, position, jersey_number FROM players WHERE team_id = 'T001';"
+  },
+  {
+    "step_id": "gp_av_3_2",
+    "lesson_title": "Enforcing Table Architecture (Foreign Keys)",
+    "lesson_content": "Foreign keys enforce referential integrity between tables.",
+    "challenge_id": "av_43",
+    "challenge_title": "Airline Routes",
+    "challenge_desc": "Establish the database layout for airlines and their flight routes. Write the code for an `airlines` table with `airline_id` configured as an in-line INTEGER PRIMARY KEY, plus a `name` column (TEXT NOT NULL UNIQUE). Also, draft a `routes` table with `route_id` (INTEGER), `origin` (TEXT NOT NULL), `destination` (TEXT NOT NULL), `distance` (INTEGER), and `airline_id` (INTEGER). Apply out-of-line constraints assigning `route_id` as the PRIMARY KEY and `airline_id` as a FOREIGN KEY that references `airlines(airline_id)`.",
+    "challenge_solution": "CREATE TABLE airlines (airline_id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE); CREATE TABLE routes (route_id INTEGER, origin TEXT NOT NULL, destination TEXT NOT NULL, distance INTEGER, airline_id INTEGER, PRIMARY KEY (route_id), FOREIGN KEY (airline_id) REFERENCES airlines(airline_id));"
+  },
+  {
+    "step_id": "gp_av_3_3",
+    "lesson_title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+    "lesson_content": "Constraints specify rules for data. NOT NULL means a column cannot have a NULL value.",
+    "challenge_id": "av_add_constraints",
+    "challenge_title": "Inline Constraints",
+    "challenge_desc": "Create a `meal_types` table with an `id` INTEGER PRIMARY KEY and a `meal_name` TEXT NOT NULL.",
+    "challenge_solution": "CREATE TABLE meal_types (id INTEGER PRIMARY KEY, meal_name TEXT NOT NULL);"
+  },
+  {
+    "step_id": "gp_av_3_4",
+    "lesson_title": "Data Integrity (Constraint Violations / Cascades)",
+    "lesson_content": "Ensuring related data is cleaned up properly.",
+    "challenge_id": "av_relationship_checks",
+    "challenge_title": "Relationship Checks",
+    "challenge_desc": "Delete all crew_assignments for flight_id 'FL001' to simulate a flight cancellation.",
+    "challenge_solution": "DELETE FROM crew_assignments WHERE flight_id = 'FL001';"
+  },
+  {
+    "step_id": "gp_av_4_1",
+    "lesson_title": "Including Unmatched Records (LEFT JOIN)",
+    "lesson_content": "LEFT JOIN returns all records from the left table, and matched records from the right.",
+    "challenge_id": "av_11",
+    "challenge_title": "Airports with Departure Counts",
+    "challenge_desc": "Airport authorities want to analyze traffic patterns by identifying which airports handle the most departures. This data is crucial for resource allocation and expansion plans. Retrieve the airport name and the count of flights departing from each airport. (Only include airports that have at least one departing flight). Name the result column 'departure_count'.",
+    "challenge_solution": "SELECT ap.name, COUNT(f.flight_id) AS departure_count FROM airports ap JOIN flights f ON ap.airport_id = f.departure_airport_id GROUP BY ap.name ORDER BY departure_count DESC;"
+  },
+  {
+    "step_id": "gp_av_4_2",
+    "lesson_title": "Multi-Table Chains",
+    "lesson_content": "You can join multiple tables to get richer insights.",
+    "challenge_id": "av_13",
+    "challenge_title": "Flights with Airport Names",
+    "challenge_desc": "For a user-friendly flight schedule display, the system needs to show the full names of the departure and arrival airports instead of just their IDs. This improves readability for passengers. Retrieve the flight ID, the name of the departure airport, and the name of the arrival airport. Name the result column 'departure_airport_name'.",
+    "challenge_solution": "SELECT f.flight_id, da.name AS departure_airport_name, aa.name AS arrival_airport_name FROM flights f JOIN airports da ON f.departure_airport_id = da.airport_id JOIN airports aa ON f.arrival_airport_id = aa.airport_id;"
+  },
+  {
+    "step_id": "gp_av_4_3",
+    "lesson_title": "Finding Missing Data (IS NULL)",
+    "lesson_content": "Find records that do not match a certain set using NOT IN.",
+    "challenge_id": "av_not_ordered",
+    "challenge_title": "Airports with No Departures",
+    "challenge_desc": "Find airports that have no departures. Select airport_id and name using a LEFT JOIN with flights.",
+    "challenge_solution": "SELECT a.airport_id, a.name FROM airports a LEFT JOIN flights f ON a.airport_id = f.departure_airport_id WHERE f.flight_id IS NULL;"
+  },
+  {
+    "step_id": "gp_av_4_4",
+    "lesson_title": "Filtering using Subqueries (Left Join/Subquery combos)",
+    "lesson_content": "Use IS NULL to find left table records that have no match in the right table.",
+    "challenge_id": "av_36",
+    "challenge_title": "Airports with No Departing Flights",
+    "challenge_desc": "The network planning team wants to identify airports that currently have no scheduled departing flights. This could indicate underutilized infrastructure or potential route cancellations. Retrieve the name and city of airports with no departing flights.",
+    "challenge_solution": "SELECT name, city FROM airports WHERE airport_id NOT IN (SELECT DISTINCT departure_airport_id FROM flights);"
+  },
+  {
+    "step_id": "gp_av_4_5",
+    "lesson_title": "Advanced Subquery Comparisons",
+    "lesson_content": "A subquery can be used in the WHERE clause to compare against dynamic values.",
+    "challenge_id": "av_above_average",
+    "challenge_title": "Advanced Subqueries",
+    "challenge_desc": "Find aircraft whose capacity is higher than the average capacity among all aircraft.",
+    "challenge_solution": "SELECT * FROM aircraft WHERE capacity > (SELECT AVG(capacity) FROM aircraft);"
+  },
+  {
+    "step_id": "gp_av_4_6",
+    "lesson_title": "Conditional Logic with CASE WHEN",
+    "lesson_content": "CASE allows for conditional logic in your SELECT statements.",
+    "challenge_id": "av_case_when",
+    "challenge_title": "CASE WHEN",
+    "challenge_desc": "Select aircraft_id and a 'size_category' column which is 'Large' if capacity > 200 else 'Standard'. Do this for aircraft.",
+    "challenge_solution": "SELECT aircraft_id, CASE WHEN capacity > 200 THEN 'Large' ELSE 'Standard' END AS size_category FROM aircraft;"
+  },
+  {
+    "step_id": "gp_av_4_7",
+    "lesson_title": "Subqueries in the SELECT Clause",
+    "lesson_content": "You can also put subqueries directly in the SELECT list to calculate values row by row.",
+    "challenge_id": "av_select_subquery",
+    "challenge_title": "Select Subquery",
+    "challenge_desc": "Select airport names and the total number of aircraft in the entire system as a column aliased as 'total_aircraft_db'.",
+    "challenge_solution": "SELECT name, (SELECT COUNT(*) FROM aircraft) AS total_aircraft_db FROM airports;"
+  },
+  {
+    "step_id": "gp_av_5_1",
+    "lesson_title": "Composite Primary Keys and Out-of-Line Constraints",
+    "lesson_content": "Composite keys use multiple columns to uniquely identify a record.",
+    "challenge_id": "av_44",
+    "challenge_title": "Airport Terminals",
+    "challenge_desc": "Establish a system for airports and their terminals. Set up an `airports_hub` table with an in-line `hub_id` (INTEGER PRIMARY KEY), `code` (TEXT NOT NULL UNIQUE), and `city` (TEXT). Follow this by creating a `terminals` table carrying `terminal_id` (INTEGER), `gate_count` (INTEGER), `is_active` (INTEGER DEFAULT 1), and `hub_id` (INTEGER). For the `terminals` table, declare out-of-line conditions to make `terminal_id` the PRIMARY KEY, a CHECK that `is_active IN (0, 1)`, and a FOREIGN KEY mapping `hub_id` to `airports_hub(hub_id)`.",
+    "challenge_solution": "CREATE TABLE airports_hub (hub_id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE, city TEXT); CREATE TABLE terminals (terminal_id INTEGER, gate_count INTEGER, is_active INTEGER DEFAULT 1, hub_id INTEGER, PRIMARY KEY (terminal_id), CHECK (is_active IN (0, 1)), FOREIGN KEY (hub_id) REFERENCES airports_hub(hub_id));"
+  },
+  {
+    "step_id": "gp_av_5_2",
+    "lesson_title": "Advanced Schema Planning",
+    "lesson_content": "Combine DEFAULT, CHECK, and FOREIGN KEY for robust schemas.",
+    "challenge_id": "av_45",
+    "challenge_title": "Fleet Maintenance Logs",
+    "challenge_desc": "Structure a database for aircraft repairs. Set up a `parts_catalog` table using an in-line `part_no` (VARCHAR(50) PRIMARY KEY) and `description` (VARCHAR(255) NOT NULL). Draft a `repair_logs` table equipped with `log_id` (BIGINT), `hours_logged` (DECIMAL(5,1) NOT NULL), `repair_date` (DATE), and `part_no` (VARCHAR(50)). Supply out-of-line constraints in `repair_logs`: a PRIMARY KEY for `log_id`, a CHECK ensuring `hours_logged > 0.0`, and a FOREIGN KEY pointing `part_no` to `parts_catalog(part_no)`. Separate the statements with a semicolon.",
+    "challenge_solution": "CREATE TABLE parts_catalog (part_no VARCHAR(50) PRIMARY KEY, description VARCHAR(255) NOT NULL); CREATE TABLE repair_logs (log_id BIGINT, hours_logged DECIMAL(5,1) NOT NULL, repair_date DATE, part_no VARCHAR(50), PRIMARY KEY (log_id), CHECK (hours_logged > 0.0), FOREIGN KEY (part_no) REFERENCES parts_catalog(part_no));"
+  },
+  {
+    "step_id": "gp_av_5_3",
+    "lesson_title": "Speeding Up Lookups (CREATE INDEX)",
+    "lesson_content": "Indexes speed up retrieval operations on a table.",
+    "challenge_id": "av_index",
+    "challenge_title": "CREATE INDEX",
+    "challenge_desc": "Create an index named `idx_aircraft_model` on the `model` column in the `aircraft` table.",
+    "challenge_solution": "CREATE INDEX idx_aircraft_model ON aircraft (model);"
+  },
+  {
+    "step_id": "gp_av_5_4",
+    "lesson_title": "Saving Complex Queries (CREATE VIEW)",
+    "lesson_content": "Views are virtual tables based on the result of an SQL statement.",
+    "challenge_id": "av_view",
+    "challenge_title": "CREATE VIEW",
+    "challenge_desc": "Create a view named `usa_airports` to see only airports where country = 'USA'.",
+    "challenge_solution": "CREATE VIEW usa_airports AS SELECT * FROM airports WHERE country = 'USA';"
+  },
+  {
+    "step_id": "gp_av_5_5",
+    "lesson_title": "Building Custom Views",
+    "lesson_content": "Views help simplify complex queries or restrict data access.",
+    "challenge_id": "av_custom_view",
+    "challenge_title": "Custom View",
+    "challenge_desc": "Create a view named `grounded_aircraft` showing only aircraft with status = 'Grounded'.",
+    "challenge_solution": "CREATE VIEW grounded_aircraft AS SELECT * FROM aircraft WHERE status = 'Grounded';"
+  },
+  {
+    "step_id": "gp_av_5_6",
+    "lesson_title": "Altering Existing Views",
+    "lesson_content": "To change or delete a view, you drop it.",
+    "challenge_id": "av_alter_view",
+    "challenge_title": "Alter View",
+    "challenge_desc": "Drop the `grounded_aircraft` view.",
+    "challenge_solution": "DROP VIEW grounded_aircraft;"
+  },
+  {
+    "step_id": "gp_av_5_7",
+    "lesson_title": "The Recreation Pattern for Complex Modfications",
+    "lesson_content": "SQLite limits ALTER TABLE, so you sometimes recreate, copy data, drop, and rename.",
+    "challenge_id": "av_recreation",
+    "challenge_title": "The Recreation Pattern",
+    "challenge_desc": "Recreate `airports_new` as `airport_id` TEXT PRIMARY KEY, `name` TEXT. Insert from `airports`. Drop `airports`. Rename `airports_new` to `airports`.",
+    "challenge_solution": "CREATE TABLE airports_new (airport_id TEXT PRIMARY KEY, name TEXT); INSERT INTO airports_new (airport_id, name) SELECT airport_id, name FROM airports; DROP TABLE airports; ALTER TABLE airports_new RENAME TO airports;"
+  },
+  {
+    "step_id": "gp_av_5_8",
+    "lesson_title": "Common Table Expressions (CTEs/WITH clauses)",
+    "lesson_content": "CTEs (WITH clause) make complex queries easier to read and maintain.",
+    "challenge_id": "av_ctes",
+    "challenge_title": "CTEs (WITH clause)",
+    "challenge_desc": "Use a WITH clause named `GroundedOnly` to select all aircraft WHERE status = 'Grounded', then select all from GroundedOnly.",
+    "challenge_solution": "WITH GroundedOnly AS (SELECT * FROM aircraft WHERE status = 'Grounded') SELECT * FROM GroundedOnly;"
+  },
+  {
+    "step_id": "gp_av_5_9",
+    "lesson_title": "Window Functions",
+    "lesson_content": "Window functions calculate values across a set of table rows without grouping them.",
+    "challenge_id": "av_window",
+    "challenge_title": "Window Functions",
+    "challenge_desc": "Select airport names and rank them alphabetically by city using ROW_NUMBER. Give the rank column the alias 'rank'.",
+    "challenge_solution": "SELECT name, ROW_NUMBER() OVER(ORDER BY city ASC) AS rank FROM airports;"
+  }
+]

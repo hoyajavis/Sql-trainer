@@ -1,0 +1,258 @@
+[
+  {
+    "id": "c1",
+    "difficulty": 1,
+    "question": "If a Database Table is like a Spreadsheet tab, what is a 'Row' in a Database?",
+    "options": ["A data type constraint", "A single record or entry", "A column header", "A formula"],
+    "answer": 1,
+    "explanation": "A row in a database represents a single, complete record, just like a single row in a spreadsheet holding all information for one specific item."
+  },
+  {
+    "id": "c3",
+    "difficulty": 1,
+    "question": "Which SQL keyword is most similar to clicking the 'Filter' dropdown in a spreadsheet column to only show specific rows?",
+    "options": ["SELECT", "WHERE", "JOIN", "HAVING"],
+    "answer": 1,
+    "explanation": "The WHERE clause filters records to only include those that fulfill a specified condition."
+  },
+  {
+    "id": "c14",
+    "difficulty": 1,
+    "question": "If you want to view just specific columns from your spreadsheet instead of all of them, what SQL keyword do you use?",
+    "options": ["SHOW", "SELECT", "FILTER", "CHOOSE"],
+    "answer": 1,
+    "explanation": "SELECT is used to specify exactly which columns you want to retrieve from the database."
+  },
+  {
+    "id": "c16",
+    "difficulty": 1,
+    "question": "If you use a 'Text Filter: Contains' in a spreadsheet to find rows where a name includes 'Smith', what is the SQL equivalent?",
+    "options": ["LIKE '%Smith%'", "CONTAINS 'Smith'", "MATCHES '*Smith*'", "FIND 'Smith'"],
+    "answer": 0,
+    "explanation": "The LIKE operator is used in a WHERE clause to search for a specified pattern in a column. The percent sign (%) operates like a wildcard."
+  },
+  {
+    "id": "c6",
+    "difficulty": 2,
+    "question": "When you add a new blank row at the bottom of a spreadsheet and type in data, you are doing the equivalent of a SQL:",
+    "options": ["CREATE TABLE", "UPDATE", "INSERT", "ADD ROW"],
+    "answer": 2,
+    "explanation": "The INSERT INTO statement is used to insert new records (rows) in a table."
+  },
+  {
+    "id": "c7",
+    "difficulty": 2,
+    "question": "Finding a cell in a spreadsheet and changing its value is the equivalent of a SQL:",
+    "options": ["UPDATE", "INSERT", "ALTER", "CHANGE"],
+    "answer": 0,
+    "explanation": "The UPDATE statement is used to modify the existing records in a table."
+  },
+  {
+    "id": "c17",
+    "difficulty": 2,
+    "question": "If you select a row and hit 'Delete' in a spreadsheet, what SQL statement does this?",
+    "options": ["DROP", "REMOVE", "DELETE", "TRUNCATE"],
+    "answer": 2,
+    "explanation": "The DELETE statement is used to remove existing records (rows) from a table. Be careful to use a WHERE clause, or you will delete all rows!"
+  },
+  {
+    "id": "c8",
+    "difficulty": 2,
+    "question": "If you sort a spreadsheet column from A to Z, which SQL clause achieves the same result?",
+    "options": ["SORT BY", "GROUP BY", "ORDER BY", "ARRANGE BY"],
+    "answer": 2,
+    "explanation": "ORDER BY is used to sort the result-set in ascending (ASC, default) or descending (DESC) order."
+  },
+  {
+    "id": "c9",
+    "difficulty": 3,
+    "question": "What is the equivalent of a completely blank cell in a spreadsheet?",
+    "options": ["ZERO", "EMPTY", "BLANK", "NULL"],
+    "answer": 3,
+    "explanation": "NULL represents a missing or unknown value in SQL. It is not the same as a zero or an empty string."
+  },
+  {
+    "id": "c10",
+    "difficulty": 3,
+    "question": "If you right-click a column in a spreadsheet and select 'Insert Column Right', what is the SQL equivalent?",
+    "options": ["ALTER TABLE ... ADD COLUMN", "INSERT COLUMN", "CREATE COLUMN", "UPDATE TABLE ... ADD"],
+    "answer": 0,
+    "explanation": "ALTER TABLE is used to add, delete, or modify columns in an existing table."
+  },
+  {
+    "id": "c18",
+    "difficulty": 3,
+    "question": "If you use the 'Remove Duplicates' feature in a spreadsheet to see a list of unique values, which SQL keyword achieves a similar result when querying?",
+    "options": ["UNIQUE", "DISTINCT", "ONLY", "SINGLE"],
+    "answer": 1,
+    "explanation": "The SELECT DISTINCT statement is used to return only distinct (different) values, removing duplicates from the result set."
+  },
+  {
+    "id": "c20",
+    "difficulty": 3,
+    "question": "If you sort your spreadsheet to find the top 5 performers, you would use ORDER BY in SQL. How do you tell SQL to only give you back the first 5 rows of the result?",
+    "options": ["TOP 5", "FIRST 5", "MAX 5", "LIMIT 5"],
+    "answer": 3,
+    "explanation": "The LIMIT clause is used to specify the number of records to return. (Note: some database systems like SQL Server use TOP instead)."
+  },
+  {
+    "id": "c4",
+    "difficulty": 4,
+    "question": "If you want to create a Pivot Table in SQL to find the average (AVG) score per subject, which keyword is essential?",
+    "options": ["GROUP BY", "ORDER BY", "AVERAGE", "PIVOT"],
+    "answer": 0,
+    "explanation": "GROUP BY groups rows that have the same values into summary rows, often used with aggregate functions like COUNT, MAX, MIN, SUM, AVG."
+  },
+  {
+    "id": "c12",
+    "difficulty": 4,
+    "question": "If you want to count how many rows there are vs. add up the total money in a column, which SQL functions do you use?",
+    "options": ["SUM() for rows, COUNT() for money", "Total() for rows, Add() for money", "COUNT() for rows, SUM() for money", "ROWS() for rows, MONEY() for money"],
+    "answer": 2,
+    "explanation": "COUNT() calculates the number of rows that match a specified criterion. SUM() calculates the total sum of a numeric column."
+  },
+  {
+    "id": "c19",
+    "difficulty": 4,
+    "question": "In a spreadsheet, if you build a Pivot Table but only want to see grouped items where the total is greater than 100, you add a filter. What is the SQL equivalent of filtering *after* a GROUP BY?",
+    "options": ["WHERE", "FILTER", "HAVING", "CHECK"],
+    "answer": 2,
+    "explanation": "The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions. It filters records after they have been grouped."
+  },
+  {
+    "id": "c2",
+    "difficulty": 5,
+    "question": "In spreadsheets, you use VLOOKUP or INDEX/MATCH to pull in data from another tab based on a matching ID. What is the SQL equivalent?",
+    "options": ["WHERE", "GROUP BY", "JOIN", "ORDER BY"],
+    "answer": 2,
+    "explanation": "JOIN is used to combine rows from two or more tables, based on a related column between them (like a primary key and foreign key)."
+  },
+  {
+    "id": "c13",
+    "difficulty": 5,
+    "question": "If you do a VLOOKUP but some IDs don't match, you get #N/A errors. In a database, if you want to keep ALL records from the first table even if there's no match in the second, you should use:",
+    "options": ["INNER JOIN", "LEFT JOIN", "KEEP JOIN", "ALL JOIN"],
+    "answer": 1,
+    "explanation": "A LEFT JOIN returns all records from the left table, and the matched records from the right table. If there is no match, the result is NULL on the right side."
+  },
+  {
+    "id": "c5",
+    "difficulty": 5,
+    "question": "What is a 'Primary Key' in a database table?",
+    "options": ["The most important data in the table", "A unique identifier for each record (like an ID number)", "The first column in every table", "A password to access the table"],
+    "answer": 1,
+    "explanation": "A Primary Key uniquely identifies each record in a table, ensuring you don't confuse two records that might have similar data (like two people named John Smith)."
+  },
+  {
+    "id": "c11",
+    "difficulty": 5,
+    "question": "What is a 'Foreign Key'?",
+    "options": ["A key stored on a different database server", "A column that references the Primary Key of another table", "A password for an external user", "An encrypted column"],
+    "answer": 1,
+    "explanation": "A Foreign Key is a column (or collection of columns) in one table that links to the Primary Key in another table, establishing a relationship between them."
+  },
+  {
+    "id": "c21",
+    "difficulty": 5,
+    "question": "In a spreadsheet, you can use 'Data Validation' to force a column to only accept Dates or Numbers. In a database table, how is this primarily enforced?",
+    "options": ["By using the VALIDATE keyword", "By defining specific Data Types (like INT, DATE, VARCHAR) for columns", "By writing a macro script", "It is not possible in SQL"],
+    "answer": 1,
+    "explanation": "When creating a table, you must assign a Data Type (like INTEGER, TEXT, OR DATE) to each column, which enforces what kind of data can be inserted into it."
+  },
+  {
+    "id": "c15",
+    "difficulty": 5,
+    "question": "How do you permanently remove a tab from your spreadsheet in SQL?",
+    "options": ["DELETE TABLE", "REMOVE TABLE", "DROP TABLE", "TRUNCATE TABLE"],
+    "answer": 2,
+    "explanation": "DROP TABLE removes the entire table structure and all its data permanently from the database."
+  },
+  {
+    "id": "c22",
+    "difficulty": 4,
+    "question": "Just like the MIN() and MAX() functions in a spreadsheet, how do you find the smallest or largest value in a database column?",
+    "options": ["Using the BOTTOM() and TOP() functions", "Using the MIN() and MAX() aggregate functions", "Sorting the column and looking at the first and last rows manually", "Using LOW() and HIGH()"],
+    "answer": 1,
+    "explanation": "SQL uses MIN() and MAX() aggregate functions, which work exactly like their spreadsheet counterparts to find the smallest and largest values in a column."
+  },
+  {
+    "id": "c23",
+    "difficulty": 5,
+    "question": "If an Excel workbook is running very slowly when searching for a specific ID, you might sort the list to make searches faster. In SQL, what feature do you construct to drastically speed up searches on a specific column?",
+    "options": ["A FILTER", "A FAST_SEARCH", "An INDEX", "A REFERENCE"],
+    "answer": 2,
+    "explanation": "An INDEX in a database works like an index in a book or a sorted searchable list, making queries involving that column significantly faster."
+  },
+  {
+    "id": "c24",
+    "difficulty": 5,
+    "question": "A LEFT JOIN keeps unmatched rows from the left table. Which join is exactly the opposite, keeping all rows from the right table even if there's no match on the left?",
+    "options": ["RIGHT JOIN", "REVERSE JOIN", "BACKWARD JOIN", "INNER JOIN"],
+    "answer": 0,
+    "explanation": "A RIGHT JOIN returns all records from the right table, and the matched records from the left table. It's the mirror image of a LEFT JOIN."
+  },
+  {
+    "id": "c25",
+    "difficulty": 2,
+    "question": "Spreadsheets often try to guess if you typed a number, text, or a date. In SQL, you explicitly define this. What are these definitions called?",
+    "options": ["Cell Formats", "Data Types (like INT, VARCHAR, DATE)", "Column Categories", "Data Rules"],
+    "answer": 1,
+    "explanation": "Data Types specify exactly what kind of data can be stored in a column, such as INT (integers), VARCHAR (variable length text), or TIMESTAMP (date and time)."
+  },
+  {
+    "id": "c26",
+    "difficulty": 2,
+    "question": "If creating a new blank spreadsheet tab and typing in the column header names is your first step in Excel, what is the SQL equivalent to build a new container for data?",
+    "options": ["NEW TABLE", "MAKE TABLE", "CREATE TABLE", "BUILD TABLE"],
+    "answer": 2,
+    "explanation": "The CREATE TABLE statement is used to create a new table and define its columns and their data types."
+  },
+  {
+    "id": "c27",
+    "difficulty": 5,
+    "question": "When using a VLOOKUP, it only returns a value if it finds an exact match. Which SQL join behaves similarly, dropping rows that have no match in the other table?",
+    "options": ["FULL JOIN", "LEFT JOIN", "RIGHT JOIN", "INNER JOIN"],
+    "answer": 3,
+    "explanation": "An INNER JOIN selects records that have matching values in both tables. If there is no match, the row is excluded from the results."
+  },
+  {
+    "id": "es1",
+    "difficulty": 1,
+    "question": "In a spreadsheet formula, you use text surrounded by double quotes (like `=\"Apple\"`). What quotes MUST you use for text values in standard SQL?",
+    "options": ["Single quotes ('Apple')", "Double quotes (\"Apple\")", "Curly braces ({Apple})", "Square brackets ([Apple])"],
+    "answer": 0,
+    "explanation": "Standard SQL requires string (text) values to be enclosed in single quotes. Double quotes are strictly for column/table identifiers, not the data itself."
+  },
+  {
+    "id": "es2",
+    "difficulty": 2,
+    "question": "In Excel, if you miss a comma in an IF statement, the formula breaks. In SQL, what happens if you leave a dangling comma at the very end of your SELECT list before the FROM clause (e.g. `SELECT id, name, FROM`...)?",
+    "options": ["The query runs and ignores the extra comma", "The database automatically fixes it behind the scenes", "The query completely fails with a syntax error", "It prompts you to finish typing the list"],
+    "answer": 2,
+    "explanation": "SQL is very strict about trailing commas. A comma sitting immediately before a FROM keyword will trigger a syntax error."
+  },
+  {
+    "id": "es3",
+    "difficulty": 3,
+    "question": "In Excel, `#N/A` signifies a missing lookup. To find these, you might use 'ISNA()'. In SQL, how do you correctly search for a completely missing (NULL) value?",
+    "options": ["`WHERE name = ''`", "`WHERE name = NULL`", "`WHERE name IS NULL`", "`WHERE name == #N/A`"],
+    "answer": 2,
+    "explanation": "You cannot use the equals sign (=) to verify if something is NULL. You must use the special syntax `IS NULL`."
+  },
+  {
+    "id": "es4",
+    "difficulty": 4,
+    "question": "In Excel, you can use `=SUM(A1:A10)` anywhere. In SQL, if you want to filter a grouped Pivot Table equivalent based on a sum (e.g. only show groups where `SUM(amount) > 100`), where MUST this go?",
+    "options": ["In the WHERE clause", "In the HAVING clause", "Inside the JOIN", "In the SELECT clause"],
+    "answer": 1,
+    "explanation": "You cannot put aggregate functions like SUM() or COUNT() inside a WHERE clause. You must group the rows first, and then filter the aggregate using HAVING."
+  },
+  {
+    "id": "es5",
+    "difficulty": 5,
+    "question": "In an Excel dashboard, you might name a calculation 'Profit' and immediately use that word in the next cell's formula. In SQL, if you create an alias `price - cost AS profit`, why can't you immediately write `WHERE profit > 100`?",
+    "options": ["Aliases are only for text, not numbers", "The WHERE clause is processed by the database engine BEFORE the SELECT clause even creates the alias", "Aliases cannot be used in inequality (<, >) comparisons", "SQL doesn't support basic math"],
+    "answer": 1,
+    "explanation": "Because the database executes the WHERE clause filter before it figures out the SELECT columns and aliases, the alias 'profit' doesn't exist at the time the WHERE clause runs."
+  }
+]

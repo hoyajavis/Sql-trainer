@@ -1,0 +1,6 @@
+{
+  "name": "SQL Mobile Trainer",
+  "description": "A mobile-optimized SQL practice application with a built-in SQLite engine (sql.js) and interactive challenges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

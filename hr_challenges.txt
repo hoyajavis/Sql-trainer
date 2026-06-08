@@ -1,0 +1,269 @@
+  {
+    "id": "hr_1",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Introduction to SELECT Statements",
+--
+  {
+    "id": "hr_28",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Selecting Specific Columns",
+--
+  {
+    "id": "hr_2",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Filtering Rows with WHERE",
+--
+  {
+    "id": "hr_7",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Creating Your First Table",
+--
+  {
+    "id": "hr_8",
+    "domain": "human_resources",
+    "category": "data_manipulation",
+    "title": "Adding Data with INSERT",
+--
+  {
+    "id": "hr_11",
+    "domain": "human_resources",
+    "category": "data_manipulation",
+    "title": "Deleting Basic Records",
+--
+  {
+    "id": "hr_14",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Sorting Data with ORDER BY",
+--
+  {
+    "id": "hr_24",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Limiting Results",
+--
+  {
+    "id": "hr_18",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Finding Unique Values with DISTINCT",
+--
+  {
+    "id": "hr_19",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Filtering with MULTIPLE Values (IN)",
+--
+  {
+    "id": "hr_20",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Filtering within Ranges (BETWEEN)",
+--
+  {
+    "id": "hr_15",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Pattern Matching with LIKE",
+--
+  {
+    "id": "hr_29",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Combining Filters (AND)",
+--
+  {
+    "id": "hr_30",
+    "domain": "human_resources",
+    "category": "basic_queries",
+    "title": "Alternative Filters (OR)",
+--
+  {
+    "id": "hr_5",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Counting Rows (COUNT)",
+--
+  {
+    "id": "hr_6",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Totaling Values (SUM)",
+--
+  {
+    "id": "hr_12",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Averages and Maximums",
+--
+  {
+    "id": "hr_13",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Grouping Results (GROUP BY)",
+--
+  {
+    "id": "hr_21",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Filtering Groups (HAVING)",
+--
+  {
+    "id": "hr_9",
+    "domain": "human_resources",
+    "category": "data_manipulation",
+    "title": "Updating Existing Records",
+--
+  {
+    "id": "hr_33",
+    "domain": "human_resources",
+    "category": "data_manipulation",
+    "title": "Updating Multiple Fields",
+--
+  {
+    "id": "hr_34",
+    "domain": "human_resources",
+    "category": "data_manipulation",
+    "title": "Conditional Deletions",
+--
+  {
+    "id": "hr_10",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Altering Tables (Adding Columns)",
+--
+  {
+    "id": "hr_36",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Dropping Tables",
+--
+  {
+    "id": "hr_3",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Introduction to Table Relationships (INNER JOIN)",
+--
+  {
+    "id": "hr_42",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Enforcing Table Architecture (Foreign Keys)",
+--
+  {
+    "id": "hr_add_constraints",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Inline Data Constraints (NOT NULL, UNIQUE, CHECK)",
+--
+  {
+    "id": "hr_relationship_checks",
+    "domain": "human_resources",
+    "category": "data_manipulation",
+    "title": "Data Integrity (Constraint Violations / Cascades)",
+--
+  {
+    "id": "hr_4",
+    "domain": "human_resources",
+    "category": "aggregations_joins",
+    "title": "Including Unmatched Records (LEFT JOIN)",
+--
+  {
+    "id": "hr_16",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Multi-Table Chains",
+--
+  {
+    "id": "hr_37",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Finding Missing Data (IS NULL)",
+--
+  {
+    "id": "hr_39",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Filtering using Subqueries (Left Join/Subquery combos)",
+--
+  {
+    "id": "hr_40",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Advanced Subquery Comparisons",
+--
+  {
+    "id": "hr_case_when",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Conditional Logic with CASE WHEN",
+--
+  {
+    "id": "hr_select_subquery",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Subqueries in the SELECT Clause",
+--
+  {
+    "id": "hr_43",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Composite Primary Keys and Out-of-Line Constraints",
+--
+  {
+    "id": "hr_44",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Advanced Schema Planning",
+--
+  {
+    "id": "hr_17",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Speeding Up Lookups (CREATE INDEX)",
+--
+  {
+    "id": "hr_22",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Saving Complex Queries (CREATE VIEW)",
+--
+  {
+    "id": "hr_45",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Building Custom Views",
+--
+  {
+    "id": "hr_46",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "Altering Existing Views",
+--
+  {
+    "id": "hr_recreation",
+    "domain": "human_resources",
+    "category": "schema_management",
+    "title": "The Recreation Pattern for Complex Modfications",
+--
+  {
+    "id": "hr_ctes",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Common Table Expressions (CTEs/WITH clauses)",
+--
+  {
+    "id": "hr_window_functions",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Window Functions",
+--
+  {
+    "id": "hr_bus_cte_1",
+    "domain": "human_resources",
+    "category": "complex_queries",
+    "title": "Introduction to Common Table Expressions",

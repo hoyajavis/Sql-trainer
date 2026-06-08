@@ -1,0 +1,266 @@
+---
+Step Title: Introduction to SELECT Statements
+Snippet: To retrieve data from a table, use the `SELECT` statement. The asterisk `*` means 'all columns'.  Example: ```sql SELECT * FROM employees; ```
+Chal ID: business_1
+Desc: Our marketing department is gearing up for a major product launch next quarter and needs to understand our customer base better. To effectively segment users for targeted email campaigns, they require a comprehensive dataset of all registered members. A marketing campaign requires a list of all current users indicating their first and last names. Retrieve every column from the users table so the team has full context on our registered members.
+Sol: SELECT * FROM users;
+---
+Step Title: Selecting Specific Columns
+Snippet: Instead of selecting all columns, you can specify exactly which columns you want to retrieve by separating their names with commas.  Example: ```sql SELECT first_name, last_name FROM employees; ```
+Chal ID: business_28
+Desc: The newsletter service strictly demands only the user's name and email. Select only the first_name and email columns from the users table, avoiding SELECT * to save bandwidth.
+Sol: SELECT first_name, email FROM users;
+---
+Step Title: Filtering Rows with WHERE
+Snippet: The `WHERE` clause acts as a filter, allowing you to only retrieve rows that meet a specific condition (like matching an ID, or a value greater than a number).  Example: ```sql SELECT * FROM products WHERE price > 50; ```
+Chal ID: business_2
+Desc: The sales team is looking for high-ticket items to promote in the upcoming holiday sale. Find all products where the price is strictly greater than 100 to filter out budget items.
+Sol: SELECT * FROM products WHERE price > 100;
+---
+Step Title: Creating Your First Table
+Snippet: Use `CREATE TABLE` to define new structure. You must specify the column names and their data types (like `TEXT` for words or `INTEGER` for whole numbers).  Example: ```sql CREATE TABLE customers (   id INTEGER,   name TEXT ); ```
+Chal ID: business_7
+Desc: Our e-commerce platform thrives on customer trust and product quality. To better understand what our users love (or don't love!) about our offerings and to help new customers make informed decisions, the product team is adding a new feature for user reviews. Create a table named 'reviews' with columns: review_id (TEXT), user_id (TEXT), product_id (TEXT), and rating (INTEGER) to store this new data.
+Sol: CREATE TABLE reviews (review_id TEXT, user_id TEXT, product_id TEXT, rating INTEGER);
+---
+Step Title: Adding Data with INSERT
+Snippet: Use `INSERT INTO` followed by the table name and the `VALUES` you wish to insert, in the exact order the columns were defined.  Example: ```sql INSERT INTO customers (id, name)  VALUES (1, 'Alice'); ```
+Chal ID: business_8
+Desc: Our e-commerce platform is constantly expanding its product catalog to offer the latest gadgets to our customers. A new shipment of innovative tech has just landed, and it's crucial to get these items listed online quickly so they can start generating sales.
+
+A new product has arrived in the warehouse and needs to be added to our online store. Insert the new product with product_id 'p11', product_name 'Wireless Charger', description 'Fast charging pad', and price 40.
+Sol: INSERT INTO products (product_id, product_name, description, price) VALUES ('p11', 'Wireless Charger', 'Fast charging pad', 40);
+---
+Step Title: Deleting Basic Records
+Snippet: Use `DELETE FROM` to remove rows entirely. **Warning:** Always include a `WHERE` clause, otherwise all rows in a table will be deleted!  Example: ```sql DELETE FROM customers WHERE id = 1; ```
+Chal ID: business_11
+Desc: In the fast-paced world of e-commerce, maintaining data integrity is paramount. Our fraud detection system just flagged an order as suspicious, and it's crucial to remove all traces of it immediately to prevent further issues. Delete the order with order_id 'o2' from the orders table completely.
+Sol: DELETE FROM orders WHERE order_id = 'o2';
+---
+Step Title: Sorting Data with ORDER BY
+Snippet: Use `ORDER BY` to sort your results. You can specify `ASC` (low to high, default) or `DESC` (high to low).  Example: ```sql SELECT * FROM products ORDER BY price DESC; ```
+Chal ID: business_14
+Desc: The pricing team is reviewing our low-cost inventory. Find all products ordered by their price in ascending order (lowest to highest) so they can decide what to discount next.
+Sol: SELECT * FROM products ORDER BY price ASC;
+---
+Step Title: Limiting Results
+Snippet: If a table is large, or you want the 'top' items, you might only want to see the first few rows. Use the `LIMIT` clause at the very end of your query (after `ORDER BY` if present).  Example: ```sql SELECT * FROM orders ORDER BY total_cost DESC LIMIT 5; ```
+Chal ID: business_24
+Desc: The executive dashboard only has room to display the top 2 premium items. Return only the top 2 most expensive products by ordering by price descending and limiting the results.
+Sol: SELECT * FROM products ORDER BY price DESC LIMIT 2;
+---
+Step Title: Finding Unique Values with DISTINCT
+Snippet: Adding `DISTINCT` right after `SELECT` will remove duplicate rows from your results.  Example: ```sql SELECT DISTINCT department FROM employees; ```
+Chal ID: business_18
+Desc: The fulfillment center wants a unique list of products that need to be packaged today. Select distinct product_ordered from the orders table so they know which bins to pull from without duplicates.
+Sol: SELECT DISTINCT product_ordered FROM orders;
+---
+Step Title: Filtering with MULTIPLE Values (IN)
+Snippet: The `IN` operator lets you specify a list of values to match inside a `WHERE` clause, rather than using multiple `OR` statements.  Example: ```sql SELECT * FROM employees WHERE department IN ('Sales', 'Marketing'); ```
+Chal ID: business_19
+Desc: The warehouse is moving bins for products p1 and p3. Find all information regarding products with the ID 'p1' or 'p3' using the IN operator to update their location tags.
+Sol: SELECT * FROM products WHERE product_id IN ('p1', 'p3');
+---
+Step Title: Filtering within Ranges (BETWEEN)
+Snippet: The `BETWEEN` operator selects values within a given inclusive range.  Example: ```sql SELECT * FROM orders WHERE total_cost BETWEEN 50 AND 100; ```
+Chal ID: business_20
+Desc: Marketing is building a 'Mid-Tier Gifts' landing page. Find products with a price starting from 50 up to 500 so they can populate the new webpage section.
+Sol: SELECT * FROM products WHERE price BETWEEN 50 AND 500;
+---
+Step Title: Pattern Matching with LIKE
+Snippet: Use `LIKE` to search for a specified pattern in a column. The `%` wildcard matches any sequence of characters. `_` matches a single character.  Example (find names starting with 'S'): ```sql SELECT * FROM customers WHERE name LIKE 'S%'; ```
+Chal ID: business_15
+Desc: A user forgot their password but only remembers that their email ends with '@example.com'. Find all users whose email matches this pattern using the LIKE operator.
+Sol: SELECT * FROM users WHERE email LIKE '%@example.com';
+---
+Step Title: Combining Filters (AND)
+Snippet: The `AND` operator displays a record if *all* conditions separated by `AND` are true.  Example: ```sql SELECT * FROM customers WHERE country = 'USA'   AND city = 'Seattle'; ```
+Chal ID: business_29
+Desc: Our marketing team is preparing for the launch of a new 'Premium but Affordable' collection, aiming to capture customers who seek quality products without an exorbitant price tag. To curate this exclusive catalog section, we need to identify all products that fit within a specific, attractive price bracket. The 'Premium but Affordable' collection needs population. Find products that cost strictly more than 100 AND strictly less than 800 to feature in the upcoming catalog.
+Sol: SELECT * FROM products WHERE price > 100 AND price < 800;
+---
+Step Title: Alternative Filters (OR)
+Snippet: The `OR` operator displays a record if *any* of the conditions separated by `OR` is true.  Example: ```sql SELECT * FROM customers WHERE city = 'Seattle'   OR city = 'Portland'; ```
+Chal ID: business_30
+Desc: Our marketing team is preparing to ship prizes to the lucky winners of our latest customer loyalty contest. We need to quickly identify the records for Alice and Bob to ensure their prizes are dispatched correctly. Find users with the first_name 'Alice' OR 'Bob' so we can verify their addresses.
+Sol: SELECT * FROM users WHERE first_name = 'Alice' OR first_name = 'Bob';
+---
+Step Title: Counting Rows (COUNT)
+Snippet: The `COUNT()` function returns the number of rows that match a specified criterion (or all rows if `*` is used).  Example: ```sql SELECT COUNT(*) FROM orders; ```
+Chal ID: business_5
+Desc: Our product managers are constantly evaluating the breadth of our offerings to ensure we're meeting market demand and optimizing our portfolio. Knowing the total number of unique products is a fundamental metric for strategic planning and resource allocation. The business analytics team needs a top-line metric. Count the total number of products we currently have in our catalog to include in the quarterly report.
+Sol: SELECT COUNT(*) FROM orders;
+---
+Step Title: Totaling Values (SUM)
+Snippet: The `SUM()` function returns the total sum of a numeric column.  Example: ```sql SELECT SUM(amount) FROM payments; ```
+Chal ID: business_6
+Desc: Our CEO is preparing for the quarterly investor call and needs an immediate snapshot of our company's financial health. A key metric for this is our total gross revenue, which directly reflects our sales performance. Finance is calculating gross revenue. Find the total sum of all orders (total_paid) ever placed in the system to report our overall earnings.
+Sol: SELECT SUM(total_paid) FROM orders;
+---
+Step Title: Averages and Maximums
+Snippet: You can use `AVG()` to find the average and `MAX()` or `MIN()` to find the extremes of a numeric column.  Example: ```sql SELECT AVG(salary), MAX(salary) FROM employees; ```
+Chal ID: business_12
+Desc: As a product manager, understanding market dynamics and pricing strategies is key to success. We need a quick overview of our product catalog's pricing to inform our next sales campaign and inventory decisions. What are the highest and average prices among all products? Return the MAX and ROUNDed AVG (to 2 decimal places) as max_price and avg_price.
+Sol: SELECT MAX(price) as max_price, ROUND(AVG(price), 2) as avg_price FROM products;
+---
+Step Title: Grouping Results (GROUP BY)
+Snippet: The `GROUP BY` statement groups rows that have the same values into summary rows, often used with aggregate functions like `COUNT` or `SUM`.  Example (Total sales per department): ```sql SELECT department, SUM(sales) FROM departments GROUP BY department; ```
+Chal ID: business_13
+Desc: We are launching a loyalty program and need to know how many orders each user has placed. Group by user and return the user ID along with the count of their orders.
+Sol: SELECT user, SUM(total_paid) FROM orders GROUP BY user;
+---
+Step Title: Filtering Groups (HAVING)
+Snippet: The `HAVING` clause is like a `WHERE` clause, but it evaluates conditions *after* aggregates have been grouped.  Example (Departments with high sales): ```sql SELECT department, SUM(sales) FROM departments  GROUP BY department  HAVING SUM(sales) > 1000; ```
+Chal ID: business_21
+Desc: We are searching for 'VIP' customers. Find users who have spent more than 100 in total across all their orders. Group by user and use HAVING to filter the sum, so we can send them a thank you gift.
+Sol: SELECT user, SUM(total_paid) FROM orders GROUP BY user HAVING SUM(total_paid) > 100;
+---
+Step Title: Updating Existing Records
+Snippet: Use `UPDATE` and `SET` to modify existing data. Always use a `WHERE` clause to avoid updating every record!  Example: ```sql UPDATE employees SET salary = 60000 WHERE id = 5; ```
+Chal ID: business_9
+Desc: As a key member of the e-commerce operations team, you're responsible for maintaining accurate product data. Recent disruptions in the global supply chain have significantly impacted the cost of our most popular electronics, requiring immediate price adjustments to maintain profitability. Due to a supply chain issue, the price of our top-selling laptop needs to be updated. Update the price of the product with product_id 'p1' to 1250.
+Sol: UPDATE products SET price = 1000 WHERE product_name = 'Laptop';
+---
+Step Title: Updating Multiple Fields
+Snippet: You can update multiple columns at once by separating them with commas in the `SET` block.  Example: ```sql UPDATE employees SET title = 'Manager', salary = 80000 WHERE id = 5; ```
+Chal ID: business_33
+Desc: User 'u1' legally changed their name. Update user 'u1' simultaneously to have first_name 'Johnny' and last_name 'Appleseed' to keep their profile current.
+Sol: UPDATE users SET first_name = 'Johnny', last_name = 'Appleseed' WHERE user_id = 'u1';
+---
+Step Title: Conditional Deletions
+Snippet: You can use conditionals (like `<`, `>`, `AND`) in a `DELETE` statement to clear out ranges of unwanted data.  Example: ```sql DELETE FROM orders WHERE order_date < '2022-01-01'   AND status = 'cancelled'; ```
+Chal ID: business_34
+Desc: The company is discontinuing all budget-tier products to focus on high-end electronics. Delete all products that are cheaper than 150 from the catalog.
+Sol: DELETE FROM products WHERE price < 150;
+---
+Step Title: Altering Tables (Adding Columns)
+Snippet: If you need to add a new column to an existing table, use the `ALTER TABLE ... ADD COLUMN` statement.  Example: ```sql ALTER TABLE customers ADD COLUMN email VARCHAR(255); ```
+Chal ID: business_10
+Desc: The marketing team wants to start sending SMS notifications. We need a way to store user phone numbers. Add a new column named 'phone' of type TEXT to the users table.
+Sol: ALTER TABLE users ADD COLUMN phone TEXT;
+---
+Step Title: Dropping Tables
+Snippet: Use `DROP TABLE` to permanently delete an entire table and all of its contents. This cannot be undone.  Example: ```sql DROP TABLE temp_reports; ```
+Chal ID: business_36
+Desc: The new reviews architecture was scrapped, and the table is no longer needed. Keep the database clean by using DROP TABLE to delete the 'reviews' table from the schema completely.
+Sol: DROP TABLE reviews;
+---
+Step Title: Introduction to Table Relationships (INNER JOIN)
+Snippet: An `INNER JOIN` returns records that have matching values in both tables. This allows you to combine data mapped by an ID.  Example: ```sql SELECT users.name, orders.amount FROM users INNER JOIN orders   ON users.id = orders.user_id; ```
+Chal ID: business_3
+Desc: In the fast-paced world of e-commerce, customer satisfaction is paramount. When a user contacts support with a question or issue regarding a past purchase, the support agent needs to quickly and accurately identify the specific product the customer is referring to. Customer support needs to find out what product a specific user ordered. Join the users table and orders table to return the user's first name along with the product they ordered.
+Sol: SELECT users.first_name, orders.product_ordered FROM users INNER JOIN orders ON users.user_id = orders.user;
+---
+Step Title: Enforcing Table Architecture (Foreign Keys)
+Snippet: When creating tables, you can define a `FOREIGN KEY` to enforce a relationship and ensure you can't insert orphaned data.  Example: ```sql CREATE TABLE orders (   id INTEGER PRIMARY KEY,   user_id INTEGER,   FOREIGN KEY(user_id) REFERENCES users(id) ); ```
+Chal ID: business_42
+Desc: Create two linked tables for the company. First, create a `departments` table with `dept_id` as an in-line INTEGER PRIMARY KEY, and `dept_name` as TEXT NOT NULL UNIQUE. Second, create an `employees` table with `emp_id` (INTEGER), `first_name` (TEXT NOT NULL), `last_name` (TEXT NOT NULL), `salary` (INTEGER), and `dept_id` (INTEGER). For the `employees` table, use an out-of-line PRIMARY KEY for `emp_id` and an out-of-line FOREIGN KEY for `dept_id` referencing `departments(dept_id)`. Separate the statements with a semicolon.
+Sol: CREATE TABLE departments (dept_id INTEGER PRIMARY KEY, dept_name TEXT NOT NULL UNIQUE); CREATE TABLE employees (emp_id INTEGER, first_name TEXT NOT NULL, last_name TEXT NOT NULL, salary INTEGER, dept_id INTEGER, PRIMARY KEY (emp_id), FOREIGN KEY (dept_id) REFERENCES departments(dept_id));
+---
+Step Title: Inline Data Constraints (NOT NULL, UNIQUE, CHECK)
+Snippet: Constraints prevent bad data. `NOT NULL` prevents empty values, `UNIQUE` ensures no duplicates, and `CHECK` evaluates a rule.  Example: ```sql CREATE TABLE accounts (   email TEXT UNIQUE NOT NULL,   balance INTEGER CHECK(balance >= 0) ); ```
+Chal ID: todo_business_add_constraints
+Desc: Create a new table called `accounts` that includes three columns: `account_id` (INTEGER PRIMARY KEY), `email` (TEXT) that must be UNIQUE and NOT NULL, and `balance` (INTEGER) that is protected by a CHECK constraint ensuring it is greater than or equal to 0.
+Sol: CREATE TABLE accounts (account_id INTEGER PRIMARY KEY, email TEXT UNIQUE NOT NULL, balance INTEGER CHECK(balance >= 0));
+---
+Step Title: Data Integrity (Constraint Violations / Cascades)
+Snippet: Trying to insert a null value into a `NOT NULL` column or deleting a parent row referenced by a `FOREIGN KEY` will actively block the query in a strict system, throwing a constraint violation error.
+Chal ID: todo_business_relationship_checks
+Desc: You need to delete the user with `user_id` = 'U1' from the `users` table. Because SQLite foreign key constraints (if enabled) would block this if they have orders, you must first delete all records in the `orders` table where `user` = 'U1', and then delete the user from the `users` table.
+Sol: DELETE FROM orders WHERE user = 'U1'; DELETE FROM users WHERE user_id = 'U1';
+---
+Step Title: Including Unmatched Records (LEFT JOIN)
+Snippet: A `LEFT JOIN` returns all records from the left table, and the matched records from the right table. The result is `NULL` from the right side if there is no match.  Example: ```sql SELECT users.name, orders.amount FROM users LEFT JOIN orders   ON users.id = orders.user_id; ```
+Chal ID: business_4
+Desc: Your e-commerce company is launching a new re-engagement campaign. To effectively target potential customers and understand overall user activity, the marketing team needs a comprehensive list of all registered users, highlighting who has made a purchase and who hasn't yet. We want to see all users, and if they have placed an order, see their order ID. Use a LEFT JOIN from users to orders to make sure we don't drop users who haven't bought anything yet (they are potential leads).
+Sol: SELECT users.first_name, orders.order_id FROM users LEFT JOIN orders ON users.user_id = orders.user;
+---
+Step Title: Multi-Table Chains
+Snippet: You can chain multiple `JOIN` statements together to connect distant tables through intermediate relationships.
+Chal ID: business_16
+Desc: Our e-commerce platform is growing, and to ensure top-notch customer service and accurate financial reconciliation, we frequently need to generate detailed receipts for our customers. This requires linking customer profiles with their specific orders and the products they purchased. We need a detailed invoice report. Join the orders, users, and products tables to return the user's first name, the product's name, and the total they paid. This will be used to generate receipts.
+Sol: SELECT users.first_name, products.product_name, orders.total_paid FROM orders INNER JOIN users ON orders.user = users.user_id INNER JOIN products ON orders.product_ordered = products.product_id;
+---
+Step Title: Finding Missing Data (IS NULL)
+Snippet: Because `LEFT JOIN` produces `NULL` fields for missing right-side data, combining it with `WHERE ... IS NULL` allows you to find 'orphans' (e.g., users who have never ordered).
+Chal ID: business_37
+Desc: We want to re-engage registered users who haven't bought anything yet. Use a LEFT JOIN to find users who have not placed any orders by checking if orders.order_id IS NULL.
+Sol: SELECT users.first_name FROM users LEFT JOIN orders ON users.user_id = orders.user WHERE orders.order_id IS NULL;
+---
+Step Title: Filtering using Subqueries (Left Join/Subquery combos)
+Snippet: A subquery is a query nested inside another. You can use it in a `WHERE` clause to filter out records based on a secondary result set.  Example: ```sql SELECT * FROM employees WHERE id NOT IN (   SELECT employee_id   FROM fired_log ); ```
+Chal ID: business_39
+Desc: We have dead stock sitting in the warehouse. Find the product_name for products that have never been ordered using a LEFT JOIN from products to orders, checking for IS NULL.
+Sol: SELECT products.product_name FROM products LEFT JOIN orders ON products.product_id = orders.product_ordered WHERE orders.order_id IS NULL;
+---
+Step Title: Advanced Subquery Comparisons
+Snippet: You can evaluate values against dynamic aggregate subqueries, such as finding products priced higher than the company's average.  Example: ```sql SELECT * FROM products WHERE price > (   SELECT AVG(price)   FROM products ); ```
+Chal ID: business_40
+Desc: We want to analyze our premium tier offerings. Find the product_name and price of products whose price is strictly greater than the overall average price of all products using a subquery.
+Sol: SELECT product_name, price FROM products WHERE price > (SELECT AVG(price) FROM products);
+---
+Step Title: Conditional Logic with CASE WHEN
+Snippet: The `CASE` expression goes through conditions and returns a value when the first condition is met. It works like an IF-THEN-ELSE statement.  Example: ```sql SELECT name,    CASE      WHEN count > 10 THEN 'High'     ELSE 'Low'   END AS capacity FROM stock; ```
+Chal ID: todo_business_case_when
+Desc: Write a query that returns the `product_name`, `price`, and a new column called `tier` that is 'Premium' if the price is > 100, and 'Standard' otherwise. Order by price descending.
+Sol: SELECT product_name, price, CASE WHEN price > 100 THEN 'Premium' ELSE 'Standard' END AS tier FROM products ORDER BY price DESC;
+---
+Step Title: Subqueries in the SELECT Clause
+Snippet: You can run an isolated subquery directly inside the `SELECT` sequence to pull in a single value alongside normal rows.  Example: ```sql SELECT    name,    (SELECT MAX(price) FROM competitors) AS competitor_high  FROM products; ```
+Chal ID: todo_business_select_subquery
+Desc: For every product, return its `product_name`, `price`, and the highest price of any product in the store as a new column named `max_price`. Order by `price` descending.
+Sol: SELECT product_name, price, (SELECT MAX(price) FROM products) AS max_price FROM products ORDER BY price DESC;
+---
+Step Title: Composite Primary Keys and Out-of-Line Constraints
+Snippet: A primary key can span multiple columns (a composite key). This is usually defined out-of-line at the end of the `CREATE TABLE` statement.  Example: ```sql CREATE TABLE assignments (   user_id INTEGER,   role_id INTEGER,   PRIMARY KEY (user_id, role_id) ); ```
+Chal ID: business_43
+Desc: Create a `suppliers` table with an in-line `supplier_id` (INTEGER PRIMARY KEY), `name` (TEXT NOT NULL UNIQUE), and `contact_email` (TEXT). Next, create an `inventory` table with `item_id` (INTEGER), `item_name` (TEXT NOT NULL), `quantity` (INTEGER DEFAULT 0), and `supplier_id` (INTEGER). In the `inventory` table, use an out-of-line PRIMARY KEY for `item_id`, an out-of-line CHECK constraint ensuring `quantity >= 0`, and an out-of-line FOREIGN KEY linking `supplier_id` to `suppliers(supplier_id)`. Separate the statements with a semicolon.
+Sol: CREATE TABLE suppliers (supplier_id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, contact_email TEXT); CREATE TABLE inventory (item_id INTEGER, item_name TEXT NOT NULL, quantity INTEGER DEFAULT 0, supplier_id INTEGER, PRIMARY KEY (item_id), CHECK (quantity >= 0), FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id));
+---
+Step Title: Advanced Schema Planning
+Snippet: Designing normalized multi-table schemas requires forethought to reduce duplication, enforce constraints, and establish clear logical connections between domains.
+Chal ID: business_44
+Desc: Build a robust auditing schema. Create a `currencies` table with an in-line `currency_code` (VARCHAR(3) PRIMARY KEY) and `exchange_rate` (DECIMAL(10,4) NOT NULL). Then, create an `audit_logs` table with `log_id` (BIGINT), `action_date` (TIMESTAMP NOT NULL), `currency_code` (VARCHAR(3)), and `amount` (DECIMAL(15,2)). Use out-of-line constraints in `audit_logs`: PRIMARY KEY for `log_id`, a CHECK constraint ensuring `amount > 0`, and a FOREIGN KEY linking `currency_code` to `currencies(currency_code)`. Separate the statements with a semicolon.
+Sol: CREATE TABLE currencies (currency_code VARCHAR(3) PRIMARY KEY, exchange_rate DECIMAL(10,4) NOT NULL); CREATE TABLE audit_logs (log_id BIGINT, action_date TIMESTAMP NOT NULL, currency_code VARCHAR(3), amount DECIMAL(15,2), PRIMARY KEY (log_id), CHECK (amount > 0), FOREIGN KEY (currency_code) REFERENCES currencies(currency_code));
+---
+Step Title: Speeding Up Lookups (CREATE INDEX)
+Snippet: Indexes improve the speed of data retrieval operations on a table at the cost of additional storage and slower `INSERT`s.  Example: ```sql CREATE INDEX idx_user_email ON users (email); ```
+Chal ID: business_17
+Desc: Our database queries for users by email are getting slow! Create an index named 'idx_user_email' on the 'email' column of the users table to speed up lookup times.
+Sol: CREATE INDEX idx_user_email ON users(email);
+---
+Step Title: Saving Complex Queries (CREATE VIEW)
+Snippet: A view is a virtual table based on the result-set of an SQL statement. It allows you to save a complex query and query *it* like a normal table later.  Example: ```sql CREATE VIEW ActiveUsers AS SELECT * FROM users WHERE status = 'active'; ```
+Chal ID: business_22
+Desc: The analytics team frequently runs a complex query joining users and orders. To make their lives easier, create a view called 'user_orders' that selects first_name from users and total_paid from orders.
+Sol: CREATE VIEW user_orders AS SELECT users.first_name, orders.total_paid FROM users INNER JOIN orders ON users.user_id = orders.user;
+---
+Step Title: Building Custom Views
+Snippet: Views can aggregate data, enforce logic, and act as a secure permissions layer by hiding sensitive columns.
+Chal ID: business_45
+Desc: Create a view named `client_summary` that displays only two columns from the `clients` table: `contact_email` and `client_name`, in that exact order.
+Sol: CREATE VIEW client_summary AS SELECT contact_email, client_name FROM clients;
+---
+Step Title: Altering Existing Views
+Snippet: Some systems let you replace views (`CREATE OR REPLACE VIEW`), while others require you to `DROP VIEW` and recreate it.
+Chal ID: business_46
+Desc: First, create a view named `detailed_view` containing `client_name`, `contact_email`, and `phone_number` in that order from the `clients` table. Then, since SQLite does not support ALTER VIEW, drop `detailed_view` and recreate it pulling the columns in the opposite order: `phone_number`, `contact_email`, `client_name`. Separate your statements with semicolons.
+Sol: CREATE VIEW detailed_view AS SELECT client_name, contact_email, phone_number FROM clients; DROP VIEW detailed_view; CREATE VIEW detailed_view AS SELECT phone_number, contact_email, client_name FROM clients;
+---
+Step Title: The Recreation Pattern for Complex Modfications
+Snippet: Because SQLite constraints limit `ALTER TABLE`, dropping a column or changing a data type requires you to rename the table, create the new structure, copy the data, and drop the old table.
+Chal ID: todo_business_recreation
+Desc: SQLite `ALTER TABLE` is limited. You must completely replace the `users` table to change its structure. Create `users_new` with the exact same columns as `users`, plus a `status TEXT` column. Then INSERT all data from `users` into `users_new`. Then DROP `users`. Then RENAME `users_new` to `users`.
+Sol: CREATE TABLE users_new (user_id TEXT PRIMARY KEY, first_name TEXT, last_name TEXT, address TEXT, email TEXT, status TEXT); INSERT INTO users_new (user_id, first_name, last_name, address, email) SELECT * FROM users; DROP TABLE users; ALTER TABLE users_new RENAME TO users;
+---
+Step Title: Common Table Expressions (CTEs/WITH clauses)
+Snippet: A CTE is a temporary named result set that you can reference within a `SELECT`, `INSERT`, `UPDATE`, or `DELETE` statement. It makes recursive or extremely nested logic more readable.  Example: ```sql WITH HighEarners AS (   SELECT *   FROM employees    WHERE salary > 100k ) SELECT * FROM HighEarners  WHERE department = 'IT'; ```
+Chal ID: todo_business_ctes
+Desc: Use a Common Table Expression (CTE) named `BigOrders` to find all orders where `total_paid` > 500. Then, query from `BigOrders` and join with `users` to return `first_name`, `last_name`, and `total_paid`. Order by `total_paid` descending.
+Sol: WITH BigOrders AS (SELECT user, total_paid FROM orders WHERE total_paid > 500) SELECT u.first_name, u.last_name, b.total_paid FROM BigOrders b JOIN users u ON b.user = u.user_id ORDER BY b.total_paid DESC;
+---
+Step Title: Window Functions
+Snippet: Window functions perform a calculation across a set of table rows that are somehow related to the current row, without grouping them into a single aggregate row.  Example: ```sql SELECT    name,    salary,    ROW_NUMBER() OVER(ORDER BY salary DESC) as rank  FROM employees; ```
+Chal ID: todo_business_window_functions
+Desc: Use the `ROW_NUMBER()` window function to assign a rank to each product based on its price, from highest to lowest. Return `product_name`, `price`, and the new column called `rank`.
+Sol: SELECT product_name, price, ROW_NUMBER() OVER (ORDER BY price DESC) as rank FROM products;
