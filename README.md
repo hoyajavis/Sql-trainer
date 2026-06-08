@@ -13,7 +13,7 @@ This application is designed specifically for **students of Computer Science, Da
 
 It directly assists with the core competencies evaluated in two major courses:
 *   **Introduction to Data Management**: Covering the basics of database architecture, surface-level queries, data filtering, and elementary schema design.
-*   **Introduction to Data Management**: Covering complex reporting, multi-table relationships (Joins), data integrity, subqueries, and advanced SQL features.
+*   **Intermediate Data Management**: Covering complex reporting, multi-table relationships (Joins), data integrity, subqueries, and advanced SQL features.
 
 ## What It Contains
 The application offers three core modes of interaction, all personalized across 9 unique professional domains (Business, Science, Education, Healthcare, Media, Sports, Aviation, Real Estate, and Human Resources):
