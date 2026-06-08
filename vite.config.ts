@@ -6,6 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({command, mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
+    root: path.resolve(__dirname, 'app/applet'),
     base: command === 'build' ? '/Sql-trainer/' : '/',
     plugins: [react(), tailwindcss()],
     define: {
@@ -13,12 +14,16 @@ export default defineConfig(({command, mode}) => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(__dirname, 'app/applet'),
       },
+    },
+    build: {
+      outDir: path.resolve(__dirname, 'dist'),
+      emptyOutDir: true,
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
       // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
