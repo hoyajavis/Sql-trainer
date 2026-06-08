@@ -9,11 +9,11 @@ The primary purpose of this application is to support students mastering relatio
 Through carefully structured lesson passes and domain-specific challenges, it guides users from basic `SELECT` statements up through complex joins, aggregations, subqueries, and advanced analytics (such as Common Table Expressions and Window Functions).
 
 ## Intended Audience
-This application is designed specifically for **students of Computer Science, Data Analytics, and Information Technology in the School of Technology at WGU (Western Governors University)**. 
+This application is designed specifically for **students of Computer Science, Data Analytics, and Information Technology **. 
 
 It directly assists with the core competencies evaluated in two major courses:
-*   **Foundations of Data Management**: Covering the basics of database architecture, surface-level queries, data filtering, and elementary schema design.
-*   **Applications of Data Management**: Covering complex reporting, multi-table relationships (Joins), data integrity, subqueries, and advanced SQL features.
+*   **Introduction to Data Management**: Covering the basics of database architecture, surface-level queries, data filtering, and elementary schema design.
+*   **Introduction to Data Management**: Covering complex reporting, multi-table relationships (Joins), data integrity, subqueries, and advanced SQL features.
 
 ## What It Contains
 The application offers three core modes of interaction, all personalized across 9 unique professional domains (Business, Science, Education, Healthcare, Media, Sports, Aviation, Real Estate, and Human Resources):
